@@ -1,15 +1,18 @@
 import React from 'react';
-import Navbar from '../components/Navbar.jsx';
 import Slider from '../components/Slider.jsx';
+// import {withTheme} from "@material-ui/core/styles";
+// import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const Home = () => {
     return (
-        <div>
-            <Navbar />
-            Ok
-            <Slider />
-        </div>
+        <Container>
+        Ok
+        <Slider />
+        </Container>
     )
 }
-
 export default Home;
+
+const Container = styled.div`
+`

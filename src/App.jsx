@@ -1,27 +1,12 @@
-import Home from './pages/Home';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import React from "react";
-// import { ThemeProvider } from "styled-components";
-
-// const theme = createTheme({
-//     colors: {
-//         powderWhite: "#FFFDF9",
-//         persianGreen: "#06B49A",
-//         lightBlue: "#AFDBD2",
-//         onyx: "#36313D"
-//     },
-//     palette: {
-//         primary: {
-//             main: "#483"
-//         }
-//     },
-//     fonts: ["sans-serif", "Roboto"],
-//     fontSizes: {
-//         small: "1em",
-//         medium: "2em",
-//         large: "3em"
-//     }
-// });
+import Header from "./components/Header";
+// import Home from './pages/Home';
+// import Customisation from './pages/Customisation';
+// import Register from './pages/Register';
+// import Login from './pages/Login';
+import Cart from './pages/Cart';
+import Footer from "./components/Footer";
 
 const theme = createTheme({
     palette: {
@@ -46,7 +31,11 @@ const theme = createTheme({
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Home />
+            <Header />
+            <main style={{height: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
+                <Cart />
+            </main>
+            <Footer />
         </ThemeProvider>
     )
 }
