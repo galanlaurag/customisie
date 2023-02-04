@@ -1,29 +1,21 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+// import styled from 'styled-components/macro';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Pay from "../components/Pay";
+import Success from "../components/Success";
 
 const Customisation = () => {
     return (
         <Router>
-            <Switch>
-                <Route path="/pay">
-                    <Pay />
-                </Route>
-                <Route path="/success">
-                    <Success />
-                </Route>
-            </Switch>
+            <Routes>
+                <Route path="/pay" element={<Pay/>}/>
+                <Route path="/success" element={<Success/>}/>
+            </Routes>
         </Router>
     )
 }
 export default Customisation;
 
-const Router = styled.div`
-`
-const Switch = styled.div`
-`
-const Route = styled.div`
-`
-const Pay = styled.div`
-`
-const Success = styled.div`
-`
+// const Router = styled.div``
+// const Switch = styled.div``
+// const Route = styled.div``
