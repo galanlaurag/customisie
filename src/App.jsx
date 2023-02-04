@@ -2,11 +2,12 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import React from "react";
 import Header from "./components/Header";
 // import Home from './pages/Home';
-// import Customisation from './pages/Customisation';
+import Customisation from './pages/Customisation';
 // import Register from './pages/Register';
 // import Login from './pages/Login';
-import Cart from './pages/Cart';
+// import Cart from './pages/Cart';
 import Footer from "./components/Footer";
+
 
 const theme = createTheme({
     palette: {
@@ -33,7 +34,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <Header />
             <main style={{height: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
-                <Cart />
+                <Customisation />
             </main>
             <Footer />
         </ThemeProvider>

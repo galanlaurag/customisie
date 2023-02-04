@@ -3,12 +3,27 @@ import styled from 'styled-components/macro';
 
 const Customisation = () => {
     return (
-        <Container>
-            okk
-        </Container>
+        <Router>
+            <Switch>
+                <Route path="/pay">
+                    <Pay />
+                </Route>
+                <Route path="/success">
+                    <Success />
+                </Route>
+            </Switch>
+        </Router>
     )
 }
 export default Customisation;
 
-const Container = styled.div`
+const Router = styled.div`
+`
+const Switch = styled.div`
+`
+const Route = styled.div`
+`
+const Pay = styled.div`
+`
+const Success = styled.div`
 `
