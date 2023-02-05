@@ -1,21 +1,26 @@
 import React from 'react';
-// import styled from 'styled-components/macro';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Pay from "../components/Pay";
-import Success from "../components/Success";
+import styled from 'styled-components/macro';
+import Product from "../components/Product";
+import {withTheme} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+
 
 const Customisation = () => {
     return (
-        <Router>
-            <Routes>
-                <Route path="/pay" element={<Pay/>}/>
-                <Route path="/success" element={<Success/>}/>
-            </Routes>
-        </Router>
+        <Container>
+            <Product />
+            <Button>
+                <NavbarLink to={"/cart"}>Confirm</NavbarLink>
+            </Button>
+        </Container>
     )
 }
 export default Customisation;
 
-// const Router = styled.div``
-// const Switch = styled.div``
-// const Route = styled.div``
+const Container = styled.div``
+const NavbarLink = withTheme(styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.palette.primary.main};
+`)
+const Button = styled.button`
+`

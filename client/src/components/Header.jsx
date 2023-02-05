@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import {PersonOutlined, ShoppingCartOutlined} from "@material-ui/icons";
 import {Badge} from "@material-ui/core";
-import { withTheme } from "@material-ui/core/styles"
+import { withTheme } from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+// import Pay from "../components/Pay";
+// import Success from "../components/Success";
 
 const Header = () => {
     return (
@@ -21,15 +24,15 @@ const Header = () => {
                         </Logo>
                     </Left>
                     <Right>
-                        <MenuItem>Customize</MenuItem>
-                        <MenuItem>About</MenuItem>
-                        <MenuItem>Contact</MenuItem>
-                        <MenuItem><PersonOutlined /></MenuItem>
-                        <MenuItem>
+                        <NavbarLink to={"/customisation"}><MenuItem>Customize</MenuItem></NavbarLink>
+                        <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
+                        <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>
+                        <NavbarLink to={"/register"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink>
+                        <NavbarLink to={"/cart"}><MenuItem>
                             <Badge overlap="rectangular" badgeContent={7} color='secondary'>
                                 <ShoppingCartOutlined style={{marginBottom: "10px"}}/>
                             </Badge>
-                        </MenuItem>
+                        </MenuItem></NavbarLink>
                     </Right>
                 </Wrapper>
             </Container>
@@ -44,6 +47,10 @@ const Container = withTheme(styled('div')`
   height: 60px;
   font-size: 1.5rem;
   margin: 0;
+`)
+const NavbarLink = withTheme(styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.palette.fourth.main};
 `)
 const Wrapper = styled.div`
   display: flex;

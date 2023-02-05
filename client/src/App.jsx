@@ -1,13 +1,13 @@
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import React from "react";
 import Header from "./components/Header";
-// import Home from './pages/Home';
-import Customisation from './pages/Customisation';
-// import Register from './pages/Register';
-// import Login from './pages/Login';
-// import Cart from './pages/Cart';
+import Home from './pages/Home';
+import Customisation from "./pages/Customisation";
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
-
+import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 
 const theme = createTheme({
     palette: {
@@ -30,14 +30,23 @@ const theme = createTheme({
 });
 
 const App = () => {
+    const user = true;
     return (
-        <ThemeProvider theme={theme}>
-            <Header />
-            <main style={{height: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
-                <Customisation />
-            </main>
-            <Footer />
-        </ThemeProvider>
+        <Router>
+            <ThemeProvider theme={theme}>
+                <Header />
+                <main style={{height: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
+                    <Routes>
+                        <Route exact path="/" element={<Home/>}/>
+                        <Route path="/customisation" element={<Customisation/>}/>
+                        <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login/>}/>
+                        <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
+                        <Route path="/cart" element={<Cart/>}/>
+                    </Routes>
+                </main>
+                <Footer />
+            </ThemeProvider>
+        </Router>
     )
 }
 
