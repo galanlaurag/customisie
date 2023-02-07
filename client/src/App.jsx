@@ -40,7 +40,7 @@ const App = () => {
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
                         <Route path="/products" element={<Customisation/>}/>
-                        <Route path="/products/find/:id" element={<Product/>}/>
+                        <Route path="/product/:id" element={<Product/>}/>
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login/>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
                         <Route path="/cart" element={<Cart/>}/>

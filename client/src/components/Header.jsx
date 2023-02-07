@@ -41,7 +41,7 @@ const Header = () => {
                         </NavbarLink>
                     </Left>
                     <Right>
-                        {products.map((item) => <NavbarLink to={`/products/find/${item._id}`} key={item._id} ><MenuItem>Customize</MenuItem></NavbarLink>)}
+                        {products.map((item) => <NavbarLink to={`/product/${item._id}`} key={item._id} ><MenuItem>Customize</MenuItem></NavbarLink>)}
                         {/*<NavbarLink to={"/products/find/:id"}><MenuItem>Customize</MenuItem></NavbarLink>*/}
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
                         <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>

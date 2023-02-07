@@ -8,18 +8,18 @@ import {publicRequest} from "../requestMethods";
 const Product = ({item}) => {
 
     //mergin multiple images - works DO NOT DELETE
-    // async function mergeMultipleImages() {
-    //     await mergeImages(['http://localhost:3000/static/media/uszy.95f309a756b72a842cfa.png', 'http://localhost:3000/static/media/glowa.8843494bc3e645fc3839.png'])
-    //         .then((mergedSrc) => {
-    //             document.getElementById("mis").src = mergedSrc;
-    //         })
-    //         .catch(err => console.log(err));
-    // }
-    // mergeMultipleImages();
+    async function mergeMultipleImages() {
+        await mergeImages(['http://localhost:3000/static/media/uszy.95f309a756b72a842cfa.png', 'http://localhost:3000/static/media/glowa.8843494bc3e645fc3839.png'])
+            .then((mergedSrc) => {
+                document.getElementById("mis").src = mergedSrc;
+            })
+            .catch(err => console.log(err));
+    }
+    mergeMultipleImages();
 
 
     const location = useLocation();
-    const id = location.pathname.split("/")[3];
+    const id = location.pathname.split("/")[2];
     console.log("location = " + location.pathname);
     const [product, setProduct] = useState([]);
     useEffect(() =>{
@@ -32,8 +32,8 @@ const Product = ({item}) => {
                 //works for both!!
                 const res = await publicRequest.get(
                     item
-                        ? `products/find/${item._id}`
-                        : "products/find/" + id
+                        ? `products/${item._id}`
+                        : "products/" + id
                 );
                 console.log(res);
                 setProduct(res.data);
@@ -47,7 +47,7 @@ const Product = ({item}) => {
     return (
         <Container>
             {/*local img*/}
-            {/*<Image id="mis"/>*/}
+            <Image id="mis"/>
 
             {/*img from database*/}
             <Image src={product.img} key={product._id}/>
