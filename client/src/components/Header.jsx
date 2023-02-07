@@ -4,27 +4,45 @@ import {PersonOutlined, ShoppingCartOutlined} from "@material-ui/icons";
 import {Badge} from "@material-ui/core";
 import { withTheme } from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {publicRequest} from "../requestMethods";
 // import Pay from "../components/Pay";
 // import Success from "../components/Success";
 
 const Header = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() =>{
+        const getProducts = async () => {
+            try {
+                const res = await publicRequest.get("products/");
+                console.log(res);
+                setProducts(res.data);
+            } catch(err) {
+            }
+        }
+        getProducts();
+    }, []);
     return (
         <header>
             <Container>
                 <Wrapper>
                     <Left>
                         <Language>EN</Language>
-                        <Logo>
-                            <LogoIcon>
-                                <Image src={require('../assets/krolik.png')} />
-                            </LogoIcon>
-                            <LogoText>
-                                Customisie
-                            </LogoText>
-                        </Logo>
+                        <NavbarLink to={"/"}>
+                            <Logo>
+                                <LogoIcon>
+                                    <Image src={require('../assets/krolik.png')} />
+                                </LogoIcon>
+                                <LogoText>
+                                    Customisie
+                                </LogoText>
+                            </Logo>
+                        </NavbarLink>
                     </Left>
                     <Right>
-                        <NavbarLink to={"/customisation"}><MenuItem>Customize</MenuItem></NavbarLink>
+                        {products.map((item) => <NavbarLink to={`/products/find/${item._id}`} key={item._id} ><MenuItem>Customize</MenuItem></NavbarLink>)}
+                        {/*<NavbarLink to={"/products/find/:id"}><MenuItem>Customize</MenuItem></NavbarLink>*/}
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
                         <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>
                         <NavbarLink to={"/register"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink>

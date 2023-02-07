@@ -1,20 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/macro';
-// import Products from "../components/Products";
 import {withTheme} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
-// import {useLocation} from "react-router";
 import Product from "../components/Product";
-import axios from "axios";
+import {publicRequest} from "../requestMethods";
 
 
 const Customisation = () => {
     const [products, setProducts] = useState([]);
-
     useEffect(() =>{
         const getProducts = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/api/products?category=test");
+                const res = await publicRequest.get("products");
                 console.log(res);
                 setProducts(res.data);
             } catch(err) {

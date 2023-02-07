@@ -1,3 +1,56 @@
+// import styled from "styled-components";
+// import React from "react";
+// import {useLocation} from "react-router-dom";
+// import {useEffect, useState} from "react";
+// import {publicRequest} from "../requestMethods";
+//
+// const Product = ({item}) => {
+//     const location = useLocation();
+//     const id = location.pathname.split("/")[3];
+//     const [product, setProduct] = useState([]);
+//     useEffect(() =>{
+//         const getProducts = async () => {
+//             try {
+//                 //works for all products
+//                 const res = await publicRequest.get(`products/find/${item._id}`);
+//                 console.log(res);
+//                 setProduct(res.data);
+//             } catch(err) {
+//             }
+//         }
+//         getProducts();
+//     }, [id]);
+//
+//
+//     return (
+//         <Container>
+//             <Image src={product.img} key={product._id}/>
+//             <Info>{product.title}
+//             </Info>
+//             <Info>{product.desc}
+//             </Info>
+//         </Container>
+//     );
+// };
+//
+// export default Product;
+//
+// const Info = styled.div`
+//    display: flex;
+//    flex-direction: column;
+//  `;
+// const Container = styled.div`
+//    height: 350px;
+//    display: flex;
+// `;
+// const Image = styled.img`
+//   height: 75%;
+//   z-index: 2;
+// `;
+
+
+
+
 // import React, {useEffect, useState} from 'react';
 // import styled from "styled-components/macro";
 // import {Link, useLocation} from "react-router-dom";

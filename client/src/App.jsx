@@ -3,10 +3,7 @@ import React from "react";
 import Header from "./components/Header";
 import Home from './pages/Home';
 import Customisation from "./pages/Customisation";
-// import Products from "./components/Products";
-// import Products from "./components/Products";
-// import ProductList from "./components/ProductList";
-// import Categories from "./components/Categories";
+import Product from "./components/Product";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from "./pages/Cart";
@@ -42,11 +39,8 @@ const App = () => {
                 <main style={{height: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
-                        <Route path="/customisation" element={<Customisation/>}/>
-                        {/*<Route path="/categories" element={<Categories/>}/>*/}
-                        {/*<Route path="/products/:category" element={<Products/>}/>*/}
-                        {/*<Route path="/product/:id" element={<Product/>}/>*/}
-                        {/*<Route path="/products/:category" element={<Products/>}/>*/}
+                        <Route path="/products" element={<Customisation/>}/>
+                        <Route path="/products/find/:id" element={<Product/>}/>
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login/>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
                         <Route path="/cart" element={<Cart/>}/>

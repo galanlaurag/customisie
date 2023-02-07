@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { verifyTokenAndAdmin } = require("./verifyToken");
 const Product = require("../models/Product");
 
-//ADD NEW PRODUCT - admin only
+//ADD NEW PRODUCT - admin only BUT in my case every user?
 router.post("/", verifyTokenAndAdmin, async (req,res) => {
     const newProduct = new Product(req.body);
     try {
@@ -13,7 +13,7 @@ router.post("/", verifyTokenAndAdmin, async (req,res) => {
     }
 })
 
-//UPDATE PRODUCT INFO - admin only
+//UPDATE PRODUCT INFO - admin only BUT in my case every user ?
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(req.params.id,
@@ -50,7 +50,7 @@ router.get("/find/:id", async (req,res) => {
 router.get("/", async (req,res) => {
     const query = req.query.new;
     try {
-        //query with added path /?new=true to show only 5 newest users
+        //query with added path /?new=true to show only 5 newest products
         const products = query ? await Product.find().sort({_id:-1}).limit(5) : await Product.find();
         return res.status(200).json(products);
     } catch(err) {
