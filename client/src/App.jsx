@@ -3,6 +3,10 @@ import React from "react";
 import Header from "./components/Header";
 import Home from './pages/Home';
 import Customisation from "./pages/Customisation";
+// import Products from "./components/Products";
+// import Products from "./components/Products";
+// import ProductList from "./components/ProductList";
+// import Categories from "./components/Categories";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from "./pages/Cart";
@@ -39,6 +43,10 @@ const App = () => {
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
                         <Route path="/customisation" element={<Customisation/>}/>
+                        {/*<Route path="/categories" element={<Categories/>}/>*/}
+                        {/*<Route path="/products/:category" element={<Products/>}/>*/}
+                        {/*<Route path="/product/:id" element={<Product/>}/>*/}
+                        {/*<Route path="/products/:category" element={<Products/>}/>*/}
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login/>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
                         <Route path="/cart" element={<Cart/>}/>

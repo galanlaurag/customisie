@@ -5,6 +5,7 @@ const ProductSchema = new mongoose.Schema(
         title: {type: String, required: true, unique: true},
         desc: {type: String, required: true},
         img: {type: String, required: true},
+        categories: {type: Array},
         size: {type: Array},
         //colour & inStock added later - not sure if will be working
         color: {type: Array},

@@ -2,8 +2,24 @@ import React from 'react';
 import styled from "styled-components/macro";
 import {Add, Remove} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import Product from "../components/Product";
 
-const Slider = () => {
+const Cart = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() =>{
+        const getProducts = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/products");
+                console.log(res);
+                setProducts(res.data);
+            } catch(err) {
+            }
+        }
+        getProducts();
+    }, []);
     return (
         <Container>
             <Wrapper>
@@ -15,9 +31,10 @@ const Slider = () => {
                 </Top>
                 <Bottom>
                     <Info>
-                        <Product>
+                        <CartProduct>
                             <ProductDetail>
-                                <Image src={require('../assets/krolik.png')} />
+                                {products.map((item) => <Product item={item} key={item._id} />)}
+                                {/*<Image src={require('../assets/krolik.png')} />*/}
                                 <Details>
                                     <ProductName>Customised Crochet Teddy Bear</ProductName>
                                     <ProductSize>Large</ProductSize>
@@ -31,7 +48,7 @@ const Slider = () => {
                                 </ProductAmountContainer>
                                 <ProductPrice>$999</ProductPrice>
                             </PriceDetail>
-                        </Product>
+                        </CartProduct>
                     </Info>
                     <Summary>
                         <SummaryTitle>Order summary</SummaryTitle>
@@ -54,7 +71,7 @@ const Slider = () => {
         </Container>
     )
 }
-export default Slider;
+export default Cart;
 
 const Container = styled.div`
 `
@@ -87,7 +104,7 @@ const Bottom = styled.div`
 const Info = styled.div`
   flex: 3;
 `
-const Product = styled.div`
+const CartProduct = styled.div`
   display: flex;
   justify-content: space-between;
 `
@@ -95,9 +112,9 @@ const ProductDetail = styled.div`
   flex: 2;
   display: flex;
 `
-const Image = styled.img`  
-  height: 25em;
-`
+// const Image = styled.img`
+//   height: 25em;
+// `
 const Details = styled.div`
   padding: 20px;
   display: flex;
