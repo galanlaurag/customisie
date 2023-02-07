@@ -8,7 +8,6 @@ import Product from "../components/Product";
 
 const Cart = () => {
     const [products, setProducts] = useState([]);
-
     useEffect(() =>{
         const getProducts = async () => {
             try {
@@ -20,6 +19,16 @@ const Cart = () => {
         }
         getProducts();
     }, []);
+
+    const [quantity, setQuantity] = useState(1);
+    const handleQuantity = (type) => {
+        if(type === "dec") {
+            quantity>1 && setQuantity(quantity-1);
+        } else {
+            setQuantity(quantity+1);
+        }
+    }
+
     return (
         <Container>
             <Wrapper>
@@ -38,13 +47,18 @@ const Cart = () => {
                                 <Details>
                                     <ProductName>Customised Crochet Teddy Bear</ProductName>
                                     <ProductSize>Large</ProductSize>
+                                    <FilterSize>
+                                        <FilterSizeOption>Small</FilterSizeOption>
+                                        <FilterSizeOption>Regular</FilterSizeOption>
+                                        <FilterSizeOption>Large</FilterSizeOption>
+                                    </FilterSize>
                                 </Details>
                             </ProductDetail>
                             <PriceDetail>
                                 <ProductAmountContainer>
-                                    <Remove />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Add />
+                                    <Remove style={{cursor:"pointer"}} onClick={() => handleQuantity("dec")} />
+                                    <ProductAmount>{quantity}</ProductAmount>
+                                    <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
                                 </ProductAmountContainer>
                                 <ProductPrice>$999</ProductPrice>
                             </PriceDetail>
@@ -125,6 +139,13 @@ const ProductName = styled.span`
 `
 const ProductSize = styled.span`
 `
+const FilterSize = styled.select`
+margin-left: 10px;
+padding: 5px;
+`;
+
+const FilterSizeOption = styled.option`
+`;
 const PriceDetail = styled.span`
     flex: 1;
 `
