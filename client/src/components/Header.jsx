@@ -6,10 +6,12 @@ import { withTheme } from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {publicRequest} from "../requestMethods";
+import {useSelector} from "react-redux";
 // import Pay from "../components/Pay";
 // import Success from "../components/Success";
 
 const Header = () => {
+    const cartQuantity = useSelector(state=>state.cart.quantity);
     const [products, setProducts] = useState([]);
 
     useEffect(() =>{
@@ -28,7 +30,7 @@ const Header = () => {
             <Container>
                 <Wrapper>
                     <Left>
-                        <Language>EN</Language>
+                        {/*<Language>EN</Language>*/}
                         <NavbarLink to={"/"}>
                             <Logo>
                                 <LogoIcon>
@@ -41,13 +43,15 @@ const Header = () => {
                         </NavbarLink>
                     </Left>
                     <Right>
+                        {/*one products with url with id*/}
                         {products.map((item) => <NavbarLink to={`/product/${item._id}`} key={item._id} ><MenuItem>Customize</MenuItem></NavbarLink>)}
-                        {/*<NavbarLink to={"/products/find/:id"}><MenuItem>Customize</MenuItem></NavbarLink>*/}
+                        {/*all products customisation page with confirm button*/}
+                        {/*<NavbarLink to={"/products"}><MenuItem>Customize</MenuItem></NavbarLink>*/}
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
                         <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>
                         <NavbarLink to={"/register"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink>
                         <NavbarLink to={"/cart"}><MenuItem>
-                            <Badge overlap="rectangular" badgeContent={7} color='secondary'>
+                            <Badge overlap="rectangular" badgeContent={cartQuantity} color='secondary'>
                                 <ShoppingCartOutlined style={{marginBottom: "10px"}}/>
                             </Badge>
                         </MenuItem></NavbarLink>
@@ -82,11 +86,11 @@ const Left = styled.div`
   display: flex;
   justify-content: flex-start;
 `
-const Language = styled.span`
-  font-size: 1.5rem;
-  cursor: pointer;
-  margin: 0 0.5em;
-`
+// const Language = styled.span`
+//   font-size: 1.5rem;
+//   cursor: pointer;
+//   margin: 0 0.5em;
+// `
 const Logo = styled.div`
   display: flex;
   justify-content: flex-start;

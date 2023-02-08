@@ -1,9 +1,12 @@
 import styled from "styled-components";
 // import mergeImages from "merge-images";
 import React from "react";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {publicRequest} from "../requestMethods";
+import {addProduct} from "../redux/cartRedux";
+import {useDispatch} from "react-redux";
+import {withTheme} from "@material-ui/core/styles";
 
 const Product = ({item}) => {
 
@@ -22,6 +25,8 @@ const Product = ({item}) => {
     const id = location.pathname.split("/")[2];
     // const id = 260;
     console.log("location = " + location.pathname);
+    const quantity = 1;
+    const dispatch = useDispatch();
     const [product, setProduct] = useState([]);
     useEffect(() =>{
         const getProducts = async () => {
@@ -63,6 +68,13 @@ const Product = ({item}) => {
         getProducts();
     }, [item, id]);
 
+    //update cart
+    const handleClick = () => {
+        dispatch(
+            addProduct({product, quantity, price: product.price*quantity})
+        )
+    }
+
 
     return (
         <Container>
@@ -75,6 +87,10 @@ const Product = ({item}) => {
             </Info>
             <Info>{product.desc}
             </Info>
+
+            <Button onClick={handleClick}>
+                <NavbarLink to={"/cart"}>Confirm</NavbarLink>
+            </Button>
 
             {/*<Image src={item.img} key={item._id}/>*/}
             {/*<Info>{item.title}*/}
@@ -101,3 +117,10 @@ const Image = styled.img`
   height: 75%;
   z-index: 2;
 `;
+
+const NavbarLink = withTheme(styled(Link)`
+   text-decoration: none;
+   color: ${props => props.theme.palette.primary.main};
+ `)
+const Button = styled.button`
+ `
