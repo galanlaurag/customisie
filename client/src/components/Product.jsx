@@ -20,16 +20,17 @@ const Product = ({item}) => {
 
     const location = useLocation();
     const id = location.pathname.split("/")[2];
+    // const id = 260;
     console.log("location = " + location.pathname);
     const [product, setProduct] = useState([]);
     useEffect(() =>{
         const getProducts = async () => {
             try {
                 //works for individual product
-                // const res = await publicRequest.get("products/find/" + id);
+                // const res = await publicRequest.get("products/" + id);
                 //works for all products
-                // const res = await publicRequest.get(`products/find/${item._id}`);
-                //works for both!!
+                // const res = await publicRequest.get(`products/${item._id}`);
+                // works for both!!
                 const res = await publicRequest.get(
                     item
                         ? `products/${item._id}`
@@ -37,6 +38,25 @@ const Product = ({item}) => {
                 );
                 console.log(res);
                 setProduct(res.data);
+                //code to add new product
+                // if (!item) {
+                //     try {
+                //         await axios.post("http://localhost:5000/api/products/" + id, {
+                //             title: 'bja',
+                //             img: 'http://localhost:3000/static/media/krolik.6bcb6a9b28f7a0c63624.png'
+                //         }).then(function (response) {
+                //             console.log(response);
+                //             setProduct(response.data.json);
+                //         })
+                //     } catch(err) {
+                //         console.log("error")
+                //         console.log(err.response.data);
+                //     }
+                // } else {
+                //     const res = await publicRequest.get(`products/${item._id}`);
+                //     console.log(res);
+                //     setProduct(res.data);
+                // }
             } catch(err) {
             }
         }

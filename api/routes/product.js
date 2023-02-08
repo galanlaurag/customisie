@@ -3,7 +3,7 @@ const { verifyTokenAndAdmin } = require("./verifyToken");
 const Product = require("../models/Product");
 
 //ADD NEW PRODUCT - admin only BUT in my case every user?
-router.post("/", verifyTokenAndAdmin, async (req,res) => {
+router.post("/:id", verifyTokenAndAdmin, async (req,res) => {
     const newProduct = new Product(req.body);
     try {
         const savedProduct = await newProduct.save();
@@ -29,8 +29,8 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 //DELETE PRODUCT - admin only
 router.delete("/:id", verifyTokenAndAdmin, async (req,res) => {
     try {
-        await Product.findByIdAndDelete(req.params.id);
-        return  req.status(200).json("Product has been deleted.");
+        await Product.findByIdAndDelete(req.params.id.toString().trim());
+        return req.status(200).json("Product has been deleted.");
     } catch(err) {
         return res.status(500).json(err);
     }
