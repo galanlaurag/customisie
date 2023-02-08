@@ -25,9 +25,23 @@ const Product = ({item}) => {
     const id = location.pathname.split("/")[2];
     // const id = 260;
     console.log("location = " + location.pathname);
-    const quantity = 1;
+    const productQuantity = 1;
     const dispatch = useDispatch();
     const [product, setProduct] = useState([]);
+    const [headShape, setHeadShape] = useState("");
+    const [earsShape, setEarsShape] = useState("");
+    const [armsShape, setArmsShape] = useState("");
+    const [legsShape, setLegsShape] = useState("");
+
+    const [headColour, setHeadColour] = useState("");
+    const [eyesColour, setEyesColour] = useState("");
+    const [earsColour, setEarsColour] = useState("");
+    const [innerEarsColour, setInnerEarsColour] = useState("");
+    const [armsColour, setArmsColour] = useState("");
+    const [handsColour, setHandsColour] = useState("");
+    const [legsColour, setLegsColour] = useState("");
+    const [feetColour, setFeetColour] = useState("");
+
     useEffect(() =>{
         const getProducts = async () => {
             try {
@@ -71,10 +85,9 @@ const Product = ({item}) => {
     //update cart
     const handleClick = () => {
         dispatch(
-            addProduct({product, quantity, price: product.price*quantity})
+            addProduct({...product, productQuantity, headShape, earsShape, armsShape, legsShape, headColour, eyesColour, earsColour, innerEarsColour, armsColour, handsColour, legsColour, feetColour})
         )
     }
-
 
     return (
         <Container>
@@ -87,6 +100,73 @@ const Product = ({item}) => {
             </Info>
             <Info>{product.desc}
             </Info>
+
+            {/*shape*/}
+            <SelectionContainer>
+                <FilterShape onChange={(e) => setHeadShape(e.target.value)}>
+                    {product.headShape?.map((s) => (
+                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
+                    ))}
+                </FilterShape>
+                <FilterShape onChange={(e) => setEarsShape(e.target.value)}>
+                    {product.earsShape?.map((s) => (
+                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
+                    ))}
+                </FilterShape>
+                <FilterShape onChange={(e) => setArmsShape(e.target.value)}>
+                    {product.armsShape?.map((s) => (
+                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
+                    ))}
+                </FilterShape>
+                <FilterShape onChange={(e) => setLegsShape(e.target.value)}>
+                    {product.legsShape?.map((s) => (
+                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
+                    ))}
+                </FilterShape>
+
+                {/*colour*/}
+                <FilterColour onChange={(e) => setHeadColour(e.target.value)}>
+                    {product.headColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterColour>
+                <FilterColour onChange={(e) => setEarsColour(e.target.value)}>
+                    {product.earsColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterColour>
+                <FilterColour onChange={(e) => setArmsColour(e.target.value)}>
+                    {product.armsColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterColour>
+                <FilterColour onChange={(e) => setLegsColour(e.target.value)}>
+                    {product.legsColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterColour>
+                {/*additional colours*/}
+                <FilterInnerEarsColour onChange={(e) => setInnerEarsColour(e.target.value)}>
+                    {product.innerEarsColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterInnerEarsColour>
+                <FilterEyesColour onChange={(e) => setEyesColour(e.target.value)}>
+                    {product.eyesColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterEyesColour>
+                <FilterHandsColour onChange={(e) => setHandsColour(e.target.value)}>
+                    {product.handsColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterHandsColour>
+                <FilterFeetColour onChange={(e) => setFeetColour(e.target.value)}>
+                    {product.feetColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterFeetColour>
+            </SelectionContainer>
 
             <Button onClick={handleClick}>
                 <NavbarLink to={"/cart"}>Confirm</NavbarLink>
@@ -112,6 +192,10 @@ const Container = styled.div`
    height: 350px;
    display: flex;
 `;
+const SelectionContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+`
 
 const Image = styled.img`
   height: 75%;
@@ -124,3 +208,25 @@ const NavbarLink = withTheme(styled(Link)`
  `)
 const Button = styled.button`
  `
+
+
+const FilterShape = styled.select`
+ `
+const FilterShapeOption = styled.option`
+ `
+const FilterColour = styled.select`
+ `
+const FilterColourOption = styled.option`
+ `
+
+//additional shapes & colours
+const FilterEyesColour = styled.select`
+ `
+const FilterInnerEarsColour = styled.select`
+ `
+const FilterHandsColour = styled.select`
+ `
+const FilterFeetColour = styled.select`
+ `
+
+
