@@ -21,9 +21,9 @@ const Pay = () => {
                         amount: 9000
                 });
                 console.log(res.data);
-                navigate('/success');
+                return navigate('/success');
             } catch(err) {
-                console.log(err);
+                return console.log(err);
             }
         };
         //if stripeToken then call makeRequest function

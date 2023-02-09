@@ -14,8 +14,9 @@
 //                 //works for all products
 //                 const res = await publicRequest.get(`products/find/${item._id}`);
 //                 console.log(res);
-//                 setProduct(res.data);
+//                 return setProduct(res.data);
 //             } catch(err) {
+//                 return console.log(err);
 //             }
 //         }
 //         getProducts();
@@ -69,8 +70,9 @@
 //             try {
 //                 const res = await axios.get("http://localhost:5000/api/products");
 //                 console.log(res);
-//                 setProduct(res.data);
+//                 return setProduct(res.data);
 //             } catch(err) {
+//                 return console.log(err);
 //             }
 //         }
 //         getProducts();
@@ -139,8 +141,9 @@
 //             try {
 //                 const res = await axios.get("http://localhost:5000/api/products");
 //                 console.log(res);
-//                 setProducts(res.data);
+//                 return setProducts(res.data);
 //             } catch(err) {
+//                 return console.log(err);
 //             }
 //         }
 //         getProducts();
@@ -198,10 +201,12 @@
 //                         ? `http://localhost:5000/api/products?category=${cat}`
 //                         : "http://localhost:5000/api/products"
 //                 );
-//                 setProducts(res.data);
+//                 return setProducts(res.data);
 //                 console.log("Products")
 //                 console.log(res.data)
-//             } catch (err) {}
+//             } catch (err) {
+//                 return console.log(err);
+//             }
 //         };
 //         getProducts();
 //     }, [cat]);

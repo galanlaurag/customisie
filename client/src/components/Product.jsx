@@ -10,13 +10,13 @@ import {withTheme} from "@material-ui/core/styles";
 
 const Product = ({item}) => {
 
-    //mergin multiple images - works DO NOT DELETE
+    //merging multiple images - works DO NOT DELETE
     // async function mergeMultipleImages() {
     //     await mergeImages(['http://localhost:3000/static/media/uszy.95f309a756b72a842cfa.png', 'http://localhost:3000/static/media/glowa.8843494bc3e645fc3839.png'])
     //         .then((mergedSrc) => {
-    //             document.getElementById("mis").src = mergedSrc;
+    //             return document.getElementById("mis").src = mergedSrc;
     //         })
-    //         .catch(err => console.log(err));
+    //         .catch(err => return console.log(err));
     // }
     // mergeMultipleImages();
 
@@ -28,6 +28,7 @@ const Product = ({item}) => {
     const productQuantity = 1;
     const dispatch = useDispatch();
     const [product, setProduct] = useState([]);
+    const [size, setSize] = useState("");
     const [headShape, setHeadShape] = useState("");
     const [earsShape, setEarsShape] = useState("");
     const [armsShape, setArmsShape] = useState("");
@@ -56,7 +57,7 @@ const Product = ({item}) => {
                         : "products/" + id
                 );
                 console.log(res);
-                setProduct(res.data);
+                return setProduct(res.data);
                 //code to add new product
                 // if (!item) {
                 //     try {
@@ -77,6 +78,7 @@ const Product = ({item}) => {
                 //     setProduct(res.data);
                 // }
             } catch(err) {
+                return console.log(err);
             }
         }
         getProducts();
@@ -85,7 +87,7 @@ const Product = ({item}) => {
     //update cart
     const handleClick = () => {
         dispatch(
-            addProduct({...product, productQuantity, headShape, earsShape, armsShape, legsShape, headColour, eyesColour, earsColour, innerEarsColour, armsColour, handsColour, legsColour, feetColour})
+            addProduct({...product, productQuantity, headShape, earsShape, armsShape, legsShape, headColour, eyesColour, earsColour, innerEarsColour, armsColour, handsColour, legsColour, feetColour, size})
         )
     }
 
@@ -166,11 +168,17 @@ const Product = ({item}) => {
                         <FilterColourOption key={c}>{c}</FilterColourOption>
                     ))}
                 </FilterFeetColour>
+                <FilterSize onChange={(e) => setSize(e.target.value)}>
+                    {product.size?.map((s) => (
+                        <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                    ))}
+                </FilterSize>
             </SelectionContainer>
 
-            <Button onClick={handleClick}>
-                <NavbarLink to={"/cart"}>Confirm</NavbarLink>
-            </Button>
+
+            <NavbarLink to={"/cart"}>
+                <Button onClick={handleClick}>Confirm</Button>
+            </NavbarLink>
 
             {/*<Image src={item.img} key={item._id}/>*/}
             {/*<Info>{item.title}*/}
@@ -227,6 +235,11 @@ const FilterInnerEarsColour = styled.select`
 const FilterHandsColour = styled.select`
  `
 const FilterFeetColour = styled.select`
+ `
+
+const FilterSize = styled.select`
+ `
+const FilterSizeOption = styled.option`
  `
 
 

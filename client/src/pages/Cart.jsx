@@ -4,7 +4,11 @@ import {Add, Remove} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Product from "../components/Product";
+// import Product from "../components/Product";
+import {useSelector} from "react-redux";
+import {increaseProductQuantity, decreaseProductQuantity} from "../redux/cartRedux";
+import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
 
 const Cart = () => {
     const [products, setProducts] = useState([]);
@@ -13,62 +17,76 @@ const Cart = () => {
             try {
                 const res = await axios.get("http://localhost:5000/api/products");
                 console.log(res);
-                setProducts(res.data);
+                return setProducts(res.data);
             } catch(err) {
+                return console.log(err);
             }
         }
         getProducts();
     }, []);
 
     const [quantity, setQuantity] = useState(1);
+    const cart = useSelector((state)=>state.cart);
+    const dispatch = useDispatch();
     const handleQuantity = (type) => {
         if(type === "dec") {
+            //update number next to buttons
             quantity>1 && setQuantity(quantity-1);
+            //update cart
+            dispatch(
+                decreaseProductQuantity({id: cart.products._id, decrement: 1})
+            )
         } else {
+            //update number next to buttons
             setQuantity(quantity+1);
+            //update cart
+            dispatch(
+                increaseProductQuantity({id: cart.products._id, increment: 1})
+            )
         }
     }
 
+    //add code to prevent from adding separate items with same key - instead add productQuantity
     return (
         <Container>
             <Wrapper>
                 <Title>Your cart</Title>
                 <Top>
-                    <TopButton>Continue shopping</TopButton>
-                        <TopText>Shopping bag (2)</TopText>
+                    {products.map((item) => (
+                        <CartLink to={`/product/${item._id}`} key={item._id} >
+                            <TopButton>Customise another teddy bear</TopButton>
+                        </CartLink>
+                    ))}
+                    <TopText>Shopping bag ({cart.quantity})</TopText>
                     <TopButton>Checkout now</TopButton>
                 </Top>
                 <Bottom>
                     <Info>
                         <CartProduct>
-                            <ProductDetail>
-                                {products.map((item) => <Product item={item} key={item._id} />)}
+                            {/*in the future change key to img as it will be unique for each different product - id will remain the same for each product so will not be unique*/}
+                            {cart.products.map((product) => (
+                            <ProductDetail key={product._id}>
+                                {/*{products.map((item) => <Product item={item} key={item._id} />)}*/}
                                 {/*<Image src={require('../assets/krolik.png')} />*/}
-                                <Details>
-                                    <ProductName>Customised Crochet Teddy Bear</ProductName>
-                                    <ProductSize>Large</ProductSize>
-                                    <FilterSize>
-                                        <FilterSizeOption>Small</FilterSizeOption>
-                                        <FilterSizeOption>Regular</FilterSizeOption>
-                                        <FilterSizeOption>Large</FilterSizeOption>
-                                    </FilterSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Remove style={{cursor:"pointer"}} onClick={() => handleQuantity("dec")} />
-                                    <ProductAmount>{quantity}</ProductAmount>
-                                    <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
-                                </ProductAmountContainer>
-                                <ProductPrice>$999</ProductPrice>
-                            </PriceDetail>
+
+                                    <Image src={product.img} />
+                                    <PriceDetail>
+                                        <ProductAmountContainer>
+                                            <Remove style={{cursor:"pointer"}}  onClick={() => handleQuantity("dec")} />
+                                            <ProductAmount>{quantity}</ProductAmount>
+                                            <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
+                                        </ProductAmountContainer>
+                                        <ProductPrice>{product.price}</ProductPrice>
+                                    </PriceDetail>
+                                </ProductDetail>
+                                    ))}
                         </CartProduct>
                     </Info>
                     <Summary>
                         <SummaryTitle>Order summary</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>$999</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated shipping</SummaryItemText>
@@ -76,7 +94,7 @@ const Cart = () => {
                         </SummaryItem>
                         <SummaryItem type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>$1019</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total + 20}</SummaryItemPrice>
                         </SummaryItem>
                         <Button>Checkout</Button>
                     </Summary>
@@ -106,10 +124,12 @@ const TopButton = styled.button`
   cursor: pointer;
 `
 const TopText = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
   margin: 0 10px;
 `
+const CartLink = withTheme(styled(Link)`
+   text-decoration: none;
+   color: ${props => props.theme.palette.primary.main};
+ `)
 
 const Bottom = styled.div`
   display: flex;
@@ -126,26 +146,9 @@ const ProductDetail = styled.div`
   flex: 2;
   display: flex;
 `
-// const Image = styled.img`
-//   height: 25em;
-// `
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+const Image = styled.img`
+  height: 25em;
 `
-const ProductName = styled.span`
-`
-const ProductSize = styled.span`
-`
-const FilterSize = styled.select`
-margin-left: 10px;
-padding: 5px;
-`;
-
-const FilterSizeOption = styled.option`
-`;
 const PriceDetail = styled.span`
     flex: 1;
 `
