@@ -7,6 +7,7 @@ import Product from "./components/Product";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from "./pages/Cart";
+import Success from "./pages/Success";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 
@@ -44,6 +45,7 @@ const App = () => {
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login/>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
                         <Route path="/cart" element={<Cart/>}/>
+                        <Route path="/success" element={<Success/>}/>
                     </Routes>
                 </main>
                 <Footer />

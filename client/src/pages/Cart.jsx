@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from "styled-components/macro";
-import {Add, Remove} from "@material-ui/icons";
+import {Add, Remove, Delete} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
 import {useEffect, useState} from "react";
 import axios from "axios";
 // import Product from "../components/Product";
 import {useSelector} from "react-redux";
-import {increaseProductQuantity, decreaseProductQuantity} from "../redux/cartRedux";
+import {increaseProductQuantity, decreaseProductQuantity, clearCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
+import {userRequest} from "../requestMethods";
+const KEY = process.env.REACT_APP_STRIPE;
+
 
 const Cart = () => {
     const [products, setProducts] = useState([]);
@@ -25,6 +29,7 @@ const Cart = () => {
         getProducts();
     }, []);
 
+    //cart updating by increasing & decreasing number
     const [quantity, setQuantity] = useState(1);
     const cart = useSelector((state)=>state.cart);
     const dispatch = useDispatch();
@@ -33,8 +38,12 @@ const Cart = () => {
             //update number next to buttons
             quantity>1 && setQuantity(quantity-1);
             //update cart
-            dispatch(
+            quantity>1 && dispatch(
                 decreaseProductQuantity({id: cart.products._id, decrement: 1})
+            )
+        } else if (type === "del") {
+            dispatch(
+                clearCart()
             )
         } else {
             //update number next to buttons
@@ -45,6 +54,26 @@ const Cart = () => {
             )
         }
     }
+
+    //payment implementation
+    const [stripeToken, setStripeToken] = useState(null);
+    const onToken = (token) => { setStripeToken(token);}
+    const navigate = useNavigate();
+    useEffect(() => {
+        const makeRequest = async() => {
+            try {
+                const res = await userRequest.post("/checkout/payment", {
+                  tokenId: stripeToken.id,
+                  amount: cart.total*100,
+                })
+                console.log(res.data)
+                return navigate('/success', {stripeData: res.data, products: cart})
+            } catch(err) {
+                return console.log(err);
+            }
+        }
+        stripeToken && makeRequest();
+    },[stripeToken, cart, navigate])
 
     //add code to prevent from adding separate items with same key - instead add productQuantity
     return (
@@ -58,7 +87,19 @@ const Cart = () => {
                         </CartLink>
                     ))}
                     <TopText>Shopping bag ({cart.quantity})</TopText>
-                    <TopButton>Checkout now</TopButton>
+                    {stripeToken ? (<span>Processing. Please wait...</span>) : (
+                        <StripeCheckout
+                            name="Customisie"
+                            image="https://avatars.githubusercontent.com/u/1486366?v=4"
+                            billingAddress
+                            shippingAddress
+                            description={`Your total is $${cart.total}`}
+                            amount={cart.total * 100}
+                            token={onToken}
+                            stripeKey={KEY}>
+                            <TopButton>Checkout now</TopButton>
+                        </StripeCheckout>
+                    )}
                 </Top>
                 <Bottom>
                     <Info>
@@ -72,6 +113,7 @@ const Cart = () => {
                                     <Image src={product.img} />
                                     <PriceDetail>
                                         <ProductAmountContainer>
+                                            <Delete style={{cursor:"pointer"}}  onClick={() => handleQuantity("del")} />
                                             <Remove style={{cursor:"pointer"}}  onClick={() => handleQuantity("dec")} />
                                             <ProductAmount>{quantity}</ProductAmount>
                                             <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
@@ -86,7 +128,7 @@ const Cart = () => {
                         <SummaryTitle>Order summary</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total - 20}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated shipping</SummaryItemText>
@@ -94,9 +136,21 @@ const Cart = () => {
                         </SummaryItem>
                         <SummaryItem type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>$ {cart.total + 20}</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>Checkout</Button>
+                        {stripeToken ? (<span>Processing. Please wait...</span>) : (
+                            <StripeCheckout
+                                name="Customisie"
+                                image="https://avatars.githubusercontent.com/u/1486366?v=4"
+                                billingAddress
+                                shippingAddress
+                                description={`Your total is $${cart.total}`}
+                                amount={cart.total * 100}
+                                token={onToken}
+                                stripeKey={KEY}>
+                                <Button>Checkout now</Button>
+                            </StripeCheckout>
+                        )}
                     </Summary>
                 </Bottom>
             </Wrapper>
