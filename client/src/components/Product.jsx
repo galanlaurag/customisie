@@ -23,8 +23,7 @@ const Product = ({item}) => {
 
     const location = useLocation();
     const id = location.pathname.split("/")[2];
-    // const id = 260;
-    console.log("location = " + location.pathname);
+    // console.log("location = " + location.pathname);
     const productQuantity = 1;
     const dispatch = useDispatch();
     const [product, setProduct] = useState([]);
@@ -56,7 +55,7 @@ const Product = ({item}) => {
                         ? `products/${item._id}`
                         : "products/" + id
                 );
-                console.log(res);
+                // console.log(res);
                 return setProduct(res.data);
                 //code to add new product
                 // if (!item) {

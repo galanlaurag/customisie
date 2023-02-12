@@ -1,11 +1,11 @@
-import {useLocation} from "react-router-dom";
+// import {useLocation} from "react-router-dom";
 import {clearCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 
 const Success = () => {
-    const location = useLocation();
-    console.log(location);
+    // const location = useLocation();
+    // console.log(location);
     const dispatch = useDispatch();
     useEffect(() => {
         const emptyCart = async() => {
@@ -22,7 +22,7 @@ const Success = () => {
 
     return (
         <div>
-            Payment successfull
+            Payment successful!
         </div>
     )
 }

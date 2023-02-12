@@ -18,7 +18,6 @@ const Header = () => {
         const getProducts = async () => {
             try {
                 const res = await publicRequest.get("products/");
-                console.log(res);
                 return setProducts(res.data);
             } catch(err) {
                 return console.log(err);

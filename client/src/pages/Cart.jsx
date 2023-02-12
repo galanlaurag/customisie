@@ -20,7 +20,7 @@ const Cart = () => {
         const getProducts = async () => {
             try {
                 const res = await axios.get("http://localhost:5000/api/products");
-                console.log(res);
+                // console.log(res);
                 return setProducts(res.data);
             } catch(err) {
                 return console.log(err);
@@ -35,20 +35,21 @@ const Cart = () => {
     const dispatch = useDispatch();
     const handleQuantity = (type) => {
         if(type === "dec") {
-            //update number next to buttons
-            quantity>1 && setQuantity(quantity-1);
-            //update cart
-            quantity>1 && dispatch(
-                decreaseProductQuantity({id: cart.products._id, decrement: 1})
-            )
+            //decrease number next to buttons & cart
+            if (cart.quantity>1) {
+                setQuantity(quantity-1);
+                dispatch(
+                    decreaseProductQuantity({id: cart.products._id, decrement: 1})
+                )
+            }
         } else if (type === "del") {
+            //clear cart
             dispatch(
                 clearCart()
             )
         } else {
-            //update number next to buttons
+            //increase number next to buttons & cart
             setQuantity(quantity+1);
-            //update cart
             dispatch(
                 increaseProductQuantity({id: cart.products._id, increment: 1})
             )
@@ -66,7 +67,7 @@ const Cart = () => {
                   tokenId: stripeToken.id,
                   amount: cart.total*100,
                 })
-                console.log(res.data)
+                // console.log(res.data)
                 return navigate('/success', {stripeData: res.data, products: cart})
             } catch(err) {
                 return console.log(err);
@@ -75,7 +76,7 @@ const Cart = () => {
         stripeToken && makeRequest();
     },[stripeToken, cart, navigate])
 
-    //add code to prevent from adding separate items with same key - instead add productQuantity
+    //TODO change key to item.img instead of item._id when images will be updated based on selection
     return (
         <Container>
             <Wrapper>
@@ -115,7 +116,7 @@ const Cart = () => {
                                         <ProductAmountContainer>
                                             <Delete style={{cursor:"pointer"}}  onClick={() => handleQuantity("del")} />
                                             <Remove style={{cursor:"pointer"}}  onClick={() => handleQuantity("dec")} />
-                                            <ProductAmount>{quantity}</ProductAmount>
+                                            <ProductAmount>{cart.quantity}</ProductAmount>
                                             <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
                                         </ProductAmountContainer>
                                         <ProductPrice>{product.price}</ProductPrice>

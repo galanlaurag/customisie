@@ -12,7 +12,7 @@ const Customisation = () => {
         const getProducts = async () => {
             try {
                 const res = await publicRequest.get("products");
-                console.log(res);
+                // console.log(res);
                 return setProducts(res.data);
             } catch(err) {
                 return console.log(err);
