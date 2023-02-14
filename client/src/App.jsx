@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Success from "./pages/Success";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const theme = createTheme({
     palette: {
@@ -32,7 +33,7 @@ const theme = createTheme({
 });
 
 const App = () => {
-    const user = true;
+    const user = useSelector(state => state.user.currentUser);
     return (
         <Router>
             <ThemeProvider theme={theme}>

@@ -1,16 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components/macro";
-import { withTheme } from "@material-ui/core/styles"
+import { withTheme } from "@material-ui/core/styles";
+import { login } from "../redux/apiCalls";
+import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {
+    const [email,setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const {isFetching, error} = useSelector(state => state.user);
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        return login(dispatch, {email, password});
+    }
     return (
         <Container>
             <Wrapper>
                 <Title>Log in</Title>
                 <Form>
-                    <Input placeholder="email" />
-                    <Input placeholder="password" />
-                    <Button>Login</Button>
+                    <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                    <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <Button onClick={handleLogin} disabled={isFetching}>Login</Button>
+                    {error && <Error>Please enter correct credentials.</Error> }
                     <Link>Forgot your password?</Link>
                     <Link>Create a new account</Link>
                 </Form>
@@ -55,4 +67,10 @@ const Link = styled.a`
 const Button = styled.button`
   width: 100%;
   margin: 5px 100px 20px;
+  &:disabled {
+    cursor: not-allowed;
+  }
+`
+const Error = styled.span`
+  color: red;
 `

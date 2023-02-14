@@ -27,20 +27,21 @@ const Product = ({item}) => {
     const productQuantity = 1;
     const dispatch = useDispatch();
     const [product, setProduct] = useState([]);
-    const [size, setSize] = useState("");
-    const [headShape, setHeadShape] = useState("");
-    const [earsShape, setEarsShape] = useState("");
-    const [armsShape, setArmsShape] = useState("");
-    const [legsShape, setLegsShape] = useState("");
+    const [headShape, setHeadShape] = useState("Smile");
+    const [earsShape, setEarsShape] = useState("Small");
+    const [armsShape, setArmsShape] = useState("Short");
+    const [legsShape, setLegsShape] = useState("Short");
 
-    const [headColour, setHeadColour] = useState("");
-    const [eyesColour, setEyesColour] = useState("");
-    const [earsColour, setEarsColour] = useState("");
-    const [innerEarsColour, setInnerEarsColour] = useState("");
-    const [armsColour, setArmsColour] = useState("");
-    const [handsColour, setHandsColour] = useState("");
-    const [legsColour, setLegsColour] = useState("");
-    const [feetColour, setFeetColour] = useState("");
+    const [headColour, setHeadColour] = useState("Brown");
+    const [earsColour, setEarsColour] = useState("Brown");
+    const [armsColour, setArmsColour] = useState("Brown");
+    const [legsColour, setLegsColour] = useState("Brown");
+
+    const [eyesColour, setEyesColour] = useState("Black");
+    const [innerEarsColour, setInnerEarsColour] = useState("Same as ears");
+    const [handsColour, setHandsColour] = useState("Same as arms");
+    const [feetColour, setFeetColour] = useState("Same as legs");
+    const [size, setSize] = useState("Small");
 
     useEffect(() =>{
         const getProducts = async () => {
@@ -147,16 +148,16 @@ const Product = ({item}) => {
                     ))}
                 </FilterColour>
                 {/*additional colours*/}
-                <FilterInnerEarsColour onChange={(e) => setInnerEarsColour(e.target.value)}>
-                    {product.innerEarsColour?.map((c) => (
-                        <FilterColourOption key={c}>{c}</FilterColourOption>
-                    ))}
-                </FilterInnerEarsColour>
                 <FilterEyesColour onChange={(e) => setEyesColour(e.target.value)}>
                     {product.eyesColour?.map((c) => (
                         <FilterColourOption key={c}>{c}</FilterColourOption>
                     ))}
                 </FilterEyesColour>
+                <FilterInnerEarsColour onChange={(e) => setInnerEarsColour(e.target.value)}>
+                    {product.innerEarsColour?.map((c) => (
+                        <FilterColourOption key={c}>{c}</FilterColourOption>
+                    ))}
+                </FilterInnerEarsColour>
                 <FilterHandsColour onChange={(e) => setHandsColour(e.target.value)}>
                     {product.handsColour?.map((c) => (
                         <FilterColourOption key={c}>{c}</FilterColourOption>
