@@ -11,6 +11,7 @@ import Success from "./pages/Success";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux";
+import MyAccount from "./pages/MyAccount";
 
 const theme = createTheme({
     palette: {
@@ -45,8 +46,10 @@ const App = () => {
                         <Route path="/product/:id" element={<Product/>}/>
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login/>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
+                        <Route path="/logout" element={<Navigate to={"/"}/>}/>
                         <Route path="/cart" element={<Cart/>}/>
                         <Route path="/success" element={<Success/>}/>
+                        <Route path="/myaccount" element={user && <MyAccount/>}/>
                     </Routes>
                 </main>
                 <Footer />

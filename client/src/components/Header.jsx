@@ -6,13 +6,14 @@ import { withTheme } from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {publicRequest} from "../requestMethods";
-import {useSelector} from "react-redux";
-// import Pay from "../components/Pay";
-// import Success from "../components/Success";
+import {useDispatch, useSelector} from "react-redux";
+import {signout} from "../redux/apiCalls";
 
 const Header = () => {
+    const dispatch = useDispatch();
     const cartQuantity = useSelector(state=>state.cart.quantity);
     const [products, setProducts] = useState([]);
+    const user = useSelector(state => state.user.currentUser);
 
     useEffect(() =>{
         const getProducts = async () => {
@@ -25,6 +26,12 @@ const Header = () => {
         }
         getProducts();
     }, []);
+
+    const handleSignout = (e) => {
+        e.preventDefault();
+        return signout(dispatch);
+    }
+
     return (
         <header>
             <Container>
@@ -49,12 +56,13 @@ const Header = () => {
                         {/*<NavbarLink to={"/products"}><MenuItem>Customize</MenuItem></NavbarLink>*/}
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
                         <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>
-                        <NavbarLink to={"/register"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink>
+                        {user ? <NavbarLink to={"/myaccount"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink> : <NavbarLink to={"/login"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink>}
                         <NavbarLink to={"/cart"}><MenuItem>
                             <Badge overlap="rectangular" badgeContent={cartQuantity} color='secondary'>
                                 <ShoppingCartOutlined style={{marginBottom: "10px"}}/>
                             </Badge>
                         </MenuItem></NavbarLink>
+                        {user && <NavbarLink to={"/logout"}><MenuItem onClick={handleSignout}>Log out</MenuItem></NavbarLink>}
                     </Right>
                 </Wrapper>
             </Container>

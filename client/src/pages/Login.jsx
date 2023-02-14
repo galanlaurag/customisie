@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import styled from "styled-components/macro";
 import { withTheme } from "@material-ui/core/styles";
 import { login } from "../redux/apiCalls";
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-    const {isFetching, error} = useSelector(state => state.user);
+    const {isFetching, errorLogin} = useSelector(state => state.user);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -22,9 +23,14 @@ const Login = () => {
                     <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
                     <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
                     <Button onClick={handleLogin} disabled={isFetching}>Login</Button>
-                    {error && <Error>Please enter correct credentials.</Error> }
-                    <Link>Forgot your password?</Link>
-                    <Link>Create a new account</Link>
+                    {errorLogin && <Error>Please enter correct credentials.</Error> }
+
+                    <Span>Forgot your password?</Span>
+
+                    <Span>Don't have an account?</Span>
+                    <NavbarLink to={"/register"}>
+                        <Button>Create a new account</Button>
+                    </NavbarLink>
                 </Form>
 
             </Wrapper>
@@ -59,11 +65,6 @@ const Input = styled.input`
   margin: 20px 10px 0 0;
   padding: 10px;
 `
-const Link = styled.a`
-  font-size: 0.7rem;
-  margin: 20px 10px 0;
-  width: 100%;
-`
 const Button = styled.button`
   width: 100%;
   margin: 5px 100px 20px;
@@ -73,4 +74,11 @@ const Button = styled.button`
 `
 const Error = styled.span`
   color: red;
+`
+const NavbarLink = styled(Link)`
+`
+const Span = styled.span`
+  font-size: 0.7rem;
+  margin: 20px 10px 0;
+  width: 100%;
 `

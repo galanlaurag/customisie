@@ -1,23 +1,41 @@
 import React from 'react';
 import styled from "styled-components/macro";
 import { withTheme } from "@material-ui/core/styles"
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {register} from "../redux/apiCalls";
+import {useState} from "react";
 
 const Register = () => {
+    const [email,setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = [password, setPassword];
+    const dispatch = useDispatch();
+    const {isFetching, errorRegister} = useSelector(state => state.user);
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        return register(dispatch, {email, password});
+    }
     return (
         <Container>
             <Wrapper>
                 <Title>Create an account</Title>
                 <Form>
-                    <Input placeholder="name" />
-                    <Input placeholder="email" />
-                    <Input placeholder="password" />
-                    <Input placeholder="confirm password" />
+                    <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                    <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+                    {/*<Input placeholder="confirm password" onChange={(e) => setConfirmPassword(e.target.value)}/>*/}
                     <Agreement>
                         By creating and account, I consent to the processing of my personal data in accordance with the <b>Privacy Policy</b>
                     </Agreement>
-                    <Button>Register</Button>
-                </Form>
+                    <Button onClick={handleRegister} disabled={isFetching}>Register</Button>
+                    {errorRegister && <Error>Something went wrong. Please try again.</Error> }
 
+                    <Span>Already have an account?</Span>
+                    <NavbarLink to={"/login"}>
+                        <Button>Log in</Button>
+                    </NavbarLink>
+                </Form>
             </Wrapper>
         </Container>
     )
@@ -55,4 +73,14 @@ const Agreement = styled.span`
   margin: 20px 10px;
 `
 const Button = styled.button`
+`
+const NavbarLink = styled(Link)`
+`
+const Span = styled.span`
+  font-size: 0.7rem;
+  margin: 20px 10px 0;
+  width: 100%;
+`
+const Error = styled.span`
+  color: red;
 `
