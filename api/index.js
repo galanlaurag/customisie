@@ -18,7 +18,11 @@ mongoose.connect(process.env.MONGO_URL)
     console.log(err);
 });
 
-app.use(cors());
+// app.use(cors());
+//local
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+//deployed
+// app.use(cors({credentials: true, origin: 'https://customisie.pl'}));
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
@@ -27,7 +31,8 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 
-
-app.listen(process.env.PORT || 5000, () => {
+//port 5000 is private, 80 public
+// app.listen(process.env.PORT || 5000, () => {
+app.listen(80, () => {
     console.log("Backend server is running!");
 })

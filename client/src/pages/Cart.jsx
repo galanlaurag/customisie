@@ -3,13 +3,14 @@ import styled from "styled-components/macro";
 import {Add, Remove, Delete} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
 import {useEffect, useState} from "react";
-import axios from "axios";
+// import axios from "axios";
 // import Product from "../components/Product";
 import {useSelector} from "react-redux";
 import {increaseProductQuantity, decreaseProductQuantity, clearCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
+import {publicRequest} from "../requestMethods";
 import {userRequest} from "../requestMethods";
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -19,7 +20,7 @@ const Cart = () => {
     useEffect(() =>{
         const getProducts = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/api/products");
+                const res = await publicRequest.get("products/");
                 // console.log(res);
                 return setProducts(res.data);
             } catch(err) {
@@ -63,6 +64,7 @@ const Cart = () => {
     useEffect(() => {
         const makeRequest = async() => {
             try {
+                //TODO change to userRequest later when authentication implemented
                 const res = await userRequest.post("/checkout/payment", {
                   tokenId: stripeToken.id,
                   amount: cart.total*100,
