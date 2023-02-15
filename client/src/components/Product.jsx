@@ -7,6 +7,7 @@ import {publicRequest} from "../requestMethods";
 import {addProduct} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {withTheme} from "@material-ui/core/styles";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 
 const Product = ({item}) => {
 
@@ -85,31 +86,57 @@ const Product = ({item}) => {
     }, [item, id]);
 
     //update cart
-    const handleClick = () => {
+    const handleConfirm = () => {
         dispatch(
             addProduct({...product, productQuantity, headShape, earsShape, armsShape, legsShape, headColour, eyesColour, earsColour, innerEarsColour, armsColour, handsColour, legsColour, feetColour, size})
         )
     }
+
+    //change
+    const [slideIndex, setSlideIndex] = useState(0);
+    const handleClick = (direction) => {
+        if (direction === "left") {
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 5);
+        } else {
+            setSlideIndex(slideIndex < 5 ? slideIndex + 1 : 0);
+        }
+    };
 
     return (
         <Container>
             {/*local img*/}
             {/*<Image id="mis"/>*/}
 
-            {/*img from database*/}
+
             <Image src={product.img} key={product._id}/>
             <Info>{product.title}
             </Info>
             <Info>{product.desc}
             </Info>
 
-            {/*shape*/}
+            <Wrapper slideIndex={slideIndex}/>
+            {product.headShape?.slice(0, 1).map(() => (
+                <Wrapper key={product.headShape[slideIndex]} className={product.headShape[slideIndex]}>
+                    <Arrow direction="left" onClick={() => {handleClick("left"); setHeadShape(product.headShape[slideIndex-1])}} >
+                        <ArrowLeftOutlined />
+                    </Arrow>
+                    {/*TODO apparently require doesnt accept variable so cannot store it locally?*/}
+                    {/*<Image src={require(`../assets/headShape/${product.headShape[slideIndex]}.png`)}/>*/}
+                    <div>{product.headShape[slideIndex]}</div>
+                    <Arrow direction="right" onClick={() => {handleClick("right"); setHeadShape(product.headShape[slideIndex+1])}}>
+                        <ArrowRightOutlined />
+                    </Arrow>
+                </Wrapper>
+            ))}
+
+
             <SelectionContainer>
-                <FilterShape onChange={(e) => setHeadShape(e.target.value)}>
-                    {product.headShape?.map((s) => (
-                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
-                    ))}
-                </FilterShape>
+                {/*replaced with arrows above*/}
+                {/*<FilterShape onChange={(e) => setHeadShape(e.target.value)}>*/}
+                {/*    {product.headShape?.map((s) => (*/}
+                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
+                {/*    ))}*/}
+                {/*</FilterShape>*/}
                 <FilterShape onChange={(e) => setEarsShape(e.target.value)}>
                     {product.earsShape?.map((s) => (
                         <FilterShapeOption key={s}>{s}</FilterShapeOption>
@@ -177,7 +204,7 @@ const Product = ({item}) => {
 
 
             <NavbarLink to={"/cart"}>
-                <Button onClick={handleClick}>Confirm</Button>
+                <Button onClick={handleConfirm}>Confirm</Button>
             </NavbarLink>
 
             {/*<Image src={item.img} key={item._id}/>*/}
@@ -241,5 +268,30 @@ const FilterSize = styled.select`
  `
 const FilterSizeOption = styled.option`
  `
+
+const Arrow = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #fff7f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${(props) => props.direction === "left" && "10px"};
+  right: ${(props) => props.direction === "right" && "10px"};
+  margin: auto;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 2;
+`;
+const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  transition: all 1.5s ease;
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
+`;
 
 
