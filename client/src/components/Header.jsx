@@ -41,7 +41,7 @@ const Header = () => {
                         <NavbarLink to={"/"}>
                             <Logo>
                                 <LogoIcon>
-                                    <Image src={require('../assets/krolik.png')} />
+                                    <Image src="/assets/krolik.png" />
                                 </LogoIcon>
                                 <LogoText>
                                     Customisie

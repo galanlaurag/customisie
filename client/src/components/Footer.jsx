@@ -9,7 +9,7 @@ const Footer = () => {
             <Container>
                 <Left>
                     <Logo>
-                        <Image src={require('../assets/krolik.png')} />
+                        <Image src="/assets/krolik.png" />
                     </Logo>
                     <Desc>Opis</Desc>
                     <SocialContainer>

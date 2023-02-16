@@ -12,7 +12,7 @@ const Slider = () => {
             </Arrow>
             <Wrapper>
                 <ImageContainer>
-                    <Image src={require('../assets/krolik.png')} />
+                    <Image src="../../public/assets/krolik.png" />
                 </ImageContainer>
                 <InfoContainer>Info</InfoContainer>
                 <Slide>

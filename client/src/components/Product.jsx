@@ -93,14 +93,40 @@ const Product = ({item}) => {
     }
 
     //change
-    const [slideIndex, setSlideIndex] = useState(0);
-    const handleClick = (direction) => {
+    const [headShapeIndex, setHeadShapeIndex] = useState(0);
+    const [headColourIndex, setHeadColourIndex] = useState(0);
+    const [earsShapeIndex, setEarsShapeIndex] = useState(0);
+    const [earsColourIndex, setEarsColourIndex] = useState(0);
+    const handleBodyShape = (direction) => {
         if (direction === "left") {
-            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 5);
+            setHeadShapeIndex(headShapeIndex > 0 ? headShapeIndex - 1 : 4);
         } else {
-            setSlideIndex(slideIndex < 5 ? slideIndex + 1 : 0);
+            setHeadShapeIndex(headShapeIndex < 4 ? headShapeIndex + 1 : 0);
         }
     };
+    const handleEarsShape = (direction) => {
+        if (direction === "left") {
+            setEarsShapeIndex(earsShapeIndex > 0 ? earsShapeIndex - 1 : 4);
+        } else {
+            setEarsShapeIndex(earsShapeIndex < 4 ? earsShapeIndex + 1 : 0);
+        }
+    };
+
+    // const handleClickColour = (colour) => {
+    //     setHeadColourIndex(  0);
+    //     if (colour === "brown") {
+    //         setHeadColourIndex(0)
+    //     } else if (colour === "pink") {
+    //         setHeadColourIndex(  1);
+    //     } else if (colour === "beige") {
+    //         setHeadColourIndex( 2);
+    //     } else if (colour === "cream") {
+    //         setHeadColourIndex( 3);
+    //     } else if (colour === "grey") {
+    //         setHeadColourIndex(4);
+    //     }
+    //     console.log(colour + headColourIndex)
+    // };
 
     return (
         <Container>
@@ -108,24 +134,65 @@ const Product = ({item}) => {
             {/*<Image id="mis"/>*/}
 
 
-            <Image src={product.img} key={product._id}/>
-            <Info>{product.title}
-            </Info>
-            <Info>{product.desc}
-            </Info>
+            {/*<Image src={product.img} key={product._id}/>*/}
+            {/*<Info>{product.title}*/}
+            {/*</Info>*/}
+            {/*<Info>{product.desc}*/}
+            {/*</Info>*/}
 
-            <Wrapper slideIndex={slideIndex}/>
+            <Wrapper headShapeIndex={headShapeIndex}/>
+
+
             {product.headShape?.slice(0, 1).map(() => (
-                <Wrapper key={product.headShape[slideIndex]} className={product.headShape[slideIndex]}>
-                    <Arrow direction="left" onClick={() => {handleClick("left"); setHeadShape(product.headShape[slideIndex-1])}} >
+                <Wrapper key={product.headShape[headShapeIndex]} className={product.headShape[headShapeIndex]} >
+                    <HeadArrow direction="left" onClick={() => {handleBodyShape("left"); setHeadShape(product.headShape[headShapeIndex-1])}} >
                         <ArrowLeftOutlined />
-                    </Arrow>
-                    {/*TODO apparently require doesnt accept variable so cannot store it locally?*/}
-                    {/*<Image src={require(`../assets/headShape/${product.headShape[slideIndex]}.png`)}/>*/}
-                    <div>{product.headShape[slideIndex]}</div>
-                    <Arrow direction="right" onClick={() => {handleClick("right"); setHeadShape(product.headShape[slideIndex+1])}}>
+                    </HeadArrow>
+                    {product.headColour?.slice(0, 1).map(() => (
+                        <Wrapper key={product.headColour[headColourIndex]} className={product.headColour[headColourIndex]}>
+                            {/*<Wrapper headColourIndex={headColourIndex}/>*/}
+                            <Button onClick={() => {setHeadColour(product.headColour[0]); setHeadColourIndex(0)}}>Brown</Button>
+                            <Button onClick={() => {setHeadColour(product.headColour[1]); setHeadColourIndex(1)}}>Pink</Button>
+                            <Button onClick={() => {setHeadColour(product.headColour[2]); setHeadColourIndex(2)}}>Beige</Button>
+                            <Button onClick={() => {setHeadColour(product.headColour[3]); setHeadColourIndex(3)}}>Cream</Button>
+                            <Button onClick={() => {setHeadColour(product.headColour[4]); setHeadColourIndex(4)}}>Grey</Button>
+                            {/*<Button onClick={() => {handleClickColour("grey"); setHeadColour(product.headColour[headColourIndex])}}>Grey</Button>*/}
+
+                            <Image src={`/assets/head/${product.headColour[headColourIndex]}/${product.headShape[headShapeIndex]}.png`} style={{zIndex: "10"}}/>
+                            <div>{product.headColour[headColourIndex]}</div>
+                            <div>{headColourIndex}</div>
+                        </Wrapper>
+                        ))}
+                    <div>{product.headShape[headShapeIndex]}</div>
+                    <HeadArrow direction="right" onClick={() => {handleBodyShape("right"); setHeadShape(product.headShape[headShapeIndex+1])}}>
                         <ArrowRightOutlined />
-                    </Arrow>
+                    </HeadArrow>
+                </Wrapper>
+            ))}
+            {product.earsShape?.slice(0, 1).map(() => (
+                <Wrapper key={product.earsShape[earsShapeIndex]} className={product.earsShape[earsShapeIndex]} >
+                    <EarsArrow direction="left" onClick={() => {handleEarsShape("left"); setEarsShape(product.earsShape[earsShapeIndex-1])}} >
+                        <ArrowLeftOutlined />
+                    </EarsArrow>
+                    {product.earsColour?.slice(0, 1).map(() => (
+                        <Wrapper key={product.earsColour[earsColourIndex]} className={product.earsColour[earsColourIndex]}>
+                            {/*<Wrapper earsColourIndex={earsColourIndex}/>*/}
+                            <Button onClick={() => {setEarsColour(product.earsColour[0]); setEarsColourIndex(0)}}>Brown</Button>
+                            <Button onClick={() => {setEarsColour(product.earsColour[1]); setEarsColourIndex(1)}}>Pink</Button>
+                            <Button onClick={() => {setEarsColour(product.earsColour[2]); setEarsColourIndex(2)}}>Beige</Button>
+                            <Button onClick={() => {setEarsColour(product.earsColour[3]); setEarsColourIndex(3)}}>Cream</Button>
+                            <Button onClick={() => {setEarsColour(product.earsColour[4]); setEarsColourIndex(4)}}>Grey</Button>
+                            {/*<Button onClick={() => {handleClickColour("grey"); setEarsColour(product.earsColour[earsColourIndex])}}>Grey</Button>*/}
+
+                            <Image src={`/assets/ears/${product.earsColour[earsColourIndex]}/${product.earsShape[earsShapeIndex]}.png`} />
+                            <div>{product.earsColour[earsColourIndex]}</div>
+                            <div>{earsColourIndex}</div>
+                        </Wrapper>
+                    ))}
+                    <div>{product.earsShape[earsShapeIndex]}</div>
+                    <EarsArrow direction="right" onClick={() => {handleEarsShape("right"); setEarsShape(product.earsShape[earsShapeIndex+1])}}>
+                        <ArrowRightOutlined />
+                    </EarsArrow>
                 </Wrapper>
             ))}
 
@@ -137,11 +204,11 @@ const Product = ({item}) => {
                 {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
                 {/*    ))}*/}
                 {/*</FilterShape>*/}
-                <FilterShape onChange={(e) => setEarsShape(e.target.value)}>
-                    {product.earsShape?.map((s) => (
-                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
-                    ))}
-                </FilterShape>
+                {/*<FilterShape onChange={(e) => setEarsShape(e.target.value)}>*/}
+                {/*    {product.earsShape?.map((s) => (*/}
+                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
+                {/*    ))}*/}
+                {/*</FilterShape>*/}
                 <FilterShape onChange={(e) => setArmsShape(e.target.value)}>
                     {product.armsShape?.map((s) => (
                         <FilterShapeOption key={s}>{s}</FilterShapeOption>
@@ -154,16 +221,16 @@ const Product = ({item}) => {
                 </FilterShape>
 
                 {/*colour*/}
-                <FilterColour onChange={(e) => setHeadColour(e.target.value)}>
-                    {product.headColour?.map((c) => (
-                        <FilterColourOption key={c}>{c}</FilterColourOption>
-                    ))}
-                </FilterColour>
-                <FilterColour onChange={(e) => setEarsColour(e.target.value)}>
-                    {product.earsColour?.map((c) => (
-                        <FilterColourOption key={c}>{c}</FilterColourOption>
-                    ))}
-                </FilterColour>
+                {/*<FilterColour onChange={(e) => setHeadColour(e.target.value)}>*/}
+                {/*    {product.headColour?.map((c) => (*/}
+                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
+                {/*    ))}*/}
+                {/*</FilterColour>*/}
+                {/*<FilterColour onChange={(e) => setEarsColour(e.target.value)}>*/}
+                {/*    {product.earsColour?.map((c) => (*/}
+                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
+                {/*    ))}*/}
+                {/*</FilterColour>*/}
                 <FilterColour onChange={(e) => setArmsColour(e.target.value)}>
                     {product.armsColour?.map((c) => (
                         <FilterColourOption key={c}>{c}</FilterColourOption>
@@ -218,10 +285,10 @@ const Product = ({item}) => {
 
 export default Product;
 
-const Info = styled.div`
-   display: flex;
-   flex-direction: column;
- `;
+// const Info = styled.div`
+//    display: flex;
+//    flex-direction: column;
+//  `;
 
 const Container = styled.div`
    height: 350px;
@@ -233,6 +300,9 @@ const SelectionContainer = styled.div`
 `
 
 const Image = styled.img`
+  position: absolute;
+  left: 5em;
+  top: 15em;
   height: 75%;
   z-index: 2;
 `;
@@ -269,7 +339,7 @@ const FilterSize = styled.select`
 const FilterSizeOption = styled.option`
  `
 
-const Arrow = styled.div`
+const HeadArrow = styled.div`
   width: 50px;
   height: 50px;
   background-color: #fff7f7;
@@ -287,11 +357,28 @@ const Arrow = styled.div`
   opacity: 0.5;
   z-index: 2;
 `;
+const EarsArrow = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #fff7f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 3em;
+  bottom: 0;
+  left: ${(props) => props.direction === "left" && "10px"};
+  right: ${(props) => props.direction === "right" && "10px"};
+  margin: auto;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 2;
+`;
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
   transition: all 1.5s ease;
-  transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
 
