@@ -39,7 +39,7 @@ const App = () => {
         <Router>
             <ThemeProvider theme={theme}>
                 <Header />
-                <main style={{height: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
+                <main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
                         <Route path="/products" element={<Customisation/>}/>

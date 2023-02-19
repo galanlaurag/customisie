@@ -30,32 +30,8 @@ const Cart = () => {
         getProducts();
     }, []);
 
-    //cart updating by increasing & decreasing number
-    const [quantity, setQuantity] = useState(1);
     const cart = useSelector((state)=>state.cart);
     const dispatch = useDispatch();
-    const handleQuantity = (type) => {
-        if(type === "dec") {
-            //decrease number next to buttons & cart
-            if (cart.quantity>1) {
-                setQuantity(quantity-1);
-                dispatch(
-                    decreaseProductQuantity({id: cart.products._id, decrement: 1})
-                )
-            }
-        } else if (type === "del") {
-            //clear cart
-            dispatch(
-                clearCart()
-            )
-        } else {
-            //increase number next to buttons & cart
-            setQuantity(quantity+1);
-            dispatch(
-                increaseProductQuantity({id: cart.products._id, increment: 1})
-            )
-        }
-    }
 
     //payment implementation
     const [stripeToken, setStripeToken] = useState(null);
@@ -78,7 +54,6 @@ const Cart = () => {
         stripeToken && makeRequest();
     },[stripeToken, cart, navigate])
 
-    //TODO change key to item.img instead of item._id when images will be updated based on selection
     return (
         <Container>
             <Wrapper>
@@ -107,19 +82,46 @@ const Cart = () => {
                 <Bottom>
                     <Info>
                         <CartProduct>
-                            {/*in the future change key to img as it will be unique for each different product - id will remain the same for each product so will not be unique*/}
                             {cart.products.map((product) => (
-                            <ProductDetail key={product._id}>
+                            <ProductDetail key={product.size+product.headShape+product.earsShape+product.armsShape+product.legsShape+product.headColour+product.eyesColour+ product.earsColour+product.innerEarsColour+product.armsColour+product.handsColour+product.legsColour+product.feetColour+product.noseColour}>
                                 {/*{products.map((item) => <Product item={item} key={item._id} />)}*/}
                                 {/*<Image src={require('../assets/krolik.png')} />*/}
 
-                                    <Image src={product.img} />
+
+                                    {/*<Image src={product.img} />*/}
+                                <ImageContainer>
+                                    <Image id="headImg" src={`/assets/head/${product.headColour}/${product.headShape}.png`} style={{zIndex: "10"}}/>
+                                    {product.headShape === "Eye patch" &&
+                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eye.png`} style={{zIndex: "11"}}/>
+                                    }
+                                    {product.headShape === "Big eyes" &&
+                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eyes.png`} style={{zIndex: "11"}}/>
+                                    }
+                                    {product.headShape === "Smile" &&
+                                        <Image id="noseImg" src={`/assets/nose/${product.noseColour}/Nose.png`} style={{zIndex: "11"}}/>
+                                    }
+                                    <Image id="earsImg" src={`/assets/ears/${product.earsColour}/${product.earsShape}.png`} style={{zIndex: "11"}}/>
+                                    {product.earsShape === "Round" &&
+                                        <Image id="innerEarsImg" src={`/assets/innerEars/${product.innerEarsColour}/Inner ears.png`} style={{zIndex: "11"}}/>
+                                    }
+                                </ImageContainer>
+
+
                                     <PriceDetail>
                                         <ProductAmountContainer>
-                                            <Delete style={{cursor:"pointer"}}  onClick={() => handleQuantity("del")} />
-                                            <Remove style={{cursor:"pointer"}}  onClick={() => handleQuantity("dec")} />
-                                            <ProductAmount>{cart.quantity}</ProductAmount>
-                                            <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
+                                            <Delete style={{cursor:"pointer"}} onClick={() => {dispatch(clearCart({size: product.size, headShape: product.headShape, earsShape: product.earsShape, armsShape: product.armsShape,
+                                                legsShape: product.legsShape, headColour: product.headColour, eyesColour: product.eyesColour, earsColour: product.earsColour,
+                                                innerEarsColour: product.innerEarsColour, armsColour: product.armsColour, handsColour: product.handsColour,
+                                                legsColour: product.legsColour, feetColour: product.feetColour, noseColour: product.noseColour}))}} />
+                                            <Remove style={{cursor:"pointer"}} onClick={() => {product.productQuantity>1 && dispatch(decreaseProductQuantity({size: product.size, headShape: product.headShape, earsShape: product.earsShape, armsShape: product.armsShape,
+                                                legsShape: product.legsShape, headColour: product.headColour, eyesColour: product.eyesColour, earsColour: product.earsColour,
+                                                innerEarsColour: product.innerEarsColour, armsColour: product.armsColour, handsColour: product.handsColour,
+                                                legsColour: product.legsColour, feetColour: product.feetColour, noseColour: product.noseColour}))}} />
+                                            <ProductAmount>{product.productQuantity}</ProductAmount>
+                                            <Add style={{cursor:"pointer"}} onClick={() => {dispatch(increaseProductQuantity({size: product.size, headShape: product.headShape, earsShape: product.earsShape, armsShape: product.armsShape,
+                                                legsShape: product.legsShape, headColour: product.headColour, eyesColour: product.eyesColour, earsColour: product.earsColour,
+                                                innerEarsColour: product.innerEarsColour, armsColour: product.armsColour, handsColour: product.handsColour,
+                                                legsColour: product.legsColour, feetColour: product.feetColour, noseColour: product.noseColour}))}} />
                                         </ProductAmountContainer>
                                         <ProductPrice>{product.price}</ProductPrice>
                                     </PriceDetail>
@@ -174,7 +176,7 @@ const Top = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 5em;
+  margin-bottom: 1em;
 `
 const TopButton = styled.button`
   padding: 10px;
@@ -197,22 +199,34 @@ const Info = styled.div`
 `
 const CartProduct = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 `
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
+  //position: relative;
+`
+const ImageContainer = styled.div`
+  position: relative;
 `
 const Image = styled.img`
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 25em;
 `
 const PriceDetail = styled.span`
-    flex: 1;
+  flex: 1;
+  margin-left: 15em;
+  height: 25em;
+  position: relative;
 `
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  margin-top: 10em;
 `
 const ProductAmount = styled.div`
     margin: 5px;
@@ -226,6 +240,7 @@ const Summary = withTheme(styled('div')`
   flex: 1;
   padding: 20px;
   border-radius: 10px;
+  height: fit-content;
 `)
 const SummaryTitle = styled.h1`
 `

@@ -27,23 +27,24 @@ const Product = ({item}) => {
     // console.log("location = " + location.pathname);
     const productQuantity = 1;
     const dispatch = useDispatch();
+    // const [productQuantity, setProductQuantity] = useState(1);
     const [product, setProduct] = useState([]);
-    const [headShape, setHeadShape] = useState();
-    const [earsShape, setEarsShape] = useState();
-    const [armsShape, setArmsShape] = useState();
-    const [legsShape, setLegsShape] = useState();
+    const [headShape, setHeadShape] = useState("Smile");
+    const [earsShape, setEarsShape] = useState("Small");
+    const [armsShape, setArmsShape] = useState("Short");
+    const [legsShape, setLegsShape] = useState("Short");
 
-    const [headColour, setHeadColour] = useState();
-    const [earsColour, setEarsColour] = useState();
-    const [armsColour, setArmsColour] = useState();
-    const [legsColour, setLegsColour] = useState();
+    const [headColour, setHeadColour] = useState("Brown");
+    const [earsColour, setEarsColour] = useState("Brown");
+    const [armsColour, setArmsColour] = useState("Brown");
+    const [legsColour, setLegsColour] = useState("Brown");
 
-    const [eyesColour, setEyesColour] = useState();
-    const [noseColour, setNoseColour] = useState();
-    const [innerEarsColour, setInnerEarsColour] = useState();
-    const [handsColour, setHandsColour] = useState();
-    const [feetColour, setFeetColour] = useState();
-    const [size, setSize] = useState();
+    const [eyesColour, setEyesColour] = useState("Brown");
+    const [noseColour, setNoseColour] = useState("Brown");
+    const [innerEarsColour, setInnerEarsColour] = useState("Brown");
+    const [handsColour, setHandsColour] = useState("Brown");
+    const [feetColour, setFeetColour] = useState("Brown");
+    const [size, setSize] = useState("Small");
 
     useEffect(() =>{
         const getProducts = async () => {
@@ -96,7 +97,7 @@ const Product = ({item}) => {
 
     //change
     const [headShapeIndex, setHeadShapeIndex] = useState(0);
-    const [headColourIndex, setHeadColourIndex] = useState(1);
+    const [headColourIndex, setHeadColourIndex] = useState(0);
     const [earsShapeIndex, setEarsShapeIndex] = useState(0);
     const [earsColourIndex, setEarsColourIndex] = useState(0);
     const [eyesColourIndex, setEyesColourIndex] = useState(0);
@@ -156,22 +157,6 @@ const Product = ({item}) => {
             setEarsClicked(false);
         }
     }
-
-    // const handleClickColour = (colour) => {
-    //     setHeadColourIndex(  0);
-    //     if (colour === "brown") {
-    //         setHeadColourIndex(0)
-    //     } else if (colour === "pink") {
-    //         setHeadColourIndex(  1);
-    //     } else if (colour === "beige") {
-    //         setHeadColourIndex( 2);
-    //     } else if (colour === "cream") {
-    //         setHeadColourIndex( 3);
-    //     } else if (colour === "grey") {
-    //         setHeadColourIndex(4);
-    //     }
-    //     console.log(colour + headColourIndex)
-    // };
 
     return (
         <Container>
