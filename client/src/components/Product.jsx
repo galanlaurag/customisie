@@ -103,6 +103,12 @@ const Product = ({item}) => {
     const [eyesColourIndex, setEyesColourIndex] = useState(0);
     const [noseColourIndex, setNoseColourIndex] = useState(0);
     const [innerEarsColourIndex, setInnerEarsColourIndex] = useState(0);
+    const [armsShapeIndex, setArmsShapeIndex] = useState(0);
+    const [armsColourIndex, setArmsColourIndex] = useState(0);
+    const [handsColourIndex, setHandsColourIndex] = useState(0);
+    const [legsShapeIndex, setLegsShapeIndex] = useState(0);
+    const [legsColourIndex, setLegsColourIndex] = useState(0);
+    const [feetColourIndex, setFeetColourIndex] = useState(0);
     const handleBodyShape = (direction) => {
         if (direction === "left") {
             setHeadShapeIndex(headShapeIndex > 0 ? headShapeIndex - 1 : 4);
@@ -117,6 +123,20 @@ const Product = ({item}) => {
             setEarsShapeIndex(earsShapeIndex < 4 ? earsShapeIndex + 1 : 0);
         }
     };
+    const handleArmsShape = (direction) => {
+        if (direction === "left") {
+            setArmsShapeIndex(armsShapeIndex > 0 ? armsShapeIndex - 1 : 4);
+        } else {
+            setArmsShapeIndex(armsShapeIndex < 4 ? armsShapeIndex + 1 : 0);
+        }
+    };
+    const handleLegsShape = (direction) => {
+        if (direction === "left") {
+            setLegsShapeIndex(legsShapeIndex > 0 ? legsShapeIndex - 1 : 4);
+        } else {
+            setLegsShapeIndex(legsShapeIndex < 4 ? legsShapeIndex + 1 : 0);
+        }
+    };
 
     //show and hide colour selections
     const [headClicked, setHeadClicked] = React.useState(false);
@@ -124,6 +144,10 @@ const Product = ({item}) => {
     const [noseClicked, setNoseClicked] = React.useState(false);
     const [earsClicked, setEarsClicked] = React.useState(false);
     const [innerEarsClicked, setInnerEarsClicked] = React.useState(false);
+    const [armsClicked, setArmsClicked] = React.useState(false);
+    const [handsClicked, setHandsClicked] = React.useState(false);
+    const [legsClicked, setLegsClicked] = React.useState(false);
+    const [feetClicked, setFeetClicked] = React.useState(false);
     const handleClickColour = (bodyPart) => {
         if (bodyPart === "head") {
             setHeadClicked(true);
@@ -131,30 +155,90 @@ const Product = ({item}) => {
             setNoseClicked(false);
             setEarsClicked(false);
             setInnerEarsClicked(false);
+            setArmsClicked(false);
+            setHandsClicked(false);
+            setLegsClicked(false);
+            setFeetClicked(false);
         } else if (bodyPart === "eyes") {
             setEyesClicked(true);
             setHeadClicked(false);
             setNoseClicked(false);
             setEarsClicked(false);
             setInnerEarsClicked(false);
+            setArmsClicked(false);
+            setHandsClicked(false);
+            setLegsClicked(false);
+            setFeetClicked(false);
         } else if (bodyPart === "nose") {
             setNoseClicked(true);
             setHeadClicked(false);
             setEyesClicked(false);
             setEarsClicked(false);
             setInnerEarsClicked(false);
+            setArmsClicked(false);
+            setHandsClicked(false);
+            setLegsClicked(false);
+            setFeetClicked(false);
         } else if (bodyPart === "ears") {
             setEarsClicked(true);
             setHeadClicked(false);
             setEyesClicked(false);
             setNoseClicked(false);
             setInnerEarsClicked(false);
+            setArmsClicked(false);
+            setHandsClicked(false);
+            setLegsClicked(false);
+            setFeetClicked(false);
         } else if (bodyPart === "innerEars") {
             setInnerEarsClicked(true);
             setHeadClicked(false);
             setEyesClicked(false);
             setNoseClicked(false);
             setEarsClicked(false);
+            setArmsClicked(false);
+            setHandsClicked(false);
+            setLegsClicked(false);
+            setFeetClicked(false);
+        } else if (bodyPart === "arms") {
+            setArmsClicked(true);
+            setHeadClicked(false);
+            setEyesClicked(false);
+            setNoseClicked(false);
+            setEarsClicked(false);
+            setInnerEarsClicked(false);
+            setHandsClicked(false);
+            setLegsClicked(false);
+            setFeetClicked(false);
+        } else if (bodyPart === "hands") {
+            setHandsClicked(true);
+            setHeadClicked(false);
+            setEyesClicked(false);
+            setNoseClicked(false);
+            setEarsClicked(false);
+            setInnerEarsClicked(false);
+            setArmsClicked(false);
+            setLegsClicked(false);
+            setFeetClicked(false);
+        } else if (bodyPart === "legs") {
+            setLegsClicked(true);
+            setHeadClicked(false);
+            setEyesClicked(false);
+            setNoseClicked(false);
+            setEarsClicked(false);
+            setInnerEarsClicked(false);
+            setArmsClicked(false);
+            setHandsClicked(false);
+            setFeetClicked(false);
+        } else if (bodyPart === "feet") {
+            setFeetClicked(true);
+            setHeadClicked(false);
+            setEyesClicked(false);
+            setNoseClicked(false);
+            setEarsClicked(false);
+            setInnerEarsClicked(false);
+            setArmsClicked(false);
+            setHandsClicked(false);
+            setLegsClicked(false);
         }
     }
 
@@ -193,7 +277,7 @@ const Product = ({item}) => {
                                     {/*<div>{headColourIndex}</div>*/}
                                 </ColourWrapper>
                             : null}
-                            <Image id="headImg" src={`/assets/head/${product.headColour[headColourIndex]}/${product.headShape[headShapeIndex]}.png`} style={{zIndex: "10"}}/>
+                            <Image id="headImg" src={`/assets/head/${product.headColour[headColourIndex]}/${product.headShape[headShapeIndex]}.png`} style={{zIndex: "11"}}/>
 
 
                             {/*eyes*/}
@@ -213,11 +297,11 @@ const Product = ({item}) => {
                                     : null }
                                     {/*one eye*/}
                                     {headShapeIndex === 2 && (
-                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour[eyesColourIndex]}/Eye.png`} style={{zIndex: "11"}}/>
+                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour[eyesColourIndex]}/Eye.png`} style={{zIndex: "12"}}/>
                                     )}
                                     {/*two eyes*/}
                                     {headShapeIndex === 3 && (
-                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour[eyesColourIndex]}/Eyes.png`} style={{zIndex: "11"}}/>
+                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour[eyesColourIndex]}/Eyes.png`} style={{zIndex: "12"}}/>
                                     )}
                                 </OptionalBodyPartWrapper>
                             )}
@@ -238,7 +322,7 @@ const Product = ({item}) => {
                                             {/*<div>{noseColourIndex}</div>*/}
                                         </ColourWrapper>
                                     : null }
-                                    <Image id="noseImg" src={`/assets/nose/${product.noseColour[noseColourIndex]}/Nose.png`} style={{zIndex: "11"}}/>
+                                    <Image id="noseImg" src={`/assets/nose/${product.noseColour[noseColourIndex]}/Nose.png`} style={{zIndex: "12"}}/>
                                 </OptionalBodyPartWrapper>
                             )}
                         </Wrapper>
@@ -248,6 +332,7 @@ const Product = ({item}) => {
                     </HeadArrow>
                 </Wrapper>
             ))}
+            {/*ears*/}
             {product.earsShape?.slice(0, 1).map(() => (
                 <Wrapper key={product.earsShape[earsShapeIndex]} className={product.earsShape[earsShapeIndex]} >
                     <EarsArrow direction="left" onClick={() => {handleEarsShape("left"); setEarsShape(product.earsShape[earsShapeIndex-1])}} >
@@ -296,6 +381,118 @@ const Product = ({item}) => {
                 </Wrapper>
             ))}
 
+            {/*arms*/}
+            {product.armsShape?.slice(0, 1).map(() => (
+                <Wrapper key={product.armsShape[armsShapeIndex]} className={product.armsShape[armsShapeIndex]} >
+                    <ArmsArrow direction="left" onClick={() => {handleArmsShape("left"); setArmsShape(product.armsShape[armsShapeIndex-1])}} >
+                        <ArrowLeftOutlined />
+                    </ArmsArrow>
+                    {product.armsColour?.slice(0, 1).map(() => (
+                        <Wrapper key={product.armsColour[armsColourIndex]} className={product.armsColour[armsColourIndex]}>
+                            <Button onClick={() => handleClickColour("arms")}>Arms</Button>
+                            { armsClicked ?
+                                <ColourWrapper id="armsColour" style={{border: "1px solid teal"}}>
+                                    <Button onClick={() => {setArmsColour(product.armsColour[0]); setArmsColourIndex(0)}}>Brown</Button>
+                                    <Button onClick={() => {setArmsColour(product.armsColour[1]); setArmsColourIndex(1)}}>Pink</Button>
+                                    <Button onClick={() => {setArmsColour(product.armsColour[2]); setArmsColourIndex(2)}}>Beige</Button>
+                                    <Button onClick={() => {setArmsColour(product.armsColour[3]); setArmsColourIndex(3)}}>Cream</Button>
+                                    <Button onClick={() => {setArmsColour(product.armsColour[4]); setArmsColourIndex(4)}}>Grey</Button>
+                                    {/*<div>{'\n'}{product.armsShape[armsShapeIndex]}</div>*/}
+                                    {/*<div>{product.armsColour[armsColourIndex]}</div>*/}
+                                    {/*<div>{armsColourIndex}</div>*/}
+                                </ColourWrapper>
+                                : null }
+                            <Image id="armsImg" src={`/assets/arms/${product.armsColour[armsColourIndex]}/${product.armsShape[armsShapeIndex]}.png`} style={{zIndex: "10"}}/>
+
+                            {/*hands*/}
+                            {(armsShapeIndex === 3 || armsShapeIndex === 4) && (
+                                <OptionalBodyPartWrapper>
+                                    <Button onClick={() => handleClickColour("hands")}>Hands</Button>
+                                    { handsClicked ?
+                                        <ColourWrapper id="handsColour" style={{border: "1px solid yellow"}}>
+                                            <Button onClick={() => {setHandsColour(product.handsColour[0]); setHandsColourIndex(0)}}>Brown</Button>
+                                            <Button onClick={() => {setHandsColour(product.handsColour[1]); setHandsColourIndex(1)}}>Pink</Button>
+                                            <Button onClick={() => {setHandsColour(product.handsColour[2]); setHandsColourIndex(2)}}>Beige</Button>
+                                            <Button onClick={() => {setHandsColour(product.handsColour[3]); setHandsColourIndex(3)}}>Cream</Button>
+                                            <Button onClick={() => {setHandsColour(product.handsColour[4]); setHandsColourIndex(4)}}>Grey</Button>
+                                            {/*<div>{'\n'}{product.handsColour[handsColourIndex]}</div>*/}
+                                            {/*<div>{handsColourIndex}</div>*/}
+                                        </ColourWrapper>
+                                        : null }
+                                    {/*hands*/}
+                                    {armsShapeIndex === 3 && (
+                                        <Image id="handsImg" src={`/assets/hands/${product.handsColour[handsColourIndex]}/Hands.png`} style={{zIndex: "11"}}/>
+                                    )}
+                                    {/*hands & fingernails*/}
+                                    {armsShapeIndex === 4 && (
+                                        <Image id="handsImg" src={`/assets/hands/${product.handsColour[handsColourIndex]}/Hands & fingernails.png`} style={{zIndex: "11"}}/>
+                                    )}
+                                </OptionalBodyPartWrapper>
+                            )}
+                        </Wrapper>
+                    ))}
+                    <ArmsArrow direction="right" onClick={() => {handleArmsShape("right"); setArmsShape(product.armsShape[armsShapeIndex+1])}}>
+                        <ArrowRightOutlined />
+                    </ArmsArrow>
+                </Wrapper>
+            ))}
+
+            {/*legs*/}
+            {product.legsShape?.slice(0, 1).map(() => (
+                <Wrapper key={product.legsShape[legsShapeIndex]} className={product.legsShape[legsShapeIndex]} >
+                    <LegsArrow direction="left" onClick={() => {handleLegsShape("left"); setLegsShape(product.legsShape[legsShapeIndex-1])}} >
+                        <ArrowLeftOutlined />
+                    </LegsArrow>
+                    {product.legsColour?.slice(0, 1).map(() => (
+                        <Wrapper key={product.legsColour[legsColourIndex]} className={product.legsColour[legsColourIndex]}>
+                            <Button onClick={() => handleClickColour("legs")}>Legs</Button>
+                            { legsClicked ?
+                                <ColourWrapper id="legsColour" style={{border: "1px solid teal"}}>
+                                    <Button onClick={() => {setLegsColour(product.legsColour[0]); setLegsColourIndex(0)}}>Brown</Button>
+                                    <Button onClick={() => {setLegsColour(product.legsColour[1]); setLegsColourIndex(1)}}>Pink</Button>
+                                    <Button onClick={() => {setLegsColour(product.legsColour[2]); setLegsColourIndex(2)}}>Beige</Button>
+                                    <Button onClick={() => {setLegsColour(product.legsColour[3]); setLegsColourIndex(3)}}>Cream</Button>
+                                    <Button onClick={() => {setLegsColour(product.legsColour[4]); setLegsColourIndex(4)}}>Grey</Button>
+                                    {/*<div>{'\n'}{product.legsShape[legsShapeIndex]}</div>*/}
+                                    {/*<div>{product.legsColour[legsColourIndex]}</div>*/}
+                                    {/*<div>{legsColourIndex}</div>*/}
+                                </ColourWrapper>
+                                : null }
+                            <Image id="legsImg" src={`/assets/legs/${product.legsColour[legsColourIndex]}/${product.legsShape[legsShapeIndex]}.png`} style={{zIndex: "9"}}/>
+
+                            {/*feet*/}
+                            {(legsShapeIndex === 3 || legsShapeIndex === 4) && (
+                                <OptionalBodyPartWrapper>
+                                    <Button onClick={() => handleClickColour("feet")}>Feet</Button>
+                                    { feetClicked ?
+                                        <ColourWrapper id="feetColour" style={{border: "1px solid yellow"}}>
+                                            <Button onClick={() => {setFeetColour(product.feetColour[0]); setFeetColourIndex(0)}}>Brown</Button>
+                                            <Button onClick={() => {setFeetColour(product.feetColour[1]); setFeetColourIndex(1)}}>Pink</Button>
+                                            <Button onClick={() => {setFeetColour(product.feetColour[2]); setFeetColourIndex(2)}}>Beige</Button>
+                                            <Button onClick={() => {setFeetColour(product.feetColour[3]); setFeetColourIndex(3)}}>Cream</Button>
+                                            <Button onClick={() => {setFeetColour(product.feetColour[4]); setFeetColourIndex(4)}}>Grey</Button>
+                                            {/*<div>{'\n'}{product.feetColour[feetColourIndex]}</div>*/}
+                                            {/*<div>{feetColourIndex}</div>*/}
+                                        </ColourWrapper>
+                                        : null }
+                                    {/*feet*/}
+                                    {legsShapeIndex === 3 && (
+                                        <Image id="feetImg" src={`/assets/feet/${product.feetColour[feetColourIndex]}/Feet.png`} style={{zIndex: "10"}}/>
+                                    )}
+                                    {/*feet & toenails*/}
+                                    {legsShapeIndex === 4 && (
+                                        <Image id="feetImg" src={`/assets/feet/${product.feetColour[feetColourIndex]}/Feet & toenails.png`} style={{zIndex: "10"}}/>
+                                    )}
+                                </OptionalBodyPartWrapper>
+                            )}
+                        </Wrapper>
+                    ))}
+                    <LegsArrow direction="right" onClick={() => {handleLegsShape("right"); setLegsShape(product.legsShape[legsShapeIndex+1])}}>
+                        <ArrowRightOutlined />
+                    </LegsArrow>
+                </Wrapper>
+            ))}
+
 
             <SelectionContainer>
                 {/*replaced with arrows above*/}
@@ -309,16 +506,16 @@ const Product = ({item}) => {
                 {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
                 {/*    ))}*/}
                 {/*</FilterShape>*/}
-                <FilterShape onChange={(e) => setArmsShape(e.target.value)}>
-                    {product.armsShape?.map((s) => (
-                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
-                    ))}
-                </FilterShape>
-                <FilterShape onChange={(e) => setLegsShape(e.target.value)}>
-                    {product.legsShape?.map((s) => (
-                        <FilterShapeOption key={s}>{s}</FilterShapeOption>
-                    ))}
-                </FilterShape>
+                {/*<FilterShape onChange={(e) => setArmsShape(e.target.value)}>*/}
+                {/*    {product.armsShape?.map((s) => (*/}
+                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
+                {/*    ))}*/}
+                {/*</FilterShape>*/}
+                {/*<FilterShape onChange={(e) => setLegsShape(e.target.value)}>*/}
+                {/*    {product.legsShape?.map((s) => (*/}
+                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
+                {/*    ))}*/}
+                {/*</FilterShape>*/}
 
                 {/*colour*/}
                 {/*<FilterColour onChange={(e) => setHeadColour(e.target.value)}>*/}
@@ -331,16 +528,16 @@ const Product = ({item}) => {
                 {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
                 {/*    ))}*/}
                 {/*</FilterColour>*/}
-                <FilterColour onChange={(e) => setArmsColour(e.target.value)}>
-                    {product.armsColour?.map((c) => (
-                        <FilterColourOption key={c}>{c}</FilterColourOption>
-                    ))}
-                </FilterColour>
-                <FilterColour onChange={(e) => setLegsColour(e.target.value)}>
-                    {product.legsColour?.map((c) => (
-                        <FilterColourOption key={c}>{c}</FilterColourOption>
-                    ))}
-                </FilterColour>
+                {/*<FilterColour onChange={(e) => setArmsColour(e.target.value)}>*/}
+                {/*    {product.armsColour?.map((c) => (*/}
+                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
+                {/*    ))}*/}
+                {/*</FilterColour>*/}
+                {/*<FilterColour onChange={(e) => setLegsColour(e.target.value)}>*/}
+                {/*    {product.legsColour?.map((c) => (*/}
+                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
+                {/*    ))}*/}
+                {/*</FilterColour>*/}
                 {/*additional colours*/}
                 {/*<FilterEyesColour onChange={(e) => setEyesColour(e.target.value)}>*/}
                 {/*    {product.eyesColour?.map((c) => (*/}
@@ -352,16 +549,16 @@ const Product = ({item}) => {
                 {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
                 {/*    ))}*/}
                 {/*</FilterInnerEarsColour>*/}
-                <FilterHandsColour onChange={(e) => setHandsColour(e.target.value)}>
-                    {product.handsColour?.map((c) => (
-                        <FilterColourOption key={c}>{c}</FilterColourOption>
-                    ))}
-                </FilterHandsColour>
-                <FilterFeetColour onChange={(e) => setFeetColour(e.target.value)}>
-                    {product.feetColour?.map((c) => (
-                        <FilterColourOption key={c}>{c}</FilterColourOption>
-                    ))}
-                </FilterFeetColour>
+                {/*<FilterHandsColour onChange={(e) => setHandsColour(e.target.value)}>*/}
+                {/*    {product.handsColour?.map((c) => (*/}
+                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
+                {/*    ))}*/}
+                {/*</FilterHandsColour>*/}
+                {/*<FilterFeetColour onChange={(e) => setFeetColour(e.target.value)}>*/}
+                {/*    {product.feetColour?.map((c) => (*/}
+                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
+                {/*    ))}*/}
+                {/*</FilterFeetColour>*/}
                 <FilterSize onChange={(e) => setSize(e.target.value)}>
                     {product.size?.map((s) => (
                         <FilterSizeOption key={s}>{s}</FilterSizeOption>
@@ -415,30 +612,48 @@ const Button = styled.button`
  `
 
 
-const FilterShape = styled.select`
- `
-const FilterShapeOption = styled.option`
- `
-const FilterColour = styled.select`
- `
-const FilterColourOption = styled.option`
- `
+// const FilterShape = styled.select`
+//  `
+// const FilterShapeOption = styled.option`
+//  `
+// const FilterColour = styled.select`
+//  `
+// const FilterColourOption = styled.option`
+//  `
 
 //additional shapes & colours
 // const FilterEyesColour = styled.select`
 //  `
 // const FilterInnerEarsColour = styled.select`
 //  `
-const FilterHandsColour = styled.select`
- `
-const FilterFeetColour = styled.select`
- `
+// const FilterHandsColour = styled.select`
+//  `
+// const FilterFeetColour = styled.select`
+//  `
 
 const FilterSize = styled.select`
  `
 const FilterSizeOption = styled.option`
  `
 
+const EarsArrow = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #fff7f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${(props) => props.direction === "left" && "10px"};
+  right: ${(props) => props.direction === "right" && "10px"};
+  margin: auto;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 2;
+`;
 const HeadArrow = styled.div`
   width: 50px;
   height: 50px;
@@ -457,7 +672,7 @@ const HeadArrow = styled.div`
   opacity: 0.5;
   z-index: 2;
 `;
-const EarsArrow = styled.div`
+const ArmsArrow = styled.div`
   width: 50px;
   height: 50px;
   background-color: #fff7f7;
@@ -466,7 +681,25 @@ const EarsArrow = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 0;
+  top: 20em;
+  bottom: 0;
+  left: ${(props) => props.direction === "left" && "10px"};
+  right: ${(props) => props.direction === "right" && "10px"};
+  margin: auto;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 2;
+`;
+const LegsArrow = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #fff7f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 40em;
   bottom: 0;
   left: ${(props) => props.direction === "left" && "10px"};
   right: ${(props) => props.direction === "right" && "10px"};

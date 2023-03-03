@@ -90,6 +90,7 @@ const Cart = () => {
 
                                     {/*<Image src={product.img} />*/}
                                 <ImageContainer>
+                                    {/*head*/}
                                     <Image id="headImg" src={`/assets/head/${product.headColour}/${product.headShape}.png`} style={{zIndex: "11"}}/>
                                     {product.headShape === "Eye patch" &&
                                         <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eye.png`} style={{zIndex: "12"}}/>
@@ -97,12 +98,29 @@ const Cart = () => {
                                     {product.headShape === "Big eyes" &&
                                         <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eyes.png`} style={{zIndex: "12"}}/>
                                     }
-                                    {product.headShape === "Smile" &&
+                                    {product.headShape === "Regular" &&
                                         <Image id="noseImg" src={`/assets/nose/${product.noseColour}/Nose.png`} style={{zIndex: "12"}}/>
                                     }
+                                    {/*ears*/}
                                     <Image id="earsImg" src={`/assets/ears/${product.earsColour}/${product.earsShape}.png`} style={{zIndex: "10"}}/>
                                     {product.earsShape === "Round" &&
                                         <Image id="innerEarsImg" src={`/assets/innerEars/${product.innerEarsColour}/Inner ears.png`} style={{zIndex: "11"}}/>
+                                    }
+                                    {/*arms*/}
+                                    <Image id="amrsImg" src={`/assets/arms/${product.armsColour}/${product.armsShape}.png`} style={{zIndex: "10"}}/>
+                                    {product.armsShape === "With hands" &&
+                                        <Image id="handsImg" src={`/assets/hands/${product.handsColour}/Hands.png`} style={{zIndex: "11"}}/>
+                                    }
+                                    {product.armsShape === "With hands & fingernails" &&
+                                        <Image id="handsImg" src={`/assets/hands/${product.handsColour}/Hands & fingernails.png`} style={{zIndex: "11"}}/>
+                                    }
+                                    {/*legs*/}
+                                    <Image id="legsImg" src={`/assets/legs/${product.legsColour}/${product.legsShape}.png`} style={{zIndex: "9"}}/>
+                                    {product.legsShape === "With feet" &&
+                                        <Image id="feetImg" src={`/assets/feet/${product.feetColour}/Feet.png`} style={{zIndex: "10"}}/>
+                                    }
+                                    {product.legsShape === "With feet & toenails" &&
+                                        <Image id="feetImg" src={`/assets/feet/${product.feetColour}/Feet & toenails.png`} style={{zIndex: "10"}}/>
                                     }
                                 </ImageContainer>
 
