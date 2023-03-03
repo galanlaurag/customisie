@@ -29,7 +29,7 @@ const Product = ({item}) => {
     const dispatch = useDispatch();
     // const [productQuantity, setProductQuantity] = useState(1);
     const [product, setProduct] = useState([]);
-    const [headShape, setHeadShape] = useState("Smile");
+    const [headShape, setHeadShape] = useState("Regular");
     const [earsShape, setEarsShape] = useState("Small");
     const [armsShape, setArmsShape] = useState("Short");
     const [legsShape, setLegsShape] = useState("Short");

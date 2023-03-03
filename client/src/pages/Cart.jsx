@@ -90,17 +90,17 @@ const Cart = () => {
 
                                     {/*<Image src={product.img} />*/}
                                 <ImageContainer>
-                                    <Image id="headImg" src={`/assets/head/${product.headColour}/${product.headShape}.png`} style={{zIndex: "10"}}/>
+                                    <Image id="headImg" src={`/assets/head/${product.headColour}/${product.headShape}.png`} style={{zIndex: "11"}}/>
                                     {product.headShape === "Eye patch" &&
-                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eye.png`} style={{zIndex: "11"}}/>
+                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eye.png`} style={{zIndex: "12"}}/>
                                     }
                                     {product.headShape === "Big eyes" &&
-                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eyes.png`} style={{zIndex: "11"}}/>
+                                        <Image id="eyesImg" src={`/assets/eyes/${product.eyesColour}/Eyes.png`} style={{zIndex: "12"}}/>
                                     }
                                     {product.headShape === "Smile" &&
-                                        <Image id="noseImg" src={`/assets/nose/${product.noseColour}/Nose.png`} style={{zIndex: "11"}}/>
+                                        <Image id="noseImg" src={`/assets/nose/${product.noseColour}/Nose.png`} style={{zIndex: "12"}}/>
                                     }
-                                    <Image id="earsImg" src={`/assets/ears/${product.earsColour}/${product.earsShape}.png`} style={{zIndex: "11"}}/>
+                                    <Image id="earsImg" src={`/assets/ears/${product.earsColour}/${product.earsShape}.png`} style={{zIndex: "10"}}/>
                                     {product.earsShape === "Round" &&
                                         <Image id="innerEarsImg" src={`/assets/innerEars/${product.innerEarsColour}/Inner ears.png`} style={{zIndex: "11"}}/>
                                     }
