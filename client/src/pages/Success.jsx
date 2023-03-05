@@ -1,5 +1,5 @@
 // import {useLocation} from "react-router-dom";
-import {clearCart} from "../redux/cartRedux";
+import {clearAllCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 
@@ -11,14 +11,14 @@ const Success = () => {
         const emptyCart = async() => {
             try {
                 return dispatch(
-                    clearCart()
+                    clearAllCart()
                 )
             } catch (err) {
                 return console.log(err);
             }
         }
         emptyCart();
-    })
+    }, [])
 
     return (
         <div>

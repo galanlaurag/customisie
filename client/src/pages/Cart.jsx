@@ -57,28 +57,30 @@ const Cart = () => {
     return (
         <Container>
             <Wrapper>
-                <Title>Your cart</Title>
-                <Top>
-                    {products.map((item) => (
-                        <CartLink to={`/product/${item._id}`} key={item._id} >
-                            <TopButton>Customise another teddy bear</TopButton>
-                        </CartLink>
-                    ))}
-                    <TopText>Shopping bag ({cart.quantity})</TopText>
-                    {stripeToken ? (<span>Processing. Please wait...</span>) : (
-                        <StripeCheckout
-                            name="Customisie"
-                            image="https://avatars.githubusercontent.com/u/1486366?v=4"
-                            billingAddress
-                            shippingAddress
-                            description={`Your total is $${cart.total}`}
-                            amount={cart.total * 100}
-                            token={onToken}
-                            stripeKey={KEY}>
-                            <TopButton>Checkout now</TopButton>
-                        </StripeCheckout>
-                    )}
-                </Top>
+                {cart.quantity !== 0 ?
+                    <Top>
+                        <Title>Your cart</Title>
+                        {products.map((item) => (
+                            <CartLink to={`/product/${item._id}`} key={item._id} >
+                                <TopButton>Customise another teddy bear</TopButton>
+                            </CartLink>
+                        ))}
+                        <TopText>Shopping bag ({cart.quantity})</TopText>
+                        {stripeToken ? (<span>Processing. Please wait...</span>) : (
+                            <StripeCheckout
+                                name="Customisie"
+                                image="/assets/logo.png"
+                                billingAddress
+                                shippingAddress
+                                description={`Your total is $${cart.total}`}
+                                amount={cart.total * 100}
+                                token={onToken}
+                                stripeKey={KEY}>
+                                <TopButton>Checkout now</TopButton>
+                            </StripeCheckout>
+                        )}
+                    </Top>
+                : <Button>Your cart is empty</Button> }
                 <Bottom>
                     <Info>
                         <CartProduct>
@@ -147,34 +149,36 @@ const Cart = () => {
                                     ))}
                         </CartProduct>
                     </Info>
-                    <Summary>
-                        <SummaryTitle>Order summary</SummaryTitle>
-                        <SummaryItem>
-                            <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>$ {cart.total - 20}</SummaryItemPrice>
-                        </SummaryItem>
-                        <SummaryItem>
-                            <SummaryItemText>Estimated shipping</SummaryItemText>
-                            <SummaryItemPrice>$20</SummaryItemPrice>
-                        </SummaryItem>
-                        <SummaryItem type="total">
-                            <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
-                        </SummaryItem>
-                        {stripeToken ? (<span>Processing. Please wait...</span>) : (
-                            <StripeCheckout
-                                name="Customisie"
-                                image="https://avatars.githubusercontent.com/u/1486366?v=4"
-                                billingAddress
-                                shippingAddress
-                                description={`Your total is $${cart.total}`}
-                                amount={cart.total * 100}
-                                token={onToken}
-                                stripeKey={KEY}>
-                                <Button>Checkout now</Button>
-                            </StripeCheckout>
-                        )}
-                    </Summary>
+                    {cart.quantity !== 0 &&
+                        <Summary>
+                            <SummaryTitle>Order summary</SummaryTitle>
+                            <SummaryItem>
+                                <SummaryItemText>Subtotal</SummaryItemText>
+                                <SummaryItemPrice>$ {cart.total - 20}</SummaryItemPrice>
+                            </SummaryItem>
+                            <SummaryItem>
+                                <SummaryItemText>Estimated shipping</SummaryItemText>
+                                <SummaryItemPrice>$20</SummaryItemPrice>
+                            </SummaryItem>
+                            <SummaryItem type="total">
+                                <SummaryItemText>Total</SummaryItemText>
+                                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+                            </SummaryItem>
+                            {stripeToken ? (<span>Processing. Please wait...</span>) : (
+                                <StripeCheckout
+                                    name="Customisie"
+                                    image="https://avatars.githubusercontent.com/u/1486366?v=4"
+                                    billingAddress
+                                    shippingAddress
+                                    description={`Your total is $${cart.total}`}
+                                    amount={cart.total * 100}
+                                    token={onToken}
+                                    stripeKey={KEY}>
+                                    <Button>Checkout now</Button>
+                                </StripeCheckout>
+                            )}
+                        </Summary>
+                    }
                 </Bottom>
             </Wrapper>
         </Container>

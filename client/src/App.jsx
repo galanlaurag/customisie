@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./components/Header";
 import Home from './pages/Home';
 import Customisation from "./pages/Customisation";
-import Product from "./components/Product";
+import Product from "./pages/Product";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from "./pages/Cart";
@@ -39,19 +39,17 @@ const App = () => {
         <Router>
             <ThemeProvider theme={theme}>
                 <Header />
-                <main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}>
                     <Routes>
-                        <Route exact path="/" element={<Home/>}/>
-                        <Route path="/products" element={<Customisation/>}/>
-                        <Route path="/product/:id" element={<Product/>}/>
-                        <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login/>}/>
+                        <Route exact path="/" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}><Home/></main>}/>
+                        <Route path="/products" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}><Customisation/></main>}/>
+                        <Route path="/product/:id" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundImage: "radial-gradient(circle, #ffffff, #ffffff, #ffffff, #ffffff, #fefdfe, #fdfcfd, #fcfafb, #fbf6f7, #f9f2f2, #f7eeec, #f4ebe6)"}}><Product/></main>}/>
+                        <Route path="/login" element={user ? <Navigate to={"/"}/> : <main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}><Login/></main>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
                         <Route path="/logout" element={<Navigate to={"/"}/>}/>
-                        <Route path="/cart" element={<Cart/>}/>
-                        <Route path="/success" element={<Success/>}/>
-                        <Route path="/myaccount" element={user && <MyAccount/>}/>
+                        <Route path="/cart" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}><Cart/></main>}/>
+                        <Route path="/success" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}><Success/></main>}/>
+                        <Route path="/myaccount" element={user && <main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main}}><MyAccount/></main>}/>
                     </Routes>
-                </main>
                 <Footer />
             </ThemeProvider>
         </Router>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components/macro";
 // import mergeImages from "merge-images";
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
@@ -24,15 +24,14 @@ const Product = ({item}) => {
 
     const location = useLocation();
     const id = location.pathname.split("/")[2];
-    // console.log("location = " + location.pathname);
     const productQuantity = 1;
     const dispatch = useDispatch();
-    // const [productQuantity, setProductQuantity] = useState(1);
     const [product, setProduct] = useState([]);
+    //initial default settings onload
     const [headShape, setHeadShape] = useState("Regular");
     const [earsShape, setEarsShape] = useState("Small");
     const [armsShape, setArmsShape] = useState("Short");
-    const [legsShape, setLegsShape] = useState("Short");
+    const [legsShape, setLegsShape] = useState("Long");
 
     const [headColour, setHeadColour] = useState("Brown");
     const [earsColour, setEarsColour] = useState("Brown");
@@ -44,9 +43,43 @@ const Product = ({item}) => {
     const [innerEarsColour, setInnerEarsColour] = useState("Brown");
     const [handsColour, setHandsColour] = useState("Brown");
     const [feetColour, setFeetColour] = useState("Brown");
-    const [size, setSize] = useState("Small");
+    const [size] = useState("Small");
 
-    useEffect(() =>{
+    //reset customisation
+    function resetCustomisation()  {
+        setHeadShapeIndex(0);
+        setEarsShapeIndex(0);
+        setArmsShapeIndex(0);
+        setLegsShapeIndex(0);
+        setHeadColourIndex(0);
+        setEarsColourIndex(0);
+        setArmsColourIndex(0);
+        setLegsColourIndex(0);
+        setEyesColourIndex(0);
+        setNoseColourIndex(0);
+        setInnerEarsColourIndex(0);
+        setHandsColourIndex(0);
+        setFeetColourIndex(0);
+    }
+
+    //randomise customisation
+    function randomiseCustomisation() {
+        setHeadShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setEarsShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setArmsShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setLegsShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setHeadColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setEarsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setArmsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setLegsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setEyesColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setNoseColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setInnerEarsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setHandsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        setFeetColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+    }
+
+    useEffect(() => {
         const getProducts = async () => {
             try {
                 //works for individual product
@@ -95,7 +128,7 @@ const Product = ({item}) => {
         )
     }
 
-    //change
+    //change shape & colour
     const [headShapeIndex, setHeadShapeIndex] = useState(0);
     const [headColourIndex, setHeadColourIndex] = useState(0);
     const [earsShapeIndex, setEarsShapeIndex] = useState(0);
@@ -111,30 +144,38 @@ const Product = ({item}) => {
     const [feetColourIndex, setFeetColourIndex] = useState(0);
     const handleBodyShape = (direction) => {
         if (direction === "left") {
-            setHeadShapeIndex(headShapeIndex > 0 ? headShapeIndex - 1 : 4);
+            setHeadShape(headShapeIndex > 0 ? product.headShape[headShapeIndex-1] : product.headShape[4]);
+            setHeadShapeIndex(headShapeIndex > 0 ? headShapeIndex-1 : 4);
         } else {
-            setHeadShapeIndex(headShapeIndex < 4 ? headShapeIndex + 1 : 0);
+            setHeadShape(headShapeIndex < 4 ? product.headShape[headShapeIndex + 1] : product.headShape[0]);
+            setHeadShapeIndex(headShapeIndex < 4 ? headShapeIndex+1 : 0);
         }
     };
     const handleEarsShape = (direction) => {
         if (direction === "left") {
+            setEarsShape(earsShapeIndex > 0 ? product.earsShape[earsShapeIndex-1] : product.earsShape[4]);
             setEarsShapeIndex(earsShapeIndex > 0 ? earsShapeIndex - 1 : 4);
         } else {
+            setEarsShape(earsShapeIndex < 4 ? product.earsShape[earsShapeIndex+1] : product.earsShape[0]);
             setEarsShapeIndex(earsShapeIndex < 4 ? earsShapeIndex + 1 : 0);
         }
     };
     const handleArmsShape = (direction) => {
         if (direction === "left") {
-            setArmsShapeIndex(armsShapeIndex > 0 ? armsShapeIndex - 1 : 4);
+            setArmsShape(armsShapeIndex > 0 ? product.armsShape[armsShapeIndex-1] : product.armsShape[4]);
+            setArmsShapeIndex(armsShapeIndex > 0 ? armsShapeIndex-1 : 4);
         } else {
-            setArmsShapeIndex(armsShapeIndex < 4 ? armsShapeIndex + 1 : 0);
+            setArmsShape(armsShapeIndex < 4 ? product.armsShape[armsShapeIndex+1] : product.armsShape[0]);
+            setArmsShapeIndex(armsShapeIndex < 4 ? armsShapeIndex+1 : 0);
         }
     };
     const handleLegsShape = (direction) => {
         if (direction === "left") {
-            setLegsShapeIndex(legsShapeIndex > 0 ? legsShapeIndex - 1 : 4);
+            setLegsShape(legsShapeIndex > 0 ? product.legsShape[legsShapeIndex-1] : product.legsShape[4]);
+            setLegsShapeIndex(legsShapeIndex > 0 ? legsShapeIndex-1 : 4);
         } else {
-            setLegsShapeIndex(legsShapeIndex < 4 ? legsShapeIndex + 1 : 0);
+            setLegsShape(legsShapeIndex < 4 ? product.legsShape[legsShapeIndex+1] : product.legsShape[0]);
+            setLegsShapeIndex(legsShapeIndex < 4 ? legsShapeIndex+1 : 0);
         }
     };
 
@@ -242,8 +283,34 @@ const Product = ({item}) => {
         }
     }
 
+    const css = `
+        .Brown .Product__BrownButton-sc-1iai0om-5 {
+            transform: scale(1.2);
+            border: 2px solid #000;
+        }
+        .Pink .Product__PinkButton-sc-1iai0om-6 {
+            transform: scale(1.2);
+            border: 2px solid #000;
+        }
+        .Beige .Product__BeigeButton-sc-1iai0om-7 {
+            transform: scale(1.2);
+            border: 2px solid #000;
+        }
+        .Cream .Product__CreamButton-sc-1iai0om-8 {
+            transform: scale(1.2);
+            border: 2px solid #000;
+        }
+        .Gray .Product__GrayButton-sc-1iai0om-9 {
+            transform: scale(1.2);
+            border: 2px solid #000;
+        }
+    `
+
     return (
         <Container>
+            <style>{css}</style>
+            <Span>use arrows to change shape</Span>
+            <Span>click on body part to change colour</Span>
             {/*local img*/}
             {/*<Image id="mis"/>*/}
 
@@ -255,23 +322,29 @@ const Product = ({item}) => {
             {/*</Info>*/}
 
 
+            <RButtonContainer>
+                <RButton onClick={resetCustomisation}>Reset</RButton>
+                <RButton onClick={randomiseCustomisation}>Randomise</RButton>
+            </RButtonContainer>
+
             {/*head*/}
             <Wrapper headShapeIndex={headShapeIndex}/>
             {product.headShape?.slice(0, 1).map(() => (
-                <Wrapper key={product.headShape[headShapeIndex]} className={product.headShape[headShapeIndex]} >
-                    <HeadArrow direction="left" onClick={() => {handleBodyShape("left"); setHeadShape(product.headShape[headShapeIndex-1])}} >
+                <Wrapper key={product.headShape[headShapeIndex]} className={product.headShape[headShapeIndex]}>
+                    <HeadArrow direction="left" onClick={() => {handleBodyShape("left"); handleClickColour("head")}}>
                         <ArrowLeftOutlined />
                     </HeadArrow>
                     {product.headColour?.slice(0, 1).map(() => (
-                        <Wrapper key={product.headColour[headColourIndex]} className={product.headColour[headColourIndex]}>
-                            <Button onClick={() => handleClickColour("head")}>Head</Button>
+                        <Wrapper key={product.headColour[headColourIndex]}>
+                            <BodyPartButton onClick={() => handleClickColour("head")}>Head</BodyPartButton>
                             { headClicked ?
-                                <ColourWrapper id="headColour" style={{border: "1px solid blue"}}>
-                                    <Button onClick={() => {setHeadColour(product.headColour[0]); setHeadColourIndex(0)}}>Brown</Button>
-                                    <Button onClick={() => {setHeadColour(product.headColour[1]); setHeadColourIndex(1)}}>Pink</Button>
-                                    <Button onClick={() => {setHeadColour(product.headColour[2]); setHeadColourIndex(2)}}>Beige</Button>
-                                    <Button onClick={() => {setHeadColour(product.headColour[3]); setHeadColourIndex(3)}}>Cream</Button>
-                                    <Button onClick={() => {setHeadColour(product.headColour[4]); setHeadColourIndex(4)}}>Grey</Button>
+                                <ColourWrapper id="headColour" className={product.headColour[headColourIndex]}>
+                                    <div style={{textAlign: "center"}}>Head</div>
+                                    <BrownButton onClick={() => {setHeadColour(product.headColour[0]); setHeadColourIndex(0)}}/>
+                                    <PinkButton onClick={() => {setHeadColour(product.headColour[1]); setHeadColourIndex(1)}}/>
+                                    <BeigeButton onClick={() => {setHeadColour(product.headColour[2]); setHeadColourIndex(2)}}/>
+                                    <CreamButton onClick={() => {setHeadColour(product.headColour[3]); setHeadColourIndex(3)}}/>
+                                    <GrayButton onClick={() => {setHeadColour(product.headColour[4]); setHeadColourIndex(4)}}/>
                                     {/*<div>{product.headShape[headShapeIndex]}</div>*/}
                                     {/*<div>{product.headColour[headColourIndex]}</div>*/}
                                     {/*<div>{headColourIndex}</div>*/}
@@ -283,14 +356,15 @@ const Product = ({item}) => {
                             {/*eyes*/}
                             {(headShapeIndex === 2 || headShapeIndex === 3) && (
                                 <OptionalBodyPartWrapper>
-                                    <Button onClick={() => handleClickColour("eyes")}>Eyes</Button>
+                                    <BodyPartButton onClick={() => handleClickColour("eyes")}>Eyes</BodyPartButton>
                                     { eyesClicked ?
-                                        <ColourWrapper id="eyesColour" style={{border: "1px solid red"}}>
-                                            <Button onClick={() => {setEyesColour(product.eyesColour[0]); setEyesColourIndex(0)}}>Brown</Button>
-                                            <Button onClick={() => {setEyesColour(product.eyesColour[1]); setEyesColourIndex(1)}}>Pink</Button>
-                                            <Button onClick={() => {setEyesColour(product.eyesColour[2]); setEyesColourIndex(2)}}>Beige</Button>
-                                            <Button onClick={() => {setEyesColour(product.eyesColour[3]); setEyesColourIndex(3)}}>Cream</Button>
-                                            <Button onClick={() => {setEyesColour(product.eyesColour[4]); setEyesColourIndex(4)}}>Grey</Button>
+                                        <ColourWrapper id="eyesColour" className={product.eyesColour[eyesColourIndex]}>
+                                            <div style={{textAlign: "center"}}>Eyes</div>
+                                            <BrownButton onClick={() => {setEyesColour(product.eyesColour[0]); setEyesColourIndex(0)}}/>
+                                            <PinkButton onClick={() => {setEyesColour(product.eyesColour[1]); setEyesColourIndex(1)}}/>
+                                            <BeigeButton onClick={() => {setEyesColour(product.eyesColour[2]); setEyesColourIndex(2)}}/>
+                                            <CreamButton onClick={() => {setEyesColour(product.eyesColour[3]); setEyesColourIndex(3)}}/>
+                                            <GrayButton onClick={() => {setEyesColour(product.eyesColour[4]); setEyesColourIndex(4)}}/>
                                             {/*<div>{product.eyesColour[eyesColourIndex]}</div>*/}
                                             {/*<div>{eyesColourIndex}</div>*/}
                                         </ColourWrapper>
@@ -310,14 +384,15 @@ const Product = ({item}) => {
                             {/*nose*/}
                             {headShapeIndex === 0 && (
                                 <OptionalBodyPartWrapper>
-                                    <Button onClick={() => handleClickColour("nose")}>Nose</Button>
+                                    <BodyPartButton onClick={() => handleClickColour("nose")}>Nose</BodyPartButton>
                                     { noseClicked ?
-                                        <ColourWrapper id="noseColour" style={{border: "1px solid purple"}}>
-                                            <Button onClick={() => {setNoseColour(product.noseColour[0]); setNoseColourIndex(0)}}>Brown</Button>
-                                            <Button onClick={() => {setNoseColour(product.noseColour[1]); setNoseColourIndex(1)}}>Pink</Button>
-                                            <Button onClick={() => {setNoseColour(product.noseColour[2]); setNoseColourIndex(2)}}>Beige</Button>
-                                            <Button onClick={() => {setNoseColour(product.noseColour[3]); setNoseColourIndex(3)}}>Cream</Button>
-                                            <Button onClick={() => {setNoseColour(product.noseColour[4]); setNoseColourIndex(4)}}>Grey</Button>
+                                        <ColourWrapper id="noseColour" className={product.noseColour[noseColourIndex]}>
+                                            <div style={{textAlign: "center"}}>Nose</div>
+                                            <BrownButton onClick={() => {setNoseColour(product.noseColour[0]); setNoseColourIndex(0)}}/>
+                                            <PinkButton onClick={() => {setNoseColour(product.noseColour[1]); setNoseColourIndex(1)}}/>
+                                            <BeigeButton onClick={() => {setNoseColour(product.noseColour[2]); setNoseColourIndex(2)}}/>
+                                            <CreamButton onClick={() => {setNoseColour(product.noseColour[3]); setNoseColourIndex(3)}}/>
+                                            <GrayButton onClick={() => {setNoseColour(product.noseColour[4]); setNoseColourIndex(4)}}/>
                                             {/*<div>{'\n'}{product.noseColour[noseColourIndex]}</div>*/}
                                             {/*<div>{noseColourIndex}</div>*/}
                                         </ColourWrapper>
@@ -327,7 +402,7 @@ const Product = ({item}) => {
                             )}
                         </Wrapper>
                         ))}
-                    <HeadArrow direction="right" onClick={() => {handleBodyShape("right"); setHeadShape(product.headShape[headShapeIndex+1])}}>
+                    <HeadArrow direction="right" onClick={() => {handleBodyShape("right"); handleClickColour("head")}}>
                         <ArrowRightOutlined />
                     </HeadArrow>
                 </Wrapper>
@@ -335,19 +410,20 @@ const Product = ({item}) => {
             {/*ears*/}
             {product.earsShape?.slice(0, 1).map(() => (
                 <Wrapper key={product.earsShape[earsShapeIndex]} className={product.earsShape[earsShapeIndex]} >
-                    <EarsArrow direction="left" onClick={() => {handleEarsShape("left"); setEarsShape(product.earsShape[earsShapeIndex-1])}} >
+                    <EarsArrow direction="left" onClick={() => {handleEarsShape("left"); handleClickColour("ears")}} >
                         <ArrowLeftOutlined />
                     </EarsArrow>
                     {product.earsColour?.slice(0, 1).map(() => (
-                        <Wrapper key={product.earsColour[earsColourIndex]} className={product.earsColour[earsColourIndex]}>
-                            <Button onClick={() => handleClickColour("ears")}>Ears</Button>
+                        <Wrapper key={product.earsColour[earsColourIndex]}>
+                            <BodyPartButton onClick={() => handleClickColour("ears")}>Ears</BodyPartButton>
                             { earsClicked ?
-                                <ColourWrapper id="earsColour" style={{border: "1px solid pink"}}>
-                                    <Button onClick={() => {setEarsColour(product.earsColour[0]); setEarsColourIndex(0)}}>Brown</Button>
-                                    <Button onClick={() => {setEarsColour(product.earsColour[1]); setEarsColourIndex(1)}}>Pink</Button>
-                                    <Button onClick={() => {setEarsColour(product.earsColour[2]); setEarsColourIndex(2)}}>Beige</Button>
-                                    <Button onClick={() => {setEarsColour(product.earsColour[3]); setEarsColourIndex(3)}}>Cream</Button>
-                                    <Button onClick={() => {setEarsColour(product.earsColour[4]); setEarsColourIndex(4)}}>Grey</Button>
+                                <ColourWrapper id="earsColour" className={product.earsColour[earsColourIndex]}>
+                                    <div style={{textAlign: "center"}}>Ears</div>
+                                    <BrownButton onClick={() => {setEarsColour(product.earsColour[0]); setEarsColourIndex(0)}}/>
+                                    <PinkButton onClick={() => {setEarsColour(product.earsColour[1]); setEarsColourIndex(1)}}/>
+                                    <BeigeButton onClick={() => {setEarsColour(product.earsColour[2]); setEarsColourIndex(2)}}/>
+                                    <CreamButton onClick={() => {setEarsColour(product.earsColour[3]); setEarsColourIndex(3)}}/>
+                                    <GrayButton onClick={() => {setEarsColour(product.earsColour[4]); setEarsColourIndex(4)}}/>
                                     {/*<div>{'\n'}{product.earsShape[earsShapeIndex]}</div>*/}
                                     {/*<div>{product.earsColour[earsColourIndex]}</div>*/}
                                     {/*<div>{earsColourIndex}</div>*/}
@@ -358,14 +434,15 @@ const Product = ({item}) => {
                             {/*inner ears*/}
                             {earsShapeIndex === 2 && (
                                 <OptionalBodyPartWrapper>
-                                    <Button onClick={() => handleClickColour("innerEars")}>Inner ears</Button>
+                                    <BodyPartButton onClick={() => handleClickColour("innerEars")}>Inner ears</BodyPartButton>
                                     { innerEarsClicked ?
-                                        <ColourWrapper id="innerEarsColour" style={{border: "1px solid yellow"}}>
-                                            <Button onClick={() => {setInnerEarsColour(product.innerEarsColour[0]); setInnerEarsColourIndex(0)}}>Brown</Button>
-                                            <Button onClick={() => {setInnerEarsColour(product.innerEarsColour[1]); setInnerEarsColourIndex(1)}}>Pink</Button>
-                                            <Button onClick={() => {setInnerEarsColour(product.innerEarsColour[2]); setInnerEarsColourIndex(2)}}>Beige</Button>
-                                            <Button onClick={() => {setInnerEarsColour(product.innerEarsColour[3]); setInnerEarsColourIndex(3)}}>Cream</Button>
-                                            <Button onClick={() => {setInnerEarsColour(product.innerEarsColour[4]); setInnerEarsColourIndex(4)}}>Grey</Button>
+                                        <ColourWrapper id="innerEarsColour" className={product.innerEarsColour[innerEarsColourIndex]}>
+                                            <div style={{textAlign: "center"}}>Inner ears</div>
+                                            <BrownButton onClick={() => {setInnerEarsColour(product.innerEarsColour[0]); setInnerEarsColourIndex(0)}}/>
+                                            <PinkButton onClick={() => {setInnerEarsColour(product.innerEarsColour[1]); setInnerEarsColourIndex(1)}}/>
+                                            <BeigeButton onClick={() => {setInnerEarsColour(product.innerEarsColour[2]); setInnerEarsColourIndex(2)}}/>
+                                            <CreamButton onClick={() => {setInnerEarsColour(product.innerEarsColour[3]); setInnerEarsColourIndex(3)}}/>
+                                            <GrayButton onClick={() => {setInnerEarsColour(product.innerEarsColour[4]); setInnerEarsColourIndex(4)}}/>
                                             {/*<div>{'\n'}{product.innerEarsColour[innerEarsColourIndex]}</div>*/}
                                             {/*<div>{innerEarsColourIndex}</div>*/}
                                         </ColourWrapper>
@@ -375,7 +452,7 @@ const Product = ({item}) => {
                             )}
                         </Wrapper>
                     ))}
-                    <EarsArrow direction="right" onClick={() => {handleEarsShape("right"); setEarsShape(product.earsShape[earsShapeIndex+1])}}>
+                    <EarsArrow direction="right" onClick={() => {handleEarsShape("right"); handleClickColour("ears")}}>
                         <ArrowRightOutlined />
                     </EarsArrow>
                 </Wrapper>
@@ -384,19 +461,20 @@ const Product = ({item}) => {
             {/*arms*/}
             {product.armsShape?.slice(0, 1).map(() => (
                 <Wrapper key={product.armsShape[armsShapeIndex]} className={product.armsShape[armsShapeIndex]} >
-                    <ArmsArrow direction="left" onClick={() => {handleArmsShape("left"); setArmsShape(product.armsShape[armsShapeIndex-1])}} >
+                    <ArmsArrow direction="left" onClick={() => {handleArmsShape("left"); handleClickColour("arms")}} >
                         <ArrowLeftOutlined />
                     </ArmsArrow>
                     {product.armsColour?.slice(0, 1).map(() => (
-                        <Wrapper key={product.armsColour[armsColourIndex]} className={product.armsColour[armsColourIndex]}>
-                            <Button onClick={() => handleClickColour("arms")}>Arms</Button>
+                        <Wrapper key={product.armsColour[armsColourIndex]}>
+                            <BodyPartButton onClick={() => handleClickColour("arms")}>Arms</BodyPartButton>
                             { armsClicked ?
-                                <ColourWrapper id="armsColour" style={{border: "1px solid teal"}}>
-                                    <Button onClick={() => {setArmsColour(product.armsColour[0]); setArmsColourIndex(0)}}>Brown</Button>
-                                    <Button onClick={() => {setArmsColour(product.armsColour[1]); setArmsColourIndex(1)}}>Pink</Button>
-                                    <Button onClick={() => {setArmsColour(product.armsColour[2]); setArmsColourIndex(2)}}>Beige</Button>
-                                    <Button onClick={() => {setArmsColour(product.armsColour[3]); setArmsColourIndex(3)}}>Cream</Button>
-                                    <Button onClick={() => {setArmsColour(product.armsColour[4]); setArmsColourIndex(4)}}>Grey</Button>
+                                <ColourWrapper id="armsColour" className={product.armsColour[armsColourIndex]}>
+                                    <div style={{textAlign: "center"}}>Arms</div>
+                                    <BrownButton onClick={() => {setArmsColour(product.armsColour[0]); setArmsColourIndex(0)}}/>
+                                    <PinkButton onClick={() => {setArmsColour(product.armsColour[1]); setArmsColourIndex(1)}}/>
+                                    <BeigeButton onClick={() => {setArmsColour(product.armsColour[2]); setArmsColourIndex(2)}}/>
+                                    <CreamButton onClick={() => {setArmsColour(product.armsColour[3]); setArmsColourIndex(3)}}/>
+                                    <GrayButton onClick={() => {setArmsColour(product.armsColour[4]); setArmsColourIndex(4)}}/>
                                     {/*<div>{'\n'}{product.armsShape[armsShapeIndex]}</div>*/}
                                     {/*<div>{product.armsColour[armsColourIndex]}</div>*/}
                                     {/*<div>{armsColourIndex}</div>*/}
@@ -407,14 +485,15 @@ const Product = ({item}) => {
                             {/*hands*/}
                             {(armsShapeIndex === 3 || armsShapeIndex === 4) && (
                                 <OptionalBodyPartWrapper>
-                                    <Button onClick={() => handleClickColour("hands")}>Hands</Button>
+                                    <BodyPartButton onClick={() => handleClickColour("hands")}>Hands</BodyPartButton>
                                     { handsClicked ?
-                                        <ColourWrapper id="handsColour" style={{border: "1px solid yellow"}}>
-                                            <Button onClick={() => {setHandsColour(product.handsColour[0]); setHandsColourIndex(0)}}>Brown</Button>
-                                            <Button onClick={() => {setHandsColour(product.handsColour[1]); setHandsColourIndex(1)}}>Pink</Button>
-                                            <Button onClick={() => {setHandsColour(product.handsColour[2]); setHandsColourIndex(2)}}>Beige</Button>
-                                            <Button onClick={() => {setHandsColour(product.handsColour[3]); setHandsColourIndex(3)}}>Cream</Button>
-                                            <Button onClick={() => {setHandsColour(product.handsColour[4]); setHandsColourIndex(4)}}>Grey</Button>
+                                        <ColourWrapper id="handsColour" className={product.handsColour[handsColourIndex]}>
+                                            <div style={{textAlign: "center"}}>Hands</div>
+                                            <BrownButton onClick={() => {setHandsColour(product.handsColour[0]); setHandsColourIndex(0)}}/>
+                                            <PinkButton onClick={() => {setHandsColour(product.handsColour[1]); setHandsColourIndex(1)}}/>
+                                            <BeigeButton onClick={() => {setHandsColour(product.handsColour[2]); setHandsColourIndex(2)}}/>
+                                            <CreamButton onClick={() => {setHandsColour(product.handsColour[3]); setHandsColourIndex(3)}}/>
+                                            <GrayButton onClick={() => {setHandsColour(product.handsColour[4]); setHandsColourIndex(4)}}/>
                                             {/*<div>{'\n'}{product.handsColour[handsColourIndex]}</div>*/}
                                             {/*<div>{handsColourIndex}</div>*/}
                                         </ColourWrapper>
@@ -431,7 +510,7 @@ const Product = ({item}) => {
                             )}
                         </Wrapper>
                     ))}
-                    <ArmsArrow direction="right" onClick={() => {handleArmsShape("right"); setArmsShape(product.armsShape[armsShapeIndex+1])}}>
+                    <ArmsArrow direction="right" onClick={() => {handleArmsShape("right"); handleClickColour("arms")}}>
                         <ArrowRightOutlined />
                     </ArmsArrow>
                 </Wrapper>
@@ -440,19 +519,20 @@ const Product = ({item}) => {
             {/*legs*/}
             {product.legsShape?.slice(0, 1).map(() => (
                 <Wrapper key={product.legsShape[legsShapeIndex]} className={product.legsShape[legsShapeIndex]} >
-                    <LegsArrow direction="left" onClick={() => {handleLegsShape("left"); setLegsShape(product.legsShape[legsShapeIndex-1])}} >
+                    <LegsArrow direction="left" onClick={() => {handleLegsShape("left"); handleClickColour("legs")}} >
                         <ArrowLeftOutlined />
                     </LegsArrow>
                     {product.legsColour?.slice(0, 1).map(() => (
-                        <Wrapper key={product.legsColour[legsColourIndex]} className={product.legsColour[legsColourIndex]}>
-                            <Button onClick={() => handleClickColour("legs")}>Legs</Button>
+                        <Wrapper key={product.legsColour[legsColourIndex]}>
+                            <BodyPartButton onClick={() => handleClickColour("legs")}>Legs</BodyPartButton>
                             { legsClicked ?
-                                <ColourWrapper id="legsColour" style={{border: "1px solid teal"}}>
-                                    <Button onClick={() => {setLegsColour(product.legsColour[0]); setLegsColourIndex(0)}}>Brown</Button>
-                                    <Button onClick={() => {setLegsColour(product.legsColour[1]); setLegsColourIndex(1)}}>Pink</Button>
-                                    <Button onClick={() => {setLegsColour(product.legsColour[2]); setLegsColourIndex(2)}}>Beige</Button>
-                                    <Button onClick={() => {setLegsColour(product.legsColour[3]); setLegsColourIndex(3)}}>Cream</Button>
-                                    <Button onClick={() => {setLegsColour(product.legsColour[4]); setLegsColourIndex(4)}}>Grey</Button>
+                                <ColourWrapper id="legsColour" className={product.legsColour[legsColourIndex]}>
+                                    <div style={{textAlign: "center"}}>Legs</div>
+                                    <BrownButton onClick={() => {setLegsColour(product.legsColour[0]); setLegsColourIndex(0)}}/>
+                                    <PinkButton onClick={() => {setLegsColour(product.legsColour[1]); setLegsColourIndex(1)}}/>
+                                    <BeigeButton onClick={() => {setLegsColour(product.legsColour[2]); setLegsColourIndex(2)}}/>
+                                    <CreamButton onClick={() => {setLegsColour(product.legsColour[3]); setLegsColourIndex(3)}}/>
+                                    <GrayButton onClick={() => {setLegsColour(product.legsColour[4]); setLegsColourIndex(4)}}/>
                                     {/*<div>{'\n'}{product.legsShape[legsShapeIndex]}</div>*/}
                                     {/*<div>{product.legsColour[legsColourIndex]}</div>*/}
                                     {/*<div>{legsColourIndex}</div>*/}
@@ -463,14 +543,15 @@ const Product = ({item}) => {
                             {/*feet*/}
                             {(legsShapeIndex === 3 || legsShapeIndex === 4) && (
                                 <OptionalBodyPartWrapper>
-                                    <Button onClick={() => handleClickColour("feet")}>Feet</Button>
+                                    <BodyPartButton onClick={() => handleClickColour("feet")}>Feet</BodyPartButton>
                                     { feetClicked ?
-                                        <ColourWrapper id="feetColour" style={{border: "1px solid yellow"}}>
-                                            <Button onClick={() => {setFeetColour(product.feetColour[0]); setFeetColourIndex(0)}}>Brown</Button>
-                                            <Button onClick={() => {setFeetColour(product.feetColour[1]); setFeetColourIndex(1)}}>Pink</Button>
-                                            <Button onClick={() => {setFeetColour(product.feetColour[2]); setFeetColourIndex(2)}}>Beige</Button>
-                                            <Button onClick={() => {setFeetColour(product.feetColour[3]); setFeetColourIndex(3)}}>Cream</Button>
-                                            <Button onClick={() => {setFeetColour(product.feetColour[4]); setFeetColourIndex(4)}}>Grey</Button>
+                                        <ColourWrapper id="feetColour" className={product.feetColour[feetColourIndex]}>
+                                            <div style={{textAlign: "center"}}>Feet</div>
+                                            <BrownButton onClick={() => {setFeetColour(product.feetColour[0]); setFeetColourIndex(0)}}/>
+                                            <PinkButton onClick={() => {setFeetColour(product.feetColour[1]); setFeetColourIndex(1)}}/>
+                                            <BeigeButton onClick={() => {setFeetColour(product.feetColour[2]); setFeetColourIndex(2)}}/>
+                                            <CreamButton onClick={() => {setFeetColour(product.feetColour[3]); setFeetColourIndex(3)}}/>
+                                            <GrayButton onClick={() => {setFeetColour(product.feetColour[4]); setFeetColourIndex(4)}}/>
                                             {/*<div>{'\n'}{product.feetColour[feetColourIndex]}</div>*/}
                                             {/*<div>{feetColourIndex}</div>*/}
                                         </ColourWrapper>
@@ -487,85 +568,21 @@ const Product = ({item}) => {
                             )}
                         </Wrapper>
                     ))}
-                    <LegsArrow direction="right" onClick={() => {handleLegsShape("right"); setLegsShape(product.legsShape[legsShapeIndex+1])}}>
+                    <LegsArrow direction="right" onClick={() => {handleLegsShape("right"); handleClickColour("legs")}}>
                         <ArrowRightOutlined />
                     </LegsArrow>
                 </Wrapper>
             ))}
 
 
-            <SelectionContainer>
-                {/*replaced with arrows above*/}
-                {/*<FilterShape onChange={(e) => setHeadShape(e.target.value)}>*/}
-                {/*    {product.headShape?.map((s) => (*/}
-                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
-                {/*    ))}*/}
-                {/*</FilterShape>*/}
-                {/*<FilterShape onChange={(e) => setEarsShape(e.target.value)}>*/}
-                {/*    {product.earsShape?.map((s) => (*/}
-                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
-                {/*    ))}*/}
-                {/*</FilterShape>*/}
-                {/*<FilterShape onChange={(e) => setArmsShape(e.target.value)}>*/}
-                {/*    {product.armsShape?.map((s) => (*/}
-                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
-                {/*    ))}*/}
-                {/*</FilterShape>*/}
-                {/*<FilterShape onChange={(e) => setLegsShape(e.target.value)}>*/}
-                {/*    {product.legsShape?.map((s) => (*/}
-                {/*        <FilterShapeOption key={s}>{s}</FilterShapeOption>*/}
-                {/*    ))}*/}
-                {/*</FilterShape>*/}
-
-                {/*colour*/}
-                {/*<FilterColour onChange={(e) => setHeadColour(e.target.value)}>*/}
-                {/*    {product.headColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterColour>*/}
-                {/*<FilterColour onChange={(e) => setEarsColour(e.target.value)}>*/}
-                {/*    {product.earsColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterColour>*/}
-                {/*<FilterColour onChange={(e) => setArmsColour(e.target.value)}>*/}
-                {/*    {product.armsColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterColour>*/}
-                {/*<FilterColour onChange={(e) => setLegsColour(e.target.value)}>*/}
-                {/*    {product.legsColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterColour>*/}
-                {/*additional colours*/}
-                {/*<FilterEyesColour onChange={(e) => setEyesColour(e.target.value)}>*/}
-                {/*    {product.eyesColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterEyesColour>*/}
-                {/*<FilterInnerEarsColour onChange={(e) => setInnerEarsColour(e.target.value)}>*/}
-                {/*    {product.innerEarsColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterInnerEarsColour>*/}
-                {/*<FilterHandsColour onChange={(e) => setHandsColour(e.target.value)}>*/}
-                {/*    {product.handsColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterHandsColour>*/}
-                {/*<FilterFeetColour onChange={(e) => setFeetColour(e.target.value)}>*/}
-                {/*    {product.feetColour?.map((c) => (*/}
-                {/*        <FilterColourOption key={c}>{c}</FilterColourOption>*/}
-                {/*    ))}*/}
-                {/*</FilterFeetColour>*/}
-                <FilterSize onChange={(e) => setSize(e.target.value)}>
-                    {product.size?.map((s) => (
-                        <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                    ))}
-                </FilterSize>
-            </SelectionContainer>
-
+            {/* size selection */}
+            {/*<SelectionContainer>*/}
+            {/*    <FilterSize onChange={(e) => setSize(e.target.value)}>*/}
+            {/*        {product.size?.map((s) => (*/}
+            {/*            <FilterSizeOption key={s}>{s}</FilterSizeOption>*/}
+            {/*        ))}*/}
+            {/*    </FilterSize>*/}
+            {/*</SelectionContainer>*/}
 
             <NavbarLink to={"/cart"}>
                 <Button onClick={handleConfirm}>Confirm</Button>
@@ -582,27 +599,87 @@ const Product = ({item}) => {
 
 export default Product;
 
-// const Info = styled.div`
-//    display: flex;
-//    flex-direction: column;
-//  `;
-
 const Container = styled.div`
-   height: 50px;
-   display: flex;
 `;
-const SelectionContainer = styled.div`
-   display: flex;
-   flex-direction: column;
+
+const Span = styled.span`
+   & {
+     margin: 0;
+     padding: 1rem 0;
+     font-size: 1.5rem;
+     display: inline-flex;
+     width: 50%;
+   }
+  &:before, &:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid;
+    margin: auto;
+  }
+  &:before {
+    margin-right: 10px
+  }
+  &:after {
+    margin-left: 10px
+  }
+`
+const RButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  top: 10rem;
+  position: absolute;
+`
+const RButton = withTheme(styled.button`
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background-color: ${props => props.theme.palette.default.main};
+  border: none;
+  border-radius: 0 5% 5% 0;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+`)
+
+const BodyPartButton = styled.button`
+`
+const colourButton = css`
+   border-radius: 50%;
+   height: 3rem;
+   width: 3rem;
+   border: none;
+   cursor: pointer;
+   margin: 0.3rem;
+   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.75);
+`
+const BrownButton = styled.button`
+   ${colourButton};
+   background-color: #835632;
+`
+const PinkButton = styled.button`
+   ${colourButton};
+   background-color: #D0A9A4;
+`
+const BeigeButton = styled.button`
+   ${colourButton};
+   background-color: #E2CDAD;
+`
+const CreamButton = styled.button`
+   ${colourButton};
+   background-color: #F5EBD3;
+`
+const GrayButton = styled.button`
+   ${colourButton};
+   background-color: #BCBCBC;
 `
 
 const Image = styled.img`
   position: absolute;
-  left: 5em;
-  top: 15em;
+  left: 0;
+  margin: auto;
+  right: 0;
   height: 75%;
-  z-index: 2;
-`;
+`
 
 const NavbarLink = withTheme(styled(Link)`
    text-decoration: none;
@@ -611,106 +688,52 @@ const NavbarLink = withTheme(styled(Link)`
 const Button = styled.button`
  `
 
-
-// const FilterShape = styled.select`
+// const SelectionContainer = styled.div`
+//    display: inline-flex;
+//    flex-direction: column;
+// `
+// const FilterSize = styled.select`
 //  `
-// const FilterShapeOption = styled.option`
-//  `
-// const FilterColour = styled.select`
-//  `
-// const FilterColourOption = styled.option`
-//  `
-
-//additional shapes & colours
-// const FilterEyesColour = styled.select`
-//  `
-// const FilterInnerEarsColour = styled.select`
-//  `
-// const FilterHandsColour = styled.select`
-//  `
-// const FilterFeetColour = styled.select`
+// const FilterSizeOption = styled.option`
 //  `
 
-const FilterSize = styled.select`
- `
-const FilterSizeOption = styled.option`
- `
-
-const EarsArrow = styled.div`
+const sharedStyleForArrows = css`
   width: 50px;
   height: 50px;
   background-color: #fff7f7;
   border-radius: 50%;
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 0;
   bottom: 0;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
+  left: ${(props) => props.direction === "left" && "30%"};
+  right: ${(props) => props.direction === "right" && "30%"};
   margin: auto;
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
+`
+const EarsArrow = styled.div`
+  ${sharedStyleForArrows};
+  top: -15rem;
 `;
 const HeadArrow = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #fff7f7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 7em;
-  bottom: 0;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
-  margin: auto;
-  cursor: pointer;
-  opacity: 0.5;
-  z-index: 2;
+  ${sharedStyleForArrows};
+  top: -5rem;
 `;
 const ArmsArrow = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #fff7f7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 20em;
-  bottom: 0;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
-  margin: auto;
-  cursor: pointer;
-  opacity: 0.5;
-  z-index: 2;
+  ${sharedStyleForArrows};
+  top: 10rem;
 `;
 const LegsArrow = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #fff7f7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 40em;
-  bottom: 0;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
-  margin: auto;
-  cursor: pointer;
-  opacity: 0.5;
-  z-index: 2;
+  ${sharedStyleForArrows};
+  top: 30rem;
 `;
 const Wrapper = styled.div`
   height: 100%;
-  display: flex;
+  display: inline-flex;
   transition: all 1.5s ease;
 `;
 const ColourWrapper = styled.div`
@@ -720,7 +743,7 @@ const ColourWrapper = styled.div`
   transition: all 1.5s ease;
   position: absolute;
   right: 10em;
-  top: 25em;
+  top: 16rem;
 `;
 const OptionalBodyPartWrapper = styled.div`
 `

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/macro';
 import {withTheme} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
-import Product from "../components/Product";
+import Product from "./Product";
 import {publicRequest} from "../requestMethods";
 
 

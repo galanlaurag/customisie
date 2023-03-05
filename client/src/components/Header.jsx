@@ -41,7 +41,7 @@ const Header = () => {
                         <NavbarLink to={"/"}>
                             <Logo>
                                 <LogoIcon>
-                                    <Image src="/assets/krolik.png" />
+                                    <Image src="/assets/logo.png" />
                                 </LogoIcon>
                                 <LogoText>
                                     Customisie
@@ -51,7 +51,7 @@ const Header = () => {
                     </Left>
                     <Right>
                         {/*one products with url with id*/}
-                        {products.map((item) => <NavbarLink to={`/product/${item._id}`} key={item._id} ><MenuItem>Customize</MenuItem></NavbarLink>)}
+                        {products.map((item) => <NavbarLink to={`/product/${item._id}`} key={item._id} ><MenuItem>Customise</MenuItem></NavbarLink>)}
                         {/*all products customisation page with confirm button*/}
                         {/*<NavbarLink to={"/products"}><MenuItem>Customize</MenuItem></NavbarLink>*/}
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
