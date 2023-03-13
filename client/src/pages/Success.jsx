@@ -18,7 +18,7 @@ const Success = () => {
             }
         }
         emptyCart();
-    }, [])
+    }, [dispatch])
 
     return (
         <div>
