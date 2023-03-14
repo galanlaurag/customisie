@@ -48,18 +48,31 @@ const Product = ({item}) => {
     //reset customisation
     function resetCustomisation()  {
         setHeadShapeIndex(0);
+        setHeadShape(product.headShape[0]);
         setEarsShapeIndex(0);
+        setEarsShape(product.earsShape[0]);
         setArmsShapeIndex(0);
+        setArmsShape(product.armsShape[0]);
         setLegsShapeIndex(0);
+        setLegsShape(product.legsShape[0]);
         setHeadColourIndex(0);
+        setHeadColour(product.headColour[0]);
         setEarsColourIndex(0);
+        setEarsColour(product.earsColour[0]);
         setArmsColourIndex(0);
+        setArmsColour(product.armsColour[0]);
         setLegsColourIndex(0);
+        setLegsColour(product.legsColour[0]);
         setEyesColourIndex(0);
+        setEyesColour(product.eyesColour[0]);
         setNoseColourIndex(0);
+        setNoseColour(product.noseColour[0]);
         setInnerEarsColourIndex(0);
+        setInnerEarsColour(product.innerEarsColour[0]);
         setHandsColourIndex(0);
+        setHandsColour(product.handsColour[0]);
         setFeetColourIndex(0);
+        setFeetColour(product.feetColour[0]);
     }
 
     //randomise customisation
