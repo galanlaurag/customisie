@@ -64,19 +64,47 @@ const Product = ({item}) => {
 
     //randomise customisation
     function randomiseCustomisation() {
-        setHeadShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setEarsShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setArmsShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setLegsShapeIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setHeadColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setEarsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setArmsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setLegsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setEyesColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setNoseColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setInnerEarsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setHandsColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
-        setFeetColourIndex([0,1,2,3,4][Math.floor(Math.random()*5)]);
+        // setEarsColour(product.earsColour[0]); setEarsColourIndex(0)
+
+        var randomHeadShapeIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setHeadShape(product.headShape[randomHeadShapeIndex]);
+        setHeadShapeIndex(randomHeadShapeIndex);
+        var randomEarsShapeIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setEarsShapeIndex(randomEarsShapeIndex);
+        setEarsShape(product.earsShape[randomEarsShapeIndex]);
+        var randomArmsShapeIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setArmsShapeIndex(randomArmsShapeIndex);
+        setArmsShape(product.armsShape[randomArmsShapeIndex]);
+        var randomLegsShapeIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setLegsShapeIndex(randomLegsShapeIndex);
+        setLegsShape(product.legsShape[randomLegsShapeIndex]);
+        var randomHeadColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setHeadColourIndex(randomHeadColourIndex);
+        setHeadColour(product.headColour[randomHeadColourIndex]);
+        var randomEarsColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setEarsColourIndex(randomEarsColourIndex);
+        setEarsColour(product.earsColour[randomEarsColourIndex]);
+        var randomArmsColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setArmsColourIndex(randomArmsColourIndex);
+        setArmsColour(product.armsColour[randomArmsColourIndex]);
+        var randomLegsColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setLegsColourIndex(randomLegsColourIndex);
+        setLegsColour(product.legsColour[randomLegsColourIndex]);
+        var randomEyesColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setEyesColourIndex(randomEyesColourIndex);
+        setEyesColour(product.eyesColour[randomEyesColourIndex]);
+        var randomNoseColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setNoseColourIndex(randomNoseColourIndex);
+        setNoseColour(product.noseColour[randomNoseColourIndex]);
+        var randomInnerEarsColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setInnerEarsColourIndex(randomInnerEarsColourIndex);
+        setInnerEarsColour(product.innerEarsColour[randomInnerEarsColourIndex]);
+        var randomHandsColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setHandsColourIndex(randomHandsColourIndex);
+        setHandsColour(product.handsColour[randomHandsColourIndex]);
+        var randomFeetColourIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
+        setFeetColourIndex(randomFeetColourIndex);
+        setFeetColour(product.feetColour[randomFeetColourIndex]);
     }
 
     useEffect(() => {
@@ -263,7 +291,7 @@ const Product = ({item}) => {
             <MiddleSpan>use arrows to change shape</MiddleSpan>
             <RightSpan>click on buttons below to change colour</RightSpan>
 
-            <BackgroundImage src={`/assets/backgroundImageOld.png`}/>
+            <BackgroundImage src={`/assets/background.png`}/>
 
             <CustomisationWrapper>
                 <RButtonContainer>
