@@ -5,7 +5,7 @@ import {Instagram} from "@material-ui/icons";
 
 const Footer = () => {
     return (
-        <footer>
+        <footer style={{position: "relative"}}>
             <Container>
                 <Left>
                     <Logo>

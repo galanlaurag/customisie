@@ -7,6 +7,7 @@ import styled from "styled-components/macro";
 const Home = () => {
     return (
         <Container>
+            <Image src={`/assets/misieNoBackground.png`}/>
         Ok
         <Slider />
         </Container>
@@ -15,4 +16,7 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
+`
+const Image = styled.img`
+  width: 80%;
 `
