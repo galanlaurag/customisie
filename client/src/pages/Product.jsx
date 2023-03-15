@@ -823,11 +823,11 @@ const BrownButton = styled.button`
 `
 const PinkButton = styled.button`
    ${colourButton};
-   background-color: #D0A9A4;
+   background-color: #c99d96;
 `
 const BeigeButton = styled.button`
    ${colourButton};
-   background-color: #E2CDAD;
+   background-color: #bd9e86;
 `
 const CreamButton = styled.button`
    ${colourButton};
