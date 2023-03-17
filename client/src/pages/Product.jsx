@@ -8,6 +8,7 @@ import {addProduct} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {withTheme} from "@material-ui/core/styles";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
+import { device, Container, BackgroundImage } from '../responsive&generalStyling';
 
 const Product = ({item}) => {
 
@@ -20,7 +21,6 @@ const Product = ({item}) => {
     //         .catch(err => return console.log(err));
     // }
     // mergeMultipleImages();
-
 
     const location = useLocation();
     const id = location.pathname.split("/")[2];
@@ -77,8 +77,6 @@ const Product = ({item}) => {
 
     //randomise customisation
     function randomiseCustomisation() {
-        // setEarsColour(product.earsColour[0]); setEarsColourIndex(0)
-
         var randomHeadShapeIndex = [0,1,2,3,4][Math.floor(Math.random()*5)];
         setHeadShape(product.headShape[randomHeadShapeIndex]);
         setHeadShapeIndex(randomHeadShapeIndex);
@@ -127,15 +125,15 @@ const Product = ({item}) => {
                 // const res = await publicRequest.get("products/" + id);
                 //works for all products
                 // const res = await publicRequest.get(`products/${item._id}`);
+
                 // works for both!!
                 const res = await publicRequest.get(
                     item
                         ? `products/${item._id}`
                         : "products/" + id
                 );
-                // console.log(res);
                 return setProduct(res.data);
-                //code to add new product
+                //code to add new product to database
                 // if (!item) {
                 //     try {
                 //         await axios.post("http://localhost:5000/api/products/" + id, {
@@ -274,24 +272,25 @@ const Product = ({item}) => {
         }
     }
 
+    //style active colour buttons
     const css = `
-        .Brown .Product__BrownButton-sc-1iai0om-26 {
+        .Brown .Product__BrownButton-sc-1iai0om-25 {
             transform: scale(1.2);
             border: 2px solid #000;
         }
-        .Pink .Product__PinkButton-sc-1iai0om-27 {
+        .Pink .Product__PinkButton-sc-1iai0om-26 {
             transform: scale(1.2);
             border: 2px solid #000;
         }
-        .Beige .Product__BeigeButton-sc-1iai0om-28 {
+        .Beige .Product__BeigeButton-sc-1iai0om-27 {
             transform: scale(1.2);
             border: 2px solid #000;
         }
-        .Cream .Product__CreamButton-sc-1iai0om-29 {
+        .Cream .Product__CreamButton-sc-1iai0om-28 {
             transform: scale(1.2);
             border: 2px solid #000;
         }
-        .Gray .Product__GrayButton-sc-1iai0om-30 {
+        .Gray .Product__GrayButton-sc-1iai0om-29 {
             transform: scale(1.2);
             border: 2px solid #000;
         }
@@ -300,19 +299,23 @@ const Product = ({item}) => {
     return (
         <Container>
             <style>{css}</style>
-            <LeftSpan></LeftSpan>
-            <MiddleSpan>use arrows to change shape</MiddleSpan>
-            <RightSpan>click on buttons below to change colour</RightSpan>
+            <BackgroundImage src={`/assets/tlo.png`}/>
+            {/*top instructions*/}
+            <SpanContainer>
+                <LeftSpan/>
+                <MiddleSpan>use arrows to change shape</MiddleSpan>
+                <RightSpan>use buttons to change colour</RightSpan>
+            </SpanContainer>
 
-            <BackgroundImage src={`/assets/background.png`}/>
-
+            {/*customisation part*/}
             <CustomisationWrapper>
+                {/*part 1 - reset & randomise buttons*/}
                 <RButtonContainer>
-                    <RButton onClick={resetCustomisation}>Reset</RButton>
-                    <RButton onClick={randomiseCustomisation}>Randomise</RButton>
+                    <RButton type="reset" onClick={resetCustomisation}>Reset</RButton>
+                    <RButton type="randomise" onClick={randomiseCustomisation}>Randomise</RButton>
                 </RButtonContainer>
 
-                {/*images*/}
+                {/*part 2 - images/visualisation*/}
                 <ImagesContainer>
                     {/*head*/}
                     <HeadShapeWrapper headShapeIndex={headShapeIndex}/>
@@ -363,7 +366,6 @@ const Product = ({item}) => {
                             </EarsArrow>
                         </ImagesWrapper>
                     ))}
-
                     {/*arms*/}
                     {product.armsShape?.slice(0, 1).map(() => (
                         <ImagesWrapper key={product.armsShape[armsShapeIndex]} className={product.armsShape[armsShapeIndex]} >
@@ -388,7 +390,6 @@ const Product = ({item}) => {
                             </ArmsArrow>
                         </ImagesWrapper>
                     ))}
-
                     {/*legs*/}
                     {product.legsShape?.slice(0, 1).map(() => (
                         <ImagesWrapper key={product.legsShape[legsShapeIndex]} className={product.legsShape[legsShapeIndex]} >
@@ -415,6 +416,7 @@ const Product = ({item}) => {
                     ))}
                 </ImagesContainer>
 
+                {/*part 3 - colour selection*/}
                 <ColoursContainer>
                     {/*body parts buttons*/}
                     { earsClicked ?
@@ -495,7 +497,6 @@ const Product = ({item}) => {
                                 )}
                             </ColoursWrapper>
                         ))}
-
                         {/*ears*/}
                         {product.earsColour?.slice(0, 1).map(() => (
                             <ColoursWrapper key={product.earsColour[earsColourIndex]}>
@@ -527,7 +528,6 @@ const Product = ({item}) => {
                                 )}
                             </ColoursWrapper>
                         ))}
-
                         {/*arms*/}
                         {product.armsColour?.slice(0, 1).map(() => (
                             <ColoursWrapper key={product.armsColour[armsColourIndex]}>
@@ -558,7 +558,6 @@ const Product = ({item}) => {
                                 )}
                             </ColoursWrapper>
                         ))}
-
                         {/*legs*/}
                         {product.legsColour?.slice(0, 1).map(() => (
                             <ColoursWrapper key={product.legsColour[legsColourIndex]}>
@@ -591,13 +590,15 @@ const Product = ({item}) => {
                             </ColoursWrapper>
                         ))}
                     </Wrapper>
+
+                    {/*confirm button*/}
                     <NavbarLink to={"/cart"}>
                         <ConfirmButton onClick={handleConfirm}>Confirm</ConfirmButton>
                     </NavbarLink>
                 </ColoursContainer>
             </CustomisationWrapper>
 
-            {/* size selection */}
+            {/*optional - maybe to be added in the future - size selection*/}
             {/*<SelectionContainer>*/}
             {/*    <FilterSize onChange={(e) => setSize(e.target.value)}>*/}
             {/*        {product.size?.map((s) => (*/}
@@ -606,6 +607,7 @@ const Product = ({item}) => {
             {/*    </FilterSize>*/}
             {/*</SelectionContainer>*/}
 
+            {/*info about product from database*/}
             {/*<Image src={item.img} key={item._id}/>*/}
             {/*<Info>{item.title}*/}
             {/*</Info>*/}
@@ -614,20 +616,16 @@ const Product = ({item}) => {
         </Container>
     );
 };
-
 export default Product;
 
-//general
-const Container = styled.div`
-`;
+//top instructions
+const SpanContainer = styled.div``;
 const sharedStylesForTopSpans = css`
-  & {
     margin: 0;
     padding: 1rem 0;
     font-size: 1.5rem;
     display: inline-flex;
     width: 50%;
-  }
   &:before, &:after{
     content: "";
     flex: 1 1;
@@ -640,75 +638,156 @@ const sharedStylesForTopSpans = css`
   &:after {
     margin-left: 10px
   }
+  @media ${device.laptop} {
+    font-size: 1.3rem;
+  }
+  @media ${device.tabletL} {
+    font-size: 1rem;
+  }
+  @media ${device.tabletM} {
+    font-size: 1.2rem;
+  }
 `
 const LeftSpan = withTheme(styled.span`
   ${sharedStylesForTopSpans};
-  & {
-    width: 10%;
-  }
+  width: 10%;
   &:before {
     margin-right: 0;
   }
   &:after {
     margin-left: 0;
   }
+  @media ${device.tabletL} {
+    width: 6%;
+  }
+  @media ${device.tabletM} {
+    width: 0;
+  }
 `)
 const MiddleSpan = withTheme(styled.span`
   ${sharedStylesForTopSpans};
+  @media ${device.tabletL} {
+    width: 60%;
+  }
+  @media ${device.tabletM} {
+    width: 50%;
+    padding: 0.5rem 0;
+  }
+  @media ${device.tabletS} {
+    width: 100%;
+    padding: 0;
+  }
 `)
 const RightSpan = withTheme(styled.span`
   ${sharedStylesForTopSpans};
-  & {
-    width: 40%;
+  width: 40%;
+  @media ${device.tabletL} {
+    width: 34%;
+  }
+  @media ${device.tabletM} {
+    width: 50%;
+    padding: 0.5rem 0;
+  }
+  @media ${device.tabletS} {
+    width: 100%;
+    padding: 0 0 0.5rem 0;
   }
 `)
-
-const BackgroundImage = styled.img`
-  display: block;
-  position: absolute;
-  opacity: 0.3;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  bottom: -10em;
-`
 
 //customisation
 const CustomisationWrapper = styled.div`
   display: flex;
-  gap: 10px;
+  flex: 1;
+  gap: 50px;
+  margin-right: 25px;
+  margin-bottom: 2rem;
+  z-index: 1;
+  @media ${device.laptop} {
+    gap: 10px;
+    margin-right: 0;
+  }
+  @media ${device.tabletM} {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
 `
 //left buttons
 const RButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  gap: 1.5rem;
   justify-content: flex-start;
   top: 10rem;
   width: 10%;
+  height: auto;
+  @media ${device.tabletL} {
+    width:6%;
+  }
+  @media ${device.tabletM} {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
 `
-const RButton = withTheme(styled.button`
-  padding: 1.5rem;
-  margin: 1.5rem 0;
+const RButton = withTheme(styled.p`
+  padding: 1.5rem 0;
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: center;
   background-color: ${props => props.theme.palette.default.main};
   border: none;
   border-radius: 0 20px 20px 0;
   cursor: pointer;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  @media ${device.laptop} {
+    font-size: 1rem;
+  }
+  @media ${device.tabletL} {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border-radius: 20px 0 0 20px;
+    width: fit-content;
+    padding: 1.5rem 0.4rem 1.5rem 0.9rem;
+  }
+  @media ${device.tabletM} {
+    writing-mode: horizontal-tb;
+    transform: rotate(0);
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    width: 40%;
+    border-radius: ${(props) => props.type === "reset" && "0 20px 20px 0"};
+    border-radius: ${(props) => props.type === "randomise" && "20px 0 0 20px"};
+  }
 `)
 
 
 //images
-const HeadShapeWrapper = styled.div`
-`
+const HeadShapeWrapper = styled.div``;
 const ImagesContainer = withTheme(styled.div`
   background-color: #ffffff66;
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
-  height: 80vh;
+  height: auto;
+  margin: 0;
   width: 50%;
   position: relative;
+  @media ${device.tabletL} {
+    width: 60%;
+  }
+  @media ${device.tabletM} {
+    min-height: 60vh;
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  @media ${device.mobileL} {
+    width: 90%;
+  }
+  @media ${device.mobileM} {
+    width: 95%;
+  }
 `)
 const ImagesWrapper = styled.div``
 const ImageWrapper = styled.div`
@@ -725,7 +804,7 @@ const Image = styled.img`
   left: 0;
   right: 0;
   margin: auto;
-  padding: 1em 0;
+  padding: 1rem 0;
 `
 //arrows
 const sharedStyleForArrows = css`
@@ -745,22 +824,40 @@ const sharedStyleForArrows = css`
   cursor: pointer;
   opacity: 0.5;
   z-index: 20;
+  @media ${device.laptop} {
+    left: ${(props) => props.direction === "left" && "2%"};
+    right: ${(props) => props.direction === "right" && "2%"};
+  }
+  @media ${device.tabletL} {
+    width: 40px;
+    height: 40px;
+  }
+  @media ${device.tabletM} {
+    width: 50px;
+    height: 50px;
+    left: ${(props) => props.direction === "left" && "5%"};
+    right: ${(props) => props.direction === "right" && "5%"};
+  }
+  @media screen and (max-height: 450px) {
+    width: 40px;
+    height: 40px;
+  }
 `
 const EarsArrow = styled.div`
   ${sharedStyleForArrows};
-  top: -20rem;
+  top: -60%;
 `;
 const HeadArrow = styled.div`
   ${sharedStyleForArrows};
-  top: -5rem;
+  top: -20%;
 `;
 const ArmsArrow = styled.div`
   ${sharedStyleForArrows};
-  top: 10rem;
+  top: 20%;
 `;
 const LegsArrow = styled.div`
   ${sharedStyleForArrows};
-  top: 25rem;
+  top: 60%;
 `;
 
 
@@ -772,42 +869,82 @@ const ColoursContainer = styled.div`
   justify-content: space-between;
   text-align: center;
   z-index: 10;
+  @media ${device.tabletL} {
+    width: 34%;
+  }
+  @media ${device.tabletM} {
+    width: 100%;
+  }
 `
 const BodyPartButtonWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 const BodyPartButton = styled.button`
   cursor: pointer;
-  padding: 1em 2em;
-  border-radius: 10px;
+  font-size: 1.1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 20px;
   background-color: #98878f;
   border: none;
-  margin: 0.2em;
+  margin: 0.3rem;
   box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  @media ${device.laptop} {
+    padding: 1rem 1.1rem;
+    margin: 0.2rem;
+    font-size: 0.9rem;
+  }
+  @media ${device.tabletL} {
+    width: 45%;
+  }
+  @media ${device.tabletM} {
+    width: 22%;
+    margin: 0.3rem;
+  }
+  @media ${device.mobileS} {
+    width: 45%;
+  }
 `
-const Wrapper = styled.div`
-`
+const Wrapper = styled.div``;
 const SpanBodyPart = styled.span`
+  font-size: 1.3rem;
+  margin: 10px;
+  @media ${device.tabletM} {
+    margin: auto 10px auto 0;
+  }
 `
 const ColoursWrapper = styled.div`
   display: flex;
   justify-content: center;
+  @media ${device.tabletM} {
+    flex-direction: column;
+  }
+`
+const colourPicker = css`
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  transition: all 1.5s ease;
+  padding: 0 1rem;
+  @media ${device.tabletM} {
+    flex-direction: row;
+    justify-content: center;
+  }
 `
 const ColourWrapper = styled.div`
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  transition: all 1.5s ease;
-  padding: 0 1em;
+  ${colourPicker};
+  @media ${device.tabletM} {
+    margin: 2rem 0 1rem 0;
+  }
 `;
 const AdditionalColourWrapper = styled.div`
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  transition: all 1.5s ease;
-  padding: 0 1em;
-`
-const OptionalBodyPartColourWrapper = styled.div`
-`
+  ${colourPicker};
+  @media ${device.tabletM} {
+    margin: 1rem 0 2rem 0;
+  }
+`;
+const OptionalBodyPartColourWrapper = styled.div``
 const colourButton = css`
    border-radius: 50%;
    height: 3rem;
@@ -816,6 +953,14 @@ const colourButton = css`
    cursor: pointer;
    margin: 0.3rem;
    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.75);
+   @media ${device.mobileM} {
+     height: 2.5rem;
+     width: 2.5rem;
+   }
+   @media ${device.mobileS} {
+     height: 2.2rem;
+     width: 2.2rem;
+   }
 `
 const BrownButton = styled.button`
    ${colourButton};
@@ -841,15 +986,35 @@ const GrayButton = styled.button`
 const NavbarLink = withTheme(styled(Link)`
   text-decoration: none;
   text-align: right;
+  @media ${device.tabletM} {
+    text-align: center;
+  }
 `)
 const ConfirmButton = withTheme(styled.button`
+  font-size: 1.3rem;
   cursor: pointer;
-  padding: 2em 3em;
+  padding: 1.5rem 3rem;
+  margin-right: -25px;
   border-radius: 20px 0 0 20px;
   border: none;
   background-color: ${props => props.theme.palette.primary.main};
   color: #fff;
   box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  @media ${device.laptop} {
+    margin-right: 0;
+  }
+  @media ${device.tabletM} {
+    border-radius: 20px 20px 0 0;
+    font-size: 1.2rem;
+  }
+  @media ${device.mobileL} {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.15rem;
+  }
+  @media ${device.mobileM} {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
 `)
 
 // const FilterSize = styled.select`

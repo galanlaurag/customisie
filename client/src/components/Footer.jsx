@@ -6,7 +6,7 @@ import {Instagram} from "@material-ui/icons";
 const Footer = () => {
     return (
         <footer style={{position: "relative"}}>
-            <Container>
+            <FooterContainer>
                 <Left>
                     <Logo>
                         <Image src="/assets/krolik.png" />
@@ -40,16 +40,17 @@ const Footer = () => {
                         Phone number
                     </ContactItem>
                 </Right>
-            </Container>
+            </FooterContainer>
         </footer>
     )
 }
 export default Footer;
 
-export const Container = withTheme(styled('div')`
+const FooterContainer = withTheme(styled('div')`
   background-color: ${props => props.theme.palette.default.main};
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
 `)
 const Left = styled.div`
   flex: 1;

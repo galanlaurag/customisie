@@ -34,8 +34,9 @@ const Header = () => {
 
     return (
         <header>
-            <Container>
+            <HeaderContainer>
                 <Wrapper>
+                    {/*logo & name*/}
                     <Left>
                         {/*<Language>EN</Language>*/}
                         <NavbarLink to={"/"}>
@@ -49,11 +50,12 @@ const Header = () => {
                             </Logo>
                         </NavbarLink>
                     </Left>
+                    {/*navbar*/}
                     <Right>
-                        {/*one products with url with id*/}
+                        {/*one product with id in the url*/}
                         {products.map((item) => <NavbarLink to={`/product/${item._id}`} key={item._id} ><MenuItem>Customise</MenuItem></NavbarLink>)}
-                        {/*all products customisation page with confirm button*/}
-                        {/*<NavbarLink to={"/products"}><MenuItem>Customize</MenuItem></NavbarLink>*/}
+                        {/*all products - same result as there is only one product in the database*/}
+                        {/*<NavbarLink to={"/products"}><MenuItem>Customise</MenuItem></NavbarLink>*/}
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
                         <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>
                         {user ? <NavbarLink to={"/myaccount"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink> : <NavbarLink to={"/login"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink>}
@@ -65,61 +67,66 @@ const Header = () => {
                         {user && <NavbarLink to={"/logout"}><MenuItem onClick={handleSignout}>Log out</MenuItem></NavbarLink>}
                     </Right>
                 </Wrapper>
-            </Container>
+            </HeaderContainer>
         </header>
     )
 }
 export default Header;
 
-const Container = withTheme(styled('div')`
+//general
+const HeaderContainer = withTheme(styled('div')`
   background-color: ${props => props.theme.palette.primary.main};
   color: ${props => props.theme.palette.fourth.main};
   height: 60px;
   font-size: 1.5rem;
   margin: 0;
-`)
-const NavbarLink = withTheme(styled(Link)`
-  text-decoration: none;
-  color: ${props => props.theme.palette.fourth.main};
-`)
+`);
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100%;
   align-items: center;
-  margin: 0 1em;
-`
+  margin: 0 1rem;
+  flex-wrap: wrap;
+`;
+const NavbarLink = withTheme(styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.palette.fourth.main};
+`);
+
+//logo & name
 const Left = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-start;
-`
-// const Language = styled.span`
-//   font-size: 1.5rem;
-//   cursor: pointer;
-//   margin: 0 0.5em;
-// `
+`;
 const Logo = styled.div`
   display: flex;
   justify-content: flex-start;
-`
+`;
 const LogoIcon = styled.div`
-  margin-left: 0.5em;
-`
+  margin-left: 0.5rem;
+`;
 const Image = styled.img`  
-  height: 1em;
-`
-const LogoText = styled(LogoIcon)`
-`
+  height: 1rem;
+`;
+const LogoText = styled(LogoIcon)``;
 
+//navbar
 const Right = styled.div`
   flex: 3;
   text-align: right;
   display: flex;
   justify-content: flex-end;
-`
+`;
 const MenuItem = styled.div`
   cursor: pointer;
-  margin-left: 0.5em;
+  margin-left: 0.5rem;
   height: 1.5rem;
-`
+`;
+
+// const Language = styled.span`
+//   font-size: 1.5rem;
+//   cursor: pointer;
+//   margin: 0 0.5em;
+// `
