@@ -272,33 +272,8 @@ const Product = ({item}) => {
         }
     }
 
-    //style active colour buttons
-    const css = `
-        .Brown .Product__BrownButton-sc-1iai0om-25 {
-            transform: scale(1.2);
-            border: 2px solid #000;
-        }
-        .Pink .Product__PinkButton-sc-1iai0om-26 {
-            transform: scale(1.2);
-            border: 2px solid #000;
-        }
-        .Beige .Product__BeigeButton-sc-1iai0om-27 {
-            transform: scale(1.2);
-            border: 2px solid #000;
-        }
-        .Cream .Product__CreamButton-sc-1iai0om-28 {
-            transform: scale(1.2);
-            border: 2px solid #000;
-        }
-        .Gray .Product__GrayButton-sc-1iai0om-29 {
-            transform: scale(1.2);
-            border: 2px solid #000;
-        }
-    `
-
     return (
         <Container>
-            <style>{css}</style>
             <BackgroundImage src={`/assets/tlo.png`}/>
             {/*top instructions*/}
             <SpanContainer>
@@ -922,6 +897,26 @@ const ColoursWrapper = styled.div`
   }
 `
 const colourPicker = css`
+  &.Brown .Product__BrownButton-sc-1iai0om-25 {
+    transform: scale(1.2);
+    border: 2px solid #000;
+  }
+  &.Pink .Product__PinkButton-sc-1iai0om-26 {
+    transform: scale(1.2);
+    border: 2px solid #000;
+  }
+  &.Beige .Product__BeigeButton-sc-1iai0om-27 {
+    transform: scale(1.2);
+    border: 2px solid #000;
+  }
+  &.Cream .Product__CreamButton-sc-1iai0om-28 {
+    transform: scale(1.2);
+    border: 2px solid #000;
+  }
+  &.Gray .Product__GrayButton-sc-1iai0om-29 {
+    transform: scale(1.2);
+    border: 2px solid #000;
+  }
   height: fit-content;
   display: flex;
   flex-direction: column;

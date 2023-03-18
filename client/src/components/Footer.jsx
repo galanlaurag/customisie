@@ -1,43 +1,55 @@
 import React from 'react';
 import {withTheme} from "@material-ui/core/styles";
-import styled from "styled-components/macro";
-import {Instagram} from "@material-ui/icons";
+import styled, {css} from "styled-components/macro";
+import { LogoIcon, LogoText } from './Header'
+import {Link} from "react-router-dom";
+import {device} from "../responsive&generalStyling";
 
 const Footer = () => {
     return (
         <footer style={{position: "relative"}}>
             <FooterContainer>
                 <Left>
-                    <Logo>
-                        <Image src="/assets/krolik.png" />
-                    </Logo>
-                    <Desc>Opis</Desc>
+                    <NavbarLinkHome to={"/"}>
+                        <Logo>
+                            <LogoIcon>
+                                <Image src="/assets/logo.png" />
+                            </LogoIcon>
+                            <LogoText>
+                                Customisie
+                            </LogoText>
+                        </Logo>
+                    </NavbarLinkHome>
+                    <Desc>Handmade crochet teddy bears customisable by you!</Desc>
                     <SocialContainer>
                         <SocialIcon color="FFF">
-                            <Instagram />
+                            <InstagramIcon src="/assets/instagram.png" />
+                        </SocialIcon>
+                        <SocialIcon color="FFF">
+                            <TikTokIcon src="/assets/tiktok.png" />
                         </SocialIcon>
                     </SocialContainer>
                 </Left>
                 <Center>
                     <Title>Useful links</Title>
                     <List>
-                        <ListItem>Home</ListItem>
-                        <ListItem>Cart</ListItem>
-                        <ListItem>About</ListItem>
-                        <ListItem>Privacy policy</ListItem>
-                        <ListItem>Terms & conditions</ListItem>
+                        <ListItem><NavbarLink to={"/"}><MenuItem>Home</MenuItem></NavbarLink></ListItem>
+                        <ListItem><NavbarLink to={"/cart"}><MenuItem>Cart</MenuItem></NavbarLink></ListItem>
+                        <ListItem><NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink></ListItem>
+                        <ListItem><NavbarLink to={"/privacy-policy"}><MenuItem>Privacy policy</MenuItem></NavbarLink></ListItem>
+                        <ListItem><NavbarLink to={"/terms-conditions"}><MenuItem>Terms & conditions</MenuItem></NavbarLink></ListItem>
                     </List>
                 </Center>
                 <Right>
                     <Title>Contact</Title>
                     <ContactItem>
-                        Address
+                        <NavbarLink to={"/contact"}><MenuItem>Contact page</MenuItem></NavbarLink>
                     </ContactItem>
                     <ContactItem>
-                        Email address
+                        Krakow, Poland
                     </ContactItem>
                     <ContactItem>
-                        Phone number
+                        contact@customisie.pl
                     </ContactItem>
                 </Right>
             </FooterContainer>
@@ -46,61 +58,119 @@ const Footer = () => {
 }
 export default Footer;
 
+//general
 const FooterContainer = withTheme(styled('div')`
   background-color: ${props => props.theme.palette.default.main};
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding: 2rem 2rem 0 2rem;
+  justify-content: space-between;
+  @media ${device.tabletL} {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+  }
 `)
-const Left = styled.div`
-  flex: 1;
+const footerPart = css`
+  width: 30%;
   display: flex;
   flex-direction: column;
-  padding: 5px 20px;
+  justify-content: flex-start;
+  padding-bottom: 2rem;
+  @media ${device.tabletL} {
+    padding-bottom: 1.5rem;
+  }
+`;
+const Title = styled.h1`
+  color: #fff;
+  margin: 0 0 1rem 0;
+  @media ${device.tabletL} {
+    font-size: 1.5rem;
+  }
 `
+
+//left
+const Left = styled.div`
+  ${footerPart};
+  @media ${device.tabletM} {
+    width: 100%;
+  }
+`
+const NavbarLinkHome = styled(Link)`
+  text-decoration: none;
+  color: #fff;
+  margin: 0;
+`;
 const Logo = styled.h1`
-  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 1rem 0;
+  @media ${device.tabletL} {
+    font-size: 1.5rem;
+  }
 `
 const Image = styled.img`  
-  height: 1em;
+  height: 1rem;
 `
-const Desc = styled.div`
-  flex: 1;
-`
+const Desc = styled.div``;
 const SocialContainer = styled.div`
-  flex: 1;
+  display: flex;
 `
 const SocialIcon = styled.div`
-  background-color: #${props => props.color};
-  flex: 1;
+  background-color: #fff;
   width: 40px;
   height: 40px;
+  margin: 0.5rem 0.5rem 0 0;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
 `
+const socialMediaIcon = css`
+  width: 1rem;
+  height: 1rem;
+  font-size: 1.5rem;
+`
+const InstagramIcon = styled.img`
+  ${socialMediaIcon};
+`;
+const TikTokIcon = styled.img`
+  ${socialMediaIcon};
+`;
 
+//middle
 const Center = styled.div`
-  flex: 1;
-  padding: 5px 20px;
-`
-const Title = styled.h1`
-  flex: 1;
-  padding: 5px 20px;
+  ${footerPart};
+  @media ${device.tabletM} {
+    width: 45%;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 `
 const List = styled.ul`
-  flex: 1;
-  padding: 5px 20px;
-`
-const ListItem = styled.li`
-`
+  margin: 0;
+  padding-left: 20px;
+`;
+const ListItem = styled.li``;
+const NavbarLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
+  margin: 0;
+`;
+export const MenuItem = styled.div`
+  cursor: pointer;
+`;
 
+//right
 const Right = styled.div`
-  flex: 1;
-  padding: 5px 20px;
+  ${footerPart};
+  @media ${device.tabletM} {
+    width: 45%;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 `
-const ContactItem = styled.div`
-  
-`
+const ContactItem = styled.p`
+  margin: 0 0 0.5rem 0;
+`;

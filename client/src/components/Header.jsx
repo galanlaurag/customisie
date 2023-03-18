@@ -8,12 +8,14 @@ import {useEffect, useState} from "react";
 import {publicRequest} from "../requestMethods";
 import {useDispatch, useSelector} from "react-redux";
 import {signout} from "../redux/apiCalls";
+import { device } from '../responsive&generalStyling';
 
 const Header = () => {
     const dispatch = useDispatch();
     const cartQuantity = useSelector(state=>state.cart.quantity);
     const [products, setProducts] = useState([]);
     const user = useSelector(state => state.user.currentUser);
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
 
     useEffect(() =>{
         const getProducts = async () => {
@@ -33,9 +35,9 @@ const Header = () => {
     }
 
     return (
-        <header>
+        <header style={{position: "fixed", zIndex: "50", width: "100%", top: "0"}}>
+            <Demo>This is a demo version - not a working store (yet:))!</Demo>
             <HeaderContainer>
-                <Wrapper>
                     {/*logo & name*/}
                     <Left>
                         {/*<Language>EN</Language>*/}
@@ -51,7 +53,8 @@ const Header = () => {
                         </NavbarLink>
                     </Left>
                     {/*navbar*/}
-                    <Right>
+                    <HamburgerImg src={`/assets/hamburger.png`} onClick={() => {setIsNavExpanded(!isNavExpanded)}}/>
+                    <Right className={isNavExpanded && "expanded"}>
                         {/*one product with id in the url*/}
                         {products.map((item) => <NavbarLink to={`/product/${item._id}`} key={item._id} ><MenuItem>Customise</MenuItem></NavbarLink>)}
                         {/*all products - same result as there is only one product in the database*/}
@@ -66,7 +69,6 @@ const Header = () => {
                         </MenuItem></NavbarLink>
                         {user && <NavbarLink to={"/logout"}><MenuItem onClick={handleSignout}>Log out</MenuItem></NavbarLink>}
                     </Right>
-                </Wrapper>
             </HeaderContainer>
         </header>
     )
@@ -76,23 +78,30 @@ export default Header;
 //general
 const HeaderContainer = withTheme(styled('div')`
   background-color: ${props => props.theme.palette.primary.main};
-  color: ${props => props.theme.palette.fourth.main};
+  color: #fff;
   height: 60px;
   font-size: 1.5rem;
-  margin: 0;
-`);
-const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 100%;
   align-items: center;
-  margin: 0 1rem;
+  padding: 0 1rem 0 0.5rem;
   flex-wrap: wrap;
-`;
-const NavbarLink = withTheme(styled(Link)`
-  text-decoration: none;
-  color: ${props => props.theme.palette.fourth.main};
+  @media ${device.mobileL} {
+    padding: 0 0.5rem 0 0;
+  }
 `);
+const Demo = withTheme(styled('span')`
+  background-color: ${props => props.theme.palette.secondary.main};
+  color: #fff;
+  height: 20px;
+  display: block;
+  text-align: center;
+`);
+const NavbarLink = styled(Link)`
+  text-decoration: none;
+  color: #fff;
+  margin: 0;
+`;
 
 //logo & name
 const Left = styled.div`
@@ -104,25 +113,57 @@ const Logo = styled.div`
   display: flex;
   justify-content: flex-start;
 `;
-const LogoIcon = styled.div`
+export const LogoIcon = styled.div`
   margin-left: 0.5rem;
 `;
 const Image = styled.img`  
   height: 1rem;
 `;
-const LogoText = styled(LogoIcon)``;
+export const LogoText = styled(LogoIcon)``;
 
 //navbar
-const Right = styled.div`
+const HamburgerImg = styled.img`
+  cursor: pointer;
+  height: 30px;
+  display: none;
+  @media ${device.tabletM} {
+    display: block;
+    text-align: right;
+  }
+`
+const Right = withTheme(styled('div')`
   flex: 3;
   text-align: right;
   display: flex;
   justify-content: flex-end;
-`;
+  @media ${device.tabletM} {
+    display: none;
+    position: absolute;
+    top: 80px;
+    background-color: ${props => props.theme.palette.primary.main}eb;
+    flex-direction: column;
+    right: 0;
+    width: 100%;
+    &.expanded {
+      display: block;
+    }
+  }
+`);
+
 const MenuItem = styled.div`
   cursor: pointer;
-  margin-left: 0.5rem;
-  height: 1.5rem;
+  margin-left: 1.5rem;
+  height: 2rem;
+  @media ${device.tabletL} {
+    margin-left: 1rem;
+  }
+  @media ${device.tabletM} {
+    margin-left: 0;
+    padding-right: 1rem;
+  }
+  @media ${device.mobileL} {
+    padding-right: 0.5rem;
+  }
 `;
 
 // const Language = styled.span`

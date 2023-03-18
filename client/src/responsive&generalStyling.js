@@ -29,8 +29,32 @@ export const BackgroundImage = styled.img`
   display: block;
   position: absolute;
   opacity: 0.3;
-  width: 100%;
   padding: 0;
   margin: 0;
   bottom: 0;
+  max-height: 500px;
+  align-self: center;
+  @media ${device.laptop} {
+    max-height: 450px;
+  }
+  @media ${device.tabletL} {
+    max-height: 400px;
+  }
+  @media ${device.tabletM} {
+    max-height: 350px;
+  }
+  @media ${device.tabletS} {
+    max-height: 300px;
+  }
 `
+
+//header & footer
+// export const NavbarLink = styled(Link)`
+//   text-decoration: none;
+//   color: #fff;
+//   margin: auto 0;
+// `;
+// export const LogoIcon = styled.div`
+//   margin-left: 0.5rem;
+// `;
+// export const LogoText = styled(LogoIcon)``;

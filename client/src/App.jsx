@@ -40,15 +40,15 @@ const App = () => {
             <ThemeProvider theme={theme}>
                 <Header />
                     <Routes>
-                        <Route exact path="/" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Home/></main>}/>
-                        <Route path="/products" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Customisation/></main>}/>
-                        <Route path="/product/:id" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundImage: "radial-gradient(circle, #ffffff, #ffffff, #ffffff, #ffffff, #fefdfe, #fdfcfd, #fcfafb, #fbf6f7, #f9f2f2, #f7eeec, #f4ebe6)", display: "flex", flexDirection: "column"}}><Product/></main>}/>
-                        <Route path="/login" element={user ? <Navigate to={"/"}/> : <main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Login/></main>}/>
+                        <Route exact path="/" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Home/></main>}/>
+                        <Route path="/products" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Customisation/></main>}/>
+                        <Route path="/product/:id" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundImage: "radial-gradient(circle, #ffffff, #ffffff, #ffffff, #ffffff, #fefdfe, #fdfcfd, #fcfafb, #fbf6f7, #f9f2f2, #f7eeec, #f4ebe6)", display: "flex", flexDirection: "column"}}><Product/></main>}/>
+                        <Route path="/login" element={user ? <Navigate to={"/"}/> : <main style={{minHeight: "calc(100vh - 80px)", marginTop: "70px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Login/></main>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Register/>}/>
                         <Route path="/logout" element={<Navigate to={"/"}/>}/>
-                        <Route path="/cart" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Cart/></main>}/>
-                        <Route path="/success" element={<main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Success/></main>}/>
-                        <Route path="/myaccount" element={user && <main style={{minHeight: "calc(100vh - 60px)", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><MyAccount/></main>}/>
+                        <Route path="/cart" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Cart/></main>}/>
+                        <Route path="/success" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Success/></main>}/>
+                        <Route path="/myaccount" element={user && <main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><MyAccount/></main>}/>
                     </Routes>
                 <Footer />
             </ThemeProvider>
