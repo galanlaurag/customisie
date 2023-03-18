@@ -22,12 +22,16 @@ const Footer = () => {
                     </NavbarLinkHome>
                     <Desc>Handmade crochet teddy bears customisable by you!</Desc>
                     <SocialContainer>
-                        <SocialIcon color="FFF">
-                            <InstagramIcon src="/assets/instagram.png" />
-                        </SocialIcon>
-                        <SocialIcon color="FFF">
-                            <TikTokIcon src="/assets/tiktok.png" />
-                        </SocialIcon>
+                        <Link to={{ pathname: "https://instagram.com/customisie?igshid=YmMyMTA2M2Y=" }} target="_blank">
+                            <SocialIcon color="FFF">
+                                <InstagramIcon src="/assets/instagram.png" />
+                            </SocialIcon>
+                        </Link>
+                        <Link to={{ pathname: "https://www.tiktok.com/" }} target="_blank">
+                            <SocialIcon color="FFF">
+                                <TikTokIcon src="/assets/tiktok.png" />
+                            </SocialIcon>
+                        </Link>
                     </SocialContainer>
                 </Left>
                 <Center>
@@ -171,6 +175,6 @@ const Right = styled.div`
     width: 100%;
   }
 `
-const ContactItem = styled.p`
+const ContactItem = styled.div`
   margin: 0 0 0.5rem 0;
 `;
