@@ -44,7 +44,7 @@ const Header = () => {
                         <NavbarLink to={"/"}>
                             <Logo>
                                 <LogoIcon>
-                                    <Image src="/assets/logo.png" />
+                                    <Image src="/assets/logo6.png" />
                                 </LogoIcon>
                                 <LogoText>
                                     Customisie
@@ -114,10 +114,10 @@ const Logo = styled.div`
   justify-content: flex-start;
 `;
 export const LogoIcon = styled.div`
-  margin-left: 0.5rem;
+  margin: auto auto auto 0.5rem;
 `;
 const Image = styled.img`  
-  height: 1rem;
+  height: 3rem;
 `;
 export const LogoText = styled(LogoIcon)``;
 

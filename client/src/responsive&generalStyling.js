@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { createGlobalStyle } from 'styled-components';
 
 const size = {
     mobileS: '320px',
@@ -19,11 +20,18 @@ export const device = {
     laptop: `screen and (max-width: ${size.laptop})`,
 };
 
+export const GlobalStyle = createGlobalStyle`
+  * {
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    //font-family: Arial, Helvetica, sans-serif;
+  }
+`
 export const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow-x: hidden;
 `;
 export const BackgroundImage = styled.img`
   display: block;

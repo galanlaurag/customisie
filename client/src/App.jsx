@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import React from "react";
 import Header from "./components/Header";
 import Home from './pages/Home';
+import Contact from "./pages/Contact";
 import Customisation from "./pages/Customisation";
 import Product from "./pages/Product";
 import Login from './pages/Login';
@@ -12,6 +13,7 @@ import Footer from "./components/Footer";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux";
 import MyAccount from "./pages/MyAccount";
+
 
 const theme = createTheme({
     palette: {
@@ -41,6 +43,7 @@ const App = () => {
                 <Header />
                     <Routes>
                         <Route exact path="/" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Home/></main>}/>
+                        <Route path="/contact" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Contact/></main>}/>
                         <Route path="/products" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Customisation/></main>}/>
                         <Route path="/product/:id" element={<main style={{minHeight: "calc(100vh - 80px)", marginTop: "80px", backgroundImage: "radial-gradient(circle, #ffffff, #ffffff, #ffffff, #ffffff, #fefdfe, #fdfcfd, #fcfafb, #fbf6f7, #f9f2f2, #f7eeec, #f4ebe6)", display: "flex", flexDirection: "column"}}><Product/></main>}/>
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <main style={{minHeight: "calc(100vh - 80px)", marginTop: "70px", backgroundColor: theme.palette.fourth.main, display: "flex", flexDirection: "column"}}><Login/></main>}/>
