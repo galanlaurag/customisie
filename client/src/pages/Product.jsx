@@ -12,13 +12,15 @@ import {device, Container, BackgroundImage, GlobalStyle} from '../responsive&gen
 
 const Product = ({item}) => {
 
-    //merging multiple images - works DO NOT DELETE
+    //merging multiple images test - works DO NOT DELETE
     // async function mergeMultipleImages() {
-    //     await mergeImages(['http://localhost:3000/static/media/uszy.95f309a756b72a842cfa.png', 'http://localhost:3000/static/media/glowa.8843494bc3e645fc3839.png'])
+    //      await mergeImages(['http://localhost:3000/assets/head/Brown/Regular.png', 'http://localhost:3000/assets/nose/Brown/Nose.png'])
     //         .then((mergedSrc) => {
-    //             return document.getElementById("mis").src = mergedSrc;
+    //             return document.getElementById("mergedTeddyBear").src = mergedSrc;
     //         })
-    //         .catch(err => return console.log(err));
+    //         .catch(err => {
+    //              return console.log(err)
+    //          });
     // }
     // mergeMultipleImages();
 
@@ -133,26 +135,22 @@ const Product = ({item}) => {
                         : "products/" + id
                 );
                 return setProduct(res.data);
-                //code to add new product to database
+                //test code to add new product to database - works
                 // if (!item) {
                 //     try {
                 //         await axios.post("http://localhost:5000/api/products/" + id, {
-                //             title: 'bja',
-                //             img: 'http://localhost:3000/static/media/krolik.6bcb6a9b28f7a0c63624.png'
+                //             title: 'Teddy bead',
+                //             img: 'http://localhost:3000/assets/merged/mergedTeddyBear.png'
                 //         }).then(function (response) {
                 //             console.log(response);
-                //             setProduct(response.data.json);
                 //         })
                 //     } catch(err) {
-                //         console.log("error")
-                //         console.log(err.response.data);
+                //         console.log(err);
                 //     }
                 // } else {
                 //     const res = await publicRequest.get(`products/${item._id}`);
                 //     console.log(res);
-                //     setProduct(res.data);
                 // }
-                // document.getElementById("headImg").src = "/assets/head/Brown/Small.png";
             } catch(err) {
                 return console.log(err);
             }
