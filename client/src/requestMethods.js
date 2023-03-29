@@ -1,11 +1,5 @@
 import axios from "axios";
 
-// const BASE_URL = process.env.NODE_ENV === "production"
-//     ? "http://localhost:80/api/"
-//     : "http://localhost:5000/api/";
-// const BASE_URL = "http://localhost:5000/api/";
-
-
 //TODO change back to onrender once updated
 const BASE_URL = "http://localhost:80/api/";
 // const BASE_URL = "https://customisieapi.onrender.com/api/";
