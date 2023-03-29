@@ -18,7 +18,7 @@ const ContactForm = () => {
 
         publicRequest.post(
             "/send",
-            {captchaToken}
+            {...state, captchaToken}
         )
         .then(response => {
             setResult(response.data);
