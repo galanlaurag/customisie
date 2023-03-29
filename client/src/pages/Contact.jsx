@@ -4,7 +4,6 @@ import {Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyl
 const Contact = () => {
 
     // function captchaScript() {
-    //     console.log("works");
     //     const recaptchaApi = document.createElement("script");
     //     const recaptchaScript = document.createElement("script");
     //     recaptchaApi.type = 'text/javascript';
