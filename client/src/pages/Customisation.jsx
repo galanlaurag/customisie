@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import styled from 'styled-components/macro';
-import {withTheme} from "@material-ui/core/styles";
-import {Link} from "react-router-dom";
 import Product from "./Product";
 import {publicRequest} from "../requestMethods";
-
+import {Container} from '../responsive&generalStyling';
 
 const Customisation = () => {
     const [products, setProducts] = useState([]);
@@ -12,7 +9,6 @@ const Customisation = () => {
         const getProducts = async () => {
             try {
                 const res = await publicRequest.get("products");
-                // console.log(res);
                 return setProducts(res.data);
             } catch(err) {
                 return console.log(err);
@@ -24,19 +20,9 @@ const Customisation = () => {
     return (
         <Container>
             {products.map((item) => <Product item={item} key={item._id} />)}
-            <Button>
-                <NavbarLink to={"/cart"}>Confirm</NavbarLink>
-            </Button>
         </Container>
     )
 }
 export default Customisation;
 
-const Container = styled.div``
-const NavbarLink = withTheme(styled(Link)`
-   text-decoration: none;
-   color: ${props => props.theme.palette.primary.main};
- `)
-const Button = styled.button`
- `
 

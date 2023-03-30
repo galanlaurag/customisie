@@ -4,8 +4,7 @@ import {PersonOutlined, ShoppingCartOutlined} from "@material-ui/icons";
 import {Badge} from "@material-ui/core";
 import { withTheme } from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {publicRequest} from "../requestMethods";
+import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {signout} from "../redux/apiCalls";
 import { device } from '../responsive&generalStyling';
@@ -13,21 +12,8 @@ import { device } from '../responsive&generalStyling';
 const Header = () => {
     const dispatch = useDispatch();
     const cartQuantity = useSelector(state=>state.cart.quantity);
-    const [products, setProducts] = useState([]);
     const user = useSelector(state => state.user.currentUser);
     const [isNavExpanded, setIsNavExpanded] = useState(false);
-
-    useEffect(() =>{
-        const getProducts = async () => {
-            try {
-                const res = await publicRequest.get("products/");
-                return setProducts(res.data);
-            } catch(err) {
-                return console.log(err);
-            }
-        }
-        getProducts();
-    }, []);
 
     const handleSignout = (e) => {
         e.preventDefault();
@@ -55,10 +41,7 @@ const Header = () => {
                     {/*navbar*/}
                     <HamburgerImg src={`/assets/hamburger.png`} onClick={() => {setIsNavExpanded(!isNavExpanded)}}/>
                     <Right className={isNavExpanded && "expanded"}>
-                        {/*one product with id in the url*/}
-                        {products.map((item) => <NavbarLink to={`/product/${item._id}`} key={item._id} ><MenuItem>Customise</MenuItem></NavbarLink>)}
-                        {/*all products - same result as there is only one product in the database*/}
-                        {/*<NavbarLink to={"/products"}><MenuItem>Customise</MenuItem></NavbarLink>*/}
+                        <NavbarLink to={"/customise"}><MenuItem>Customise</MenuItem></NavbarLink>
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
                         <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>
                         {user ? <NavbarLink to={"/myaccount"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink> : <NavbarLink to={"/login"}><MenuItem><PersonOutlined /></MenuItem></NavbarLink>}

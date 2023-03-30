@@ -63,16 +63,18 @@ const Cart = () => {
                 {cart.quantity !== 0 ?
                     <Top>
                         {products.map((item) => (
-                            <CartLink to={`/product/${item._id}`} key={item._id} >
+                            <CartLink to={"/customise"} key={item._id}>
                                 <TopButton>Customise another teddy bear</TopButton>
                             </CartLink>
                         ))}
                     </Top>
                 : <EmptyCartWrapper>
                         <EmptyCart>Your cart is empty</EmptyCart>
-                        <CartLink to={"/product/63e403d9576f75935a992dac"}>
-                            <EmptyCartButton>Customise your teddy bear!</EmptyCartButton>
-                        </CartLink>
+                        {products.map((item) => (
+                            <CartLink to={"/customise"} key={item._id}>
+                                <EmptyCartButton>Customise your teddy bear!</EmptyCartButton>
+                            </CartLink>
+                        ))}
                   </EmptyCartWrapper>}
                 <Bottom>
                     <Info>
