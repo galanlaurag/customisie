@@ -45,11 +45,7 @@ const Contact = () => {
     return (
         <Container>
             <GlobalStyle/>
-            <BackgroundImage/>
-            {/*<ContactForm />*/}
-
-
-
+            <BackgroundImage src={`/assets/tlo.png`}/>
             <ContactForm onSubmit={sendMail} id="contactForm">
                 <Title>Fill this form to contact us:</Title>
                 <ContactFormWrapper>
@@ -123,7 +119,7 @@ const ContactForm = styled.form`
 `
 const ContactFormWrapper = withTheme(styled.div`
   position: absolute;
-  background-color: #ffffff66;
+  background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};

@@ -31,7 +31,7 @@ export const theme = createTheme({
             main: '#9a1717',
         },
         fourth: {
-            main: '#F4EBE6'
+            main: '#ffffff66'
         },
     }
 });

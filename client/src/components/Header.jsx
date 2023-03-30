@@ -44,7 +44,7 @@ const Header = () => {
                         <NavbarLink to={"/"}>
                             <Logo>
                                 <LogoIcon>
-                                    <Image src="/assets/logo6.png" />
+                                    <Image src="/assets/logo.png" />
                                 </LogoIcon>
                                 <LogoText>
                                     Customisie
@@ -86,6 +86,9 @@ const HeaderContainer = withTheme(styled('div')`
   align-items: center;
   padding: 0 1rem 0 0.5rem;
   flex-wrap: wrap;
+  @media ${device.tabletL} {
+    padding: 0 1rem 0 0;
+  }
   @media ${device.mobileL} {
     padding: 0 0.5rem 0 0;
   }
@@ -136,6 +139,7 @@ const Right = withTheme(styled('div')`
   text-align: right;
   display: flex;
   justify-content: flex-end;
+  height: 1.8rem;
   @media ${device.tabletM} {
     display: none;
     position: absolute;
@@ -144,6 +148,7 @@ const Right = withTheme(styled('div')`
     flex-direction: column;
     right: 0;
     width: 100%;
+    height: auto;
     &.expanded {
       display: block;
     }

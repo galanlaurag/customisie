@@ -718,7 +718,7 @@ const RButton = withTheme(styled.p`
 //images
 const HeadShapeWrapper = styled.div``;
 const ImagesContainer = withTheme(styled.div`
-  background-color: #ffffff66;
+  background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
@@ -884,7 +884,7 @@ const ColoursWrapper = withTheme(styled.div`
   justify-content: center;
   //&.activeBodyPartButton {
   &:not(:empty){
-    background-color: #ffffff66;
+    background-color: ${props => props.theme.palette.fourth.main};
     border-radius: 20px;
     backdrop-filter: blur(10px);
     padding: 2rem;
