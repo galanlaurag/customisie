@@ -16,7 +16,7 @@ import MyAccount from "./pages/MyAccount";
 import {Main} from './responsive&generalStyling';
 
 
-export const theme = createTheme({
+const theme = createTheme({
     palette: {
         primary: {
             main: '#4C4F6B',

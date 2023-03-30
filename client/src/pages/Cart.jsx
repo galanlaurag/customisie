@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components/macro";
-import {device, Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
+import {device, Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
 import {Add, Remove, Close} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
 import {useEffect, useState} from "react";
@@ -72,7 +72,7 @@ const Cart = () => {
                         <EmptyCart>Your cart is empty</EmptyCart>
                         {products.map((item) => (
                             <CartLink to={"/customise"} key={item._id}>
-                                <EmptyCartButton>Customise your teddy bear!</EmptyCartButton>
+                                <GeneralButton>Customise your teddy bear!</GeneralButton>
                             </CartLink>
                         ))}
                   </EmptyCartWrapper>}
@@ -181,7 +181,7 @@ const Cart = () => {
                                         amount={cart.total * 100}
                                         token={onToken}
                                         stripeKey={KEY}>
-                                        <Button>Checkout now</Button>
+                                        <GeneralButton>Checkout now</GeneralButton>
                                     </StripeCheckout>
                                 )}
                             </Summary>
@@ -210,18 +210,8 @@ const Top = styled.div`
   justify-content: center;
   margin-bottom: 2rem;
 `
-const TopButton = withTheme(styled.button`
-  cursor: pointer;
-  font-size: 1.1rem;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+const TopButton = withTheme(styled(GeneralButton)`
   background-color: ${props => props.theme.palette.secondary.main};
-  color: #fff;
-  @media ${device.mobileL} {
-    font-size: 1rem;
-  }
 `);
 const CartLink = withTheme(styled(Link)`
    text-decoration: none;
@@ -276,9 +266,6 @@ const ProductDetail = withTheme(styled.div`
 const ImageContainer = styled.div`
   position: relative;
   width: 45%;
-  @media ${device.mobileL} {
-    //width: 50%;
-  }
 `
 const Image = styled.img`
   position: absolute;
@@ -287,13 +274,10 @@ const Image = styled.img`
   width: 10rem;
   @media ${device.mobileL} {
     width: 8rem;
-    //width: 50%;
   }
 `
 const PriceDetails = styled.span`
-  //margin-left: 11.5rem;
   height: 23em;
-  //width: 100%;
   width: 55%;
   position: relative;
   display: flex;
@@ -360,6 +344,7 @@ const SummaryWrapper = withTheme(styled('div')`
 `)
 const Summary = styled.div`
   padding: 2rem 3rem;
+  text-align: center;
   @media ${device.laptop} {
     padding: 1rem;
   }
@@ -379,6 +364,7 @@ const Summary = styled.div`
 `
 const SummaryTitle = styled.h1`
   margin: 0;
+  text-align: left;
   @media ${device.laptop} {
    font-size: 1.6rem;
   }
@@ -396,41 +382,10 @@ const SummaryItemText = styled.span`
 const SummaryItemPrice = styled.span`
     font-weight: bold;
 `
-const Button = withTheme(styled.button`
-  cursor: pointer;
-  display: block;
-  margin: auto;
-  font-size: 1.1rem;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
-  background-color: ${props => props.theme.palette.primary.main};
-  color: #fff;
-  @media ${device.mobileL} {
-    font-size: 1rem;
-  }
-`)
-
 const EmptyCartWrapper = styled.div`
   justify-content: center;
+  text-align: center;
 `
 const EmptyCart = styled.h1`
     text-align: center;
 `
-
-const EmptyCartButton = withTheme(styled.button`
-  cursor: pointer;
-  display: block;
-  font-size: 1.1rem;
-  margin: auto;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
-  background-color: ${props => props.theme.palette.primary.main};
-  color: #fff;
-  @media ${device.mobileL} {
-    font-size: 1rem;
-  }
-`);

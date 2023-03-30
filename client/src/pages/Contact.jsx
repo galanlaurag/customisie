@@ -1,4 +1,4 @@
-import {device, Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
+import {device, Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
 import {withTheme} from "@material-ui/core/styles";
 import React, {useState} from "react";
 import {publicRequest} from "../requestMethods";
@@ -160,6 +160,11 @@ const FormInput = withTheme(styled.input`
   border: none;
   border-radius: 20px;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    border: 1px solid ${props => props.theme.palette.default.main};
+  }
   @media ${device.tabletM} {
     width: -webkit-fill-available;
   }
@@ -170,21 +175,13 @@ const FormTextarea = withTheme(styled.textarea`
   border: none;
   border-radius: 20px;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
-`);
-const SendButton = withTheme(styled.button`
-  width: fit-content;
-  font-size: 1.1rem;
-  padding: 1rem 2rem;
-  margin: 0 auto;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
-  background-color: ${props => props.theme.palette.primary.main};
-  color: #fff;
-  @media ${device.mobileL} {
-    font-size: 1rem;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    border: 1px solid ${props => props.theme.palette.default.main};
   }
 `);
+const SendButton = withTheme(styled(GeneralButton)``);
 const SuccessMessage = styled.p`
   text-align: center;
 `

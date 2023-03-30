@@ -62,6 +62,21 @@ export const BackgroundImage = styled.img`
     max-height: 300px;
   }
 `
+export const GeneralButton = styled.button`
+  cursor: pointer;
+  width: fit-content;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #98878F;
+  background-color: #4C4F6B;
+  color: #fff;
+  @media ${device.mobileL} {
+    font-size: 1rem;
+  }
+`
 
 //header & footer
 // export const NavbarLink = styled(Link)`
