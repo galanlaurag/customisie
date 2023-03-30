@@ -1,14 +1,194 @@
-import ContactForm from '../components/ContactForm';
-import {Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
+import {device, Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
+import {withTheme} from "@material-ui/core/styles";
+import React, {useState} from "react";
+import {publicRequest} from "../requestMethods";
+import ReCAPTCHA from "react-google-recaptcha";
+import styled from "styled-components/macro";
 
 const Contact = () => {
+    const captchaRef = React.useRef(null);
+    const [result, setResult] = useState(null);
+    const [state, setState] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+
+    const sendMail = async event => {
+        event.preventDefault();
+        const captchaToken = await captchaRef.current.executeAsync();
+        captchaRef.current.reset();
+
+        publicRequest.post(
+            "/send",
+            {...state, captchaToken}
+        )
+            .then(response => {
+                setResult(response.data);
+                console.log(response.data)
+                setState({name: '', email: '', message: ''});
+            })
+            .catch(() => {
+                setResult({success: false, message: 'Something went wrong. Try again later'});
+            });
+    };
+
+    const onInputChange = event => {
+        const { name, value } = event.target;
+        setState({
+            ...state,
+            [name]: value
+        });
+    };
+
+
     return (
         <Container>
             <GlobalStyle/>
             <BackgroundImage/>
-            <ContactForm />
+            {/*<ContactForm />*/}
+
+
+
+            <ContactForm onSubmit={sendMail} id="contactForm">
+                <Title>Fill this form to contact us:</Title>
+                <ContactFormWrapper>
+                    <InputWrapper>
+                        <FormLabel htmlFor="name">Name:</FormLabel>
+                        <FormInput id="name"
+                               type="text"
+                               name="name"
+                               value={state.name}
+                               placeholder="Enter your full name"
+                               onChange={onInputChange}
+                               required
+                        />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <FormLabel htmlFor="email">Email:</FormLabel>
+                        <FormInput id="email"
+                               type="email"
+                               name="email"
+                               value={state.email}
+                               placeholder="Enter your email"
+                               onChange={onInputChange}
+                               required />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <FormLabel htmlFor="message">Message:</FormLabel>
+                        <FormTextarea id="message"
+                                  name="message"
+                                  value={state.message}
+                                  rows="5"
+                                  placeholder="Enter your message"
+                                  onChange={onInputChange}
+                                  required />
+                    </InputWrapper>
+                    <SendButton type="submit">Send</SendButton>
+                    {result && (
+                        <SuccessMessage className={`${result.success ? 'success' : 'error'}`}>
+                            {result.message}
+                        </SuccessMessage>
+                    )}
+                </ContactFormWrapper>
+                <ReCAPTCHA sitekey="6LdYLD0lAAAAAERO-uLytwaM-MdpiyIi4CCbH2-8" size="invisible" ref={captchaRef}/>
+            </ContactForm>
         </Container>
     );
 }
 
 export default Contact;
+
+const ContactForm = styled.form`
+  position: absolute;
+  margin: auto;
+  height: 75%;
+  width: 75%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: -2rem;
+  @media ${device.laptop} {
+    width: 85%;
+    height: 85%;
+  }
+  @media ${device.tabletL} {
+    width: 90%;
+    height: 90%;
+  }
+  @media ${device.mobileL} {
+    width: 95%;
+    height: 95%;
+  }
+`
+const ContactFormWrapper = withTheme(styled.div`
+  position: absolute;
+  background-color: #ffffff66;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  padding: 3rem;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  @media ${device.tabletL} {
+    padding: 2rem;
+  }
+  @media ${device.tabletM} {
+    padding: 1rem;
+  }
+  @media ${device.mobileM} {
+    padding: 0.5rem;
+  }
+`)
+const Title = styled.h2`
+  margin: 1rem;
+  text-align: center;
+  @media ${device.mobileL} {
+    font-size: 1.3rem;
+  }
+`
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const FormLabel = styled.label`
+
+`
+const FormInput = withTheme(styled.input`
+  width: 50%;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  @media ${device.tabletM} {
+    width: -webkit-fill-available;
+  }
+`);
+const FormTextarea = withTheme(styled.textarea`
+  margin: 1rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+`);
+const SendButton = withTheme(styled.button`
+  width: fit-content;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  background-color: ${props => props.theme.palette.primary.main};
+  color: #fff;
+  @media ${device.mobileL} {
+    font-size: 1rem;
+  }
+`);
+const SuccessMessage = styled.p`
+  text-align: center;
+`

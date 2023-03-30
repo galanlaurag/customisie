@@ -692,7 +692,7 @@ const RButton = withTheme(styled.p`
   border: none;
   border-radius: 0 20px 20px 0;
   cursor: pointer;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   @media ${device.laptop} {
     font-size: 1rem;
   }
@@ -764,13 +764,8 @@ const Image = styled.img`
 const sharedStyleForArrows = css`
   width: 50px;
   height: 50px;
-  //background-color: #fff7f7;
   border-radius: 50%;
-  //border: 1px solid black;
-  //background-color: #98878f;
   background-color: ${props => props.theme.palette.default.main};
-  // background-color: ${props => props.theme.palette.primary.main}2b;
-  //background-image: radial-gradient(circle, #f4ebe6, #f4ebe6, #f4ebe6, #f4ebe6, #f4ebe6, #ede2dd, #e5dad5, #ded1cd, #cdbebc, #bcabac, #aa999d, #98878f);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -780,9 +775,8 @@ const sharedStyleForArrows = css`
   right: ${(props) => props.direction === "right" && "5%"};
   margin: auto;
   cursor: pointer;
-  //opacity: 0.5;
   z-index: 20;
-  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   @media ${device.laptop} {
     left: ${(props) => props.direction === "left" && "2%"};
     right: ${(props) => props.direction === "right" && "2%"};
@@ -849,7 +843,7 @@ const BodyPartButton = withTheme(styled.button`
   background-color: #98878f;
   border: none;
   margin: 0.3rem;
-  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   &.activeBodyPartButton {
     transform: scale(1.1);
     background-color: ${props => props.theme.palette.secondary.main};
@@ -1023,7 +1017,7 @@ const ConfirmButton = withTheme(styled.button`
   border: none;
   background-color: ${props => props.theme.palette.primary.main};
   color: #fff;
-  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   @media ${device.laptop} {
     margin-right: 0;
   }

@@ -26,6 +26,13 @@ export const GlobalStyle = createGlobalStyle`
     //font-family: Arial, Helvetica, sans-serif;
   }
 `
+export const Main = styled.main`
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+  background-color: #F4EBE6;
+  display: flex;
+  flexDirection: column;
+`;
 export const Container = styled.div`
   flex: 1;
   display: flex;
