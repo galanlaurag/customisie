@@ -46,7 +46,6 @@ const Cart = () => {
                   tokenId: stripeToken.id,
                   amount: cart.total*100,
                 })
-                // console.log(res.data)
                 return navigate('/success', {stripeData: res.data, products: cart})
             } catch(err) {
                 return console.log(err);
@@ -215,8 +214,7 @@ const TopButton = withTheme(styled(GeneralButton)`
 `);
 const CartLink = withTheme(styled(Link)`
    text-decoration: none;
-   color: ${props => props.theme.palette.primary.main};
- `)
+`)
 
 const Bottom = styled.div`
   display: flex;

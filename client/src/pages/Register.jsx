@@ -10,7 +10,6 @@ import {register} from "../redux/apiCalls";
 const Register = () => {
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = [password, setPassword];
     const dispatch = useDispatch();
     const {isFetching, errorRegister} = useSelector(state => state.user);
 
@@ -27,7 +26,6 @@ const Register = () => {
                 <Form>
                     <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
                     <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
-                    {/*<Input placeholder="confirm password" onChange={(e) => setConfirmPassword(e.target.value)}/>*/}
                     <Agreement>
                         By creating and account, I consent to the processing of my personal data in accordance with the <b>Privacy Policy</b>.
                     </Agreement>
@@ -52,5 +50,8 @@ const Agreement = styled.p`
 const LoginButton = withTheme(styled(RegisterButton)`
 `)
 const NavbarLink = styled(Link)`
-  width: 100%;
+  width: fit-content;
+  margin: auto;
+  text-decoration: none;
+  display: block;
 `

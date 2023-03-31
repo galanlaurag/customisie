@@ -1,17 +1,21 @@
+import {Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
 import React from 'react';
-// import {withTheme} from "@material-ui/core/styles";
-// import styled from "styled-components";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 const Home = () => {
     return (
         <Container>
-            Information:
-            My orders:
+            <GlobalStyle/>
+            <BackgroundImage src={`/assets/tlo.png`}/>
+            <Title>[Demo version]</Title>
+            <Info>You will soon be able to access information about your account.</Info>
         </Container>
     )
 }
 export default Home;
 
-const Container = styled.div`
+const Title = styled.h2`
+text-align: center`
+const Info = styled.h3`
+  text-align: center;    
 `

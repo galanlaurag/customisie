@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {
-    const [email,setEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const {isFetching, errorLogin} = useSelector(state => state.user);
@@ -32,7 +32,6 @@ const Login = () => {
                         <RegisterButton>Create a new account</RegisterButton>
                     </NavbarLink>
                 </Form>
-
             </Wrapper>
         </Container>
     )
@@ -101,7 +100,10 @@ export const Error = styled.p`
   width: 100%;
 `
 const NavbarLink = styled(Link)`
-  width: 100%;
+  width: fit-content;
+  margin: auto;
+  text-decoration: none;
+  display: block;
 `
 export const Span = styled.p`
   font-size: 0.7rem;
