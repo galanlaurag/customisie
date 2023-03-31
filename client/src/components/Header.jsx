@@ -40,7 +40,7 @@ const Header = () => {
                     </Left>
                     {/*navbar*/}
                     <HamburgerImg src={`/assets/hamburger.png`} onClick={() => {setIsNavExpanded(!isNavExpanded)}}/>
-                    <Right className={isNavExpanded && "expanded"}>
+                    <Right className={isNavExpanded && "expanded"} onClick={ () => {{isNavExpanded && setIsNavExpanded(!isNavExpanded)}}}>
                         <NavbarLink to={"/customise"}><MenuItem>Customise</MenuItem></NavbarLink>
                         <NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink>
                         <NavbarLink to={"/contact"}><MenuItem>Contact</MenuItem></NavbarLink>

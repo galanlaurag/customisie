@@ -596,11 +596,11 @@ const sharedStylesForTopSpans = css`
     font-size: 1.3rem;
   }
   @media ${device.tabletL} {
-    font-size: 1rem;
-  }
-  @media ${device.tabletM} {
     font-size: 1.2rem;
   }
+  // @media ${device.tabletM} {
+  //   font-size: 1.2rem;
+  // }
 `
 const LeftSpan = withTheme(styled.span`
   ${sharedStylesForTopSpans};
@@ -612,7 +612,7 @@ const LeftSpan = withTheme(styled.span`
     margin-left: 0;
   }
   @media ${device.tabletL} {
-    width: 6%;
+    width: 0;
   }
   @media ${device.tabletM} {
     width: 0;
@@ -621,13 +621,13 @@ const LeftSpan = withTheme(styled.span`
 const MiddleSpan = withTheme(styled.span`
   ${sharedStylesForTopSpans};
   @media ${device.tabletL} {
-    width: 60%;
-  }
-  @media ${device.tabletM} {
     width: 50%;
-    padding: 0.5rem 0;
   }
-  @media ${device.tabletS} {
+  // @media ${device.tabletM} {
+  //   width: 50%;
+  //   padding: 0.5rem 0;
+  // }
+  @media ${device.tabletM} {
     width: 100%;
     padding: 0;
   }
@@ -636,13 +636,13 @@ const RightSpan = withTheme(styled.span`
   ${sharedStylesForTopSpans};
   width: 40%;
   @media ${device.tabletL} {
-    width: 34%;
-  }
-  @media ${device.tabletM} {
     width: 50%;
-    padding: 0.5rem 0;
   }
-  @media ${device.tabletS} {
+  // @media ${device.tabletM} {
+  //   width: 50%;
+  //   padding: 0.5rem 0;
+  // }
+  @media ${device.tabletM} {
     width: 100%;
     padding: 0 0 0.5rem 0;
   }

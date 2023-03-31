@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from "./pages/Cart";
 import Success from "./pages/Success";
+import About from "./pages/About";
 import Error from "./pages/Error";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
@@ -51,6 +52,7 @@ const App = () => {
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Main><Login/></Main>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Main><Register/></Main>}/>
                         <Route path="/logout" element={<Navigate to={"/"}/>}/>
+                        <Route path="/about" element={<Main><About/></Main>}/>
                         <Route path="/cart" element={<Main><Cart/></Main>}/>
                         <Route path="/success" element={<Main><Success/></Main>}/>
                         <Route path="/myaccount" element={user ? <Main><MyAccount/></Main> : <Main><Login/></Main>}/>

@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import {withTheme} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 
-const Slider = () => {
+const Error = () => {
     return (
         <Container>
             <Wrapper>
@@ -22,7 +22,7 @@ const Slider = () => {
         </Container>
     )
 }
-export default Slider;
+export default Error;
 
 const Wrapper = styled.div`
   text-align: center;
