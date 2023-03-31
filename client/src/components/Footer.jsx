@@ -22,12 +22,12 @@ const Footer = () => {
                     </NavbarLinkHome>
                     <Desc>Handmade crochet teddy bears customisable by you!</Desc>
                     <SocialContainer>
-                        <Link to={{ pathname: "https://instagram.com/customisie?igshid=YmMyMTA2M2Y=" }} target="_blank">
+                        <Link to={{ pathname: "https://instagram.com/customisie" }} target="_blank">
                             <SocialIcon color="FFF">
                                 <InstagramIcon src="/assets/instagram.png" />
                             </SocialIcon>
                         </Link>
-                        <Link to={{ pathname: "https://www.tiktok.com/" }} target="_blank">
+                        <Link to={{ pathname: "https://www.tiktok.com/@customisie" }} target="_blank">
                             <SocialIcon color="FFF">
                                 <TikTokIcon src="/assets/tiktok.png" />
                             </SocialIcon>
@@ -40,8 +40,8 @@ const Footer = () => {
                         <ListItem><NavbarLink to={"/"}><MenuItem>Home</MenuItem></NavbarLink></ListItem>
                         <ListItem><NavbarLink to={"/cart"}><MenuItem>Cart</MenuItem></NavbarLink></ListItem>
                         <ListItem><NavbarLink to={"/about"}><MenuItem>About</MenuItem></NavbarLink></ListItem>
-                        <ListItem><NavbarLink to={"/privacy-policy"}><MenuItem>Privacy policy</MenuItem></NavbarLink></ListItem>
-                        <ListItem><NavbarLink to={"/terms-conditions"}><MenuItem>Terms & conditions</MenuItem></NavbarLink></ListItem>
+                        <ListItem><MenuItem style={{cursor: "default"}}>Privacy policy</MenuItem></ListItem>
+                        <ListItem><MenuItem style={{cursor: "default"}}>Terms & conditions</MenuItem></ListItem>
                     </List>
                 </Center>
                 <Right>
@@ -53,7 +53,7 @@ const Footer = () => {
                         Krakow, Poland
                     </ContactItem>
                     <ContactItem>
-                        contact@customisie.pl
+                        customisie@gmail.com
                     </ContactItem>
                 </Right>
             </FooterContainer>
@@ -113,7 +113,8 @@ const Logo = styled.h1`
   }
 `
 const Image = styled.img`  
-  height: 1rem;
+  height: 40px;
+  width: 40px;
 `
 const Desc = styled.div``;
 const SocialContainer = styled.div`

@@ -151,7 +151,7 @@ const InputWrapper = styled.div`
   flex-direction: column;
 `
 const FormLabel = styled.label`
-
+  margin: 1rem 0.5rem 0 0.5rem;
 `
 const FormInput = withTheme(styled.input`
   width: 50%;
