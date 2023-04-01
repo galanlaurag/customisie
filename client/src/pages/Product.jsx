@@ -7,7 +7,7 @@ import {publicRequest} from "../requestMethods";
 import {addProduct} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {withTheme} from "@material-ui/core/styles";
-import { ArrowBackIosRounded, ArrowForwardIosRounded } from "@material-ui/icons";
+import { ArrowBackIosRounded, ArrowForwardIosRounded, InfoRounded } from "@material-ui/icons";
 import {device, Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
 
 const Product = ({item}) => {
@@ -277,7 +277,7 @@ const Product = ({item}) => {
             {/*top instructions*/}
             <SpanContainer>
                 <LeftSpan/>
-                <MiddleSpan>use arrows to change shape</MiddleSpan>
+                <MiddleSpan>use arrows to change shape <InfoWrapper><Info/><InfoText>There are 5 options of each body part (from top - ears, head, arms, legs)</InfoText></InfoWrapper></MiddleSpan>
                 <RightSpan>use buttons to change colour</RightSpan>
             </SpanContainer>
 
@@ -431,11 +431,11 @@ const Product = ({item}) => {
                                 { headClicked ?
                                     <ColourWrapper id="headColour" className={product.headColour[headColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Head</SpanBodyPart>
-                                        <BrownButton onClick={() => {setHeadColour(product.headColour[0]); setHeadColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setHeadColour(product.headColour[1]); setHeadColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setHeadColour(product.headColour[2]); setHeadColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setHeadColour(product.headColour[3]); setHeadColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setHeadColour(product.headColour[4]); setHeadColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setHeadColour(product.headColour[0]); setHeadColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setHeadColour(product.headColour[1]); setHeadColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setHeadColour(product.headColour[2]); setHeadColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setHeadColour(product.headColour[3]); setHeadColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setHeadColour(product.headColour[4]); setHeadColourIndex(4)}}/>
                                     </ColourWrapper>
                                     : null}
 
@@ -443,22 +443,22 @@ const Product = ({item}) => {
                                 {((headShapeIndex === 2 || headShapeIndex === 3) && headClicked) ?
                                     <AdditionalColourWrapper id="eyesColour" className={product.eyesColour[eyesColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Eyes</SpanBodyPart>
-                                        <BrownButton onClick={() => {setEyesColour(product.eyesColour[0]); setEyesColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setEyesColour(product.eyesColour[1]); setEyesColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setEyesColour(product.eyesColour[2]); setEyesColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setEyesColour(product.eyesColour[3]); setEyesColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setEyesColour(product.eyesColour[4]); setEyesColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setEyesColour(product.eyesColour[0]); setEyesColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setEyesColour(product.eyesColour[1]); setEyesColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setEyesColour(product.eyesColour[2]); setEyesColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setEyesColour(product.eyesColour[3]); setEyesColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setEyesColour(product.eyesColour[4]); setEyesColourIndex(4)}}/>
                                     </AdditionalColourWrapper>
                                 : null }
                                 {/*nose*/}
                                 {headShapeIndex === 0 && headClicked ?
                                     <AdditionalColourWrapper id="noseColour" className={product.noseColour[noseColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Nose</SpanBodyPart>
-                                        <BrownButton onClick={() => {setNoseColour(product.noseColour[0]); setNoseColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setNoseColour(product.noseColour[1]); setNoseColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setNoseColour(product.noseColour[2]); setNoseColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setNoseColour(product.noseColour[3]); setNoseColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setNoseColour(product.noseColour[4]); setNoseColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setNoseColour(product.noseColour[0]); setNoseColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setNoseColour(product.noseColour[1]); setNoseColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setNoseColour(product.noseColour[2]); setNoseColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setNoseColour(product.noseColour[3]); setNoseColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setNoseColour(product.noseColour[4]); setNoseColourIndex(4)}}/>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
@@ -469,11 +469,11 @@ const Product = ({item}) => {
                                 { earsClicked ?
                                     <ColourWrapper id="earsColour" className={product.earsColour[earsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Ears</SpanBodyPart>
-                                        <BrownButton onClick={() => {setEarsColour(product.earsColour[0]); setEarsColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setEarsColour(product.earsColour[1]); setEarsColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setEarsColour(product.earsColour[2]); setEarsColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setEarsColour(product.earsColour[3]); setEarsColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setEarsColour(product.earsColour[4]); setEarsColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setEarsColour(product.earsColour[0]); setEarsColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setEarsColour(product.earsColour[1]); setEarsColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setEarsColour(product.earsColour[2]); setEarsColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setEarsColour(product.earsColour[3]); setEarsColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setEarsColour(product.earsColour[4]); setEarsColourIndex(4)}}/>
                                     </ColourWrapper>
                                     : null }
 
@@ -481,11 +481,11 @@ const Product = ({item}) => {
                                 {earsShapeIndex === 2 && earsClicked ?
                                     <AdditionalColourWrapper id="innerEarsColour" className={product.innerEarsColour[innerEarsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Inner ears</SpanBodyPart>
-                                        <BrownButton onClick={() => {setInnerEarsColour(product.innerEarsColour[0]); setInnerEarsColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setInnerEarsColour(product.innerEarsColour[1]); setInnerEarsColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setInnerEarsColour(product.innerEarsColour[2]); setInnerEarsColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setInnerEarsColour(product.innerEarsColour[3]); setInnerEarsColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setInnerEarsColour(product.innerEarsColour[4]); setInnerEarsColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[0]); setInnerEarsColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[1]); setInnerEarsColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[2]); setInnerEarsColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[3]); setInnerEarsColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[4]); setInnerEarsColourIndex(4)}}/>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
@@ -496,22 +496,22 @@ const Product = ({item}) => {
                                 { armsClicked ?
                                     <ColourWrapper id="armsColour" className={product.armsColour[armsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Arms</SpanBodyPart>
-                                        <BrownButton onClick={() => {setArmsColour(product.armsColour[0]); setArmsColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setArmsColour(product.armsColour[1]); setArmsColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setArmsColour(product.armsColour[2]); setArmsColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setArmsColour(product.armsColour[3]); setArmsColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setArmsColour(product.armsColour[4]); setArmsColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setArmsColour(product.armsColour[0]); setArmsColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setArmsColour(product.armsColour[1]); setArmsColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setArmsColour(product.armsColour[2]); setArmsColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setArmsColour(product.armsColour[3]); setArmsColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setArmsColour(product.armsColour[4]); setArmsColourIndex(4)}}/>
                                     </ColourWrapper>
                                     : null }
                                 {/*hands*/}
                                 {((armsShapeIndex === 3 || armsShapeIndex === 4) && armsClicked) ?
                                     <AdditionalColourWrapper id="handsColour" className={product.handsColour[handsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Hands</SpanBodyPart>
-                                        <BrownButton onClick={() => {setHandsColour(product.handsColour[0]); setHandsColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setHandsColour(product.handsColour[1]); setHandsColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setHandsColour(product.handsColour[2]); setHandsColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setHandsColour(product.handsColour[3]); setHandsColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setHandsColour(product.handsColour[4]); setHandsColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setHandsColour(product.handsColour[0]); setHandsColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setHandsColour(product.handsColour[1]); setHandsColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setHandsColour(product.handsColour[2]); setHandsColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setHandsColour(product.handsColour[3]); setHandsColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setHandsColour(product.handsColour[4]); setHandsColourIndex(4)}}/>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
@@ -522,11 +522,11 @@ const Product = ({item}) => {
                                 { legsClicked ?
                                     <ColourWrapper id="legsColour" className={product.legsColour[legsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Legs</SpanBodyPart>
-                                        <BrownButton onClick={() => {setLegsColour(product.legsColour[0]); setLegsColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setLegsColour(product.legsColour[1]); setLegsColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setLegsColour(product.legsColour[2]); setLegsColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setLegsColour(product.legsColour[3]); setLegsColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setLegsColour(product.legsColour[4]); setLegsColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setLegsColour(product.legsColour[0]); setLegsColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setLegsColour(product.legsColour[1]); setLegsColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setLegsColour(product.legsColour[2]); setLegsColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setLegsColour(product.legsColour[3]); setLegsColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setLegsColour(product.legsColour[4]); setLegsColourIndex(4)}}/>
                                     </ColourWrapper>
                                     : null }
 
@@ -534,11 +534,11 @@ const Product = ({item}) => {
                                 {((legsShapeIndex === 3 || legsShapeIndex === 4) && legsClicked) ?
                                     <AdditionalColourWrapper id="feetColour" className={product.feetColour[feetColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Feet</SpanBodyPart>
-                                        <BrownButton onClick={() => {setFeetColour(product.feetColour[0]); setFeetColourIndex(0)}}/>
-                                        <PinkButton onClick={() => {setFeetColour(product.feetColour[1]); setFeetColourIndex(1)}}/>
-                                        <BeigeButton onClick={() => {setFeetColour(product.feetColour[2]); setFeetColourIndex(2)}}/>
-                                        <CreamButton onClick={() => {setFeetColour(product.feetColour[3]); setFeetColourIndex(3)}}/>
-                                        <GrayButton onClick={() => {setFeetColour(product.feetColour[4]); setFeetColourIndex(4)}}/>
+                                        <BrownButton className="brownBtn" onClick={() => {setFeetColour(product.feetColour[0]); setFeetColourIndex(0)}}/>
+                                        <PinkButton className="pinkBtn" onClick={() => {setFeetColour(product.feetColour[1]); setFeetColourIndex(1)}}/>
+                                        <BeigeButton className="beigeBtn" onClick={() => {setFeetColour(product.feetColour[2]); setFeetColourIndex(2)}}/>
+                                        <CreamButton className="creamBtn" onClick={() => {setFeetColour(product.feetColour[3]); setFeetColourIndex(3)}}/>
+                                        <GrayButton className="grayBtn" onClick={() => {setFeetColour(product.feetColour[4]); setFeetColourIndex(4)}}/>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
@@ -614,19 +614,12 @@ const LeftSpan = withTheme(styled.span`
   @media ${device.tabletL} {
     width: 0;
   }
-  @media ${device.tabletM} {
-    width: 0;
-  }
 `)
 const MiddleSpan = withTheme(styled.span`
   ${sharedStylesForTopSpans};
   @media ${device.tabletL} {
     width: 50%;
   }
-  // @media ${device.tabletM} {
-  //   width: 50%;
-  //   padding: 0.5rem 0;
-  // }
   @media ${device.tabletM} {
     width: 100%;
     padding: 0;
@@ -638,15 +631,68 @@ const RightSpan = withTheme(styled.span`
   @media ${device.tabletL} {
     width: 50%;
   }
-  // @media ${device.tabletM} {
-  //   width: 50%;
-  //   padding: 0.5rem 0;
-  // }
   @media ${device.tabletM} {
     width: 100%;
     padding: 0 0 0.5rem 0;
   }
 `)
+const InfoWrapper = styled.div`
+  position: relative;
+  font-size: 0.9rem;
+`
+const InfoText = withTheme(styled.span`
+  visibility: hidden;
+  font-size: 0.9rem;
+  background-color: ${props => props.theme.palette.primary.main};
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  width: 16rem;
+  top: -0.75rem;
+  left: 1.5rem;
+  border-radius: 20px;
+  position: absolute;
+  z-index: 50;
+  &:before {
+    content: "";
+    position: absolute;
+    transform: rotate(45deg);
+    background-color: ${props => props.theme.palette.primary.main};
+    padding: 5px;
+    z-index: 1;
+    top: 30%;
+    left: -3px;
+  }
+  @media ${device.tabletM} {
+    top: 1.5rem;
+    left: -8rem;
+    &:before {
+      top: -3px;
+      left: 48.5%;
+    }
+  }
+  @media ${device.tabletS} {
+    width: 10rem;
+    left: -5rem;
+  }
+  @media ${device.mobileL} {
+    top: 0;
+    left: -11.2rem;
+    &:before {
+      top: 15%;
+      left: auto;
+      right: -3px;
+    }
+  }
+`);
+const Info = withTheme(styled(InfoRounded)`
+  font-size: 1.2rem !important;
+  color: ${props => props.theme.palette.primary.main};
+  &:hover + ${InfoText} {
+    visibility: visible;
+  }
+`)
+
 
 //customisation
 const CustomisationWrapper = styled.div`
@@ -882,7 +928,7 @@ const SpanBodyPart = styled.span`
 const ColoursWrapper = withTheme(styled.div`
   display: flex;
   justify-content: center;
-  //&.activeBodyPartButton {
+  align-items: flex-end;
   &:not(:empty){
     background-color: ${props => props.theme.palette.fourth.main};
     border-radius: 20px;
@@ -916,23 +962,7 @@ const ColoursWrapper = withTheme(styled.div`
   }
 `)
 const colourPicker = css`
-  &.Brown .Product__BrownButton-sc-1iai0om-24 {
-    transform: scale(1.2);
-    border: 2px solid #000;
-  }
-  &.Pink .Product__PinkButton-sc-1iai0om-25 {
-    transform: scale(1.2);
-    border: 2px solid #000;
-  }
-  &.Beige .Product__BeigeButton-sc-1iai0om-26 {
-    transform: scale(1.2);
-    border: 2px solid #000;
-  }
-  &.Cream .Product__CreamButton-sc-1iai0om-27 {
-    transform: scale(1.2);
-    border: 2px solid #000;
-  }
-  &.Gray .Product__GrayButton-sc-1iai0om-28 {
+  &.Brown .brownBtn, &.Pink .pinkBtn, &.Beige .beigeBtn, &.Cream .creamBtn, &.Gray .grayBtn {
     transform: scale(1.2);
     border: 2px solid #000;
   }

@@ -41,10 +41,10 @@ const Contact = () => {
         });
     };
 
-
     return (
         <Container>
             <GlobalStyle/>
+            <style>{`.grecaptcha-badge {z-index: 10;}`}</style>
             <BackgroundImage src={`/assets/tlo.png`}/>
             <ContactForm onSubmit={sendMail} id="contactForm">
                 <Title>Fill this form to contact us:</Title>

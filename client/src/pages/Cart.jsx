@@ -150,6 +150,9 @@ const Cart = () => {
                                             <ProductPrice>£{product.price*product.productQuantity}</ProductPrice>
                                         </PriceDetail>
                                     </PriceDetails>
+                                <Comment>
+                                    <Textarea rows="5" placeholder="Add comment or special request here :)"/>
+                                </Comment>
                                 </ProductDetail>
                                     ))}
                         </CartProduct>
@@ -243,6 +246,7 @@ const ProductDetail = withTheme(styled.div`
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   display: flex;
+  flex-wrap: wrap;
   padding: 2rem 3rem;
   margin-bottom: 2rem;
   @media ${device.laptop} {
@@ -326,6 +330,23 @@ const ProductPrice = styled.div`
   padding: 0.5rem;
   font-weight: bold;
 `
+
+const Comment = styled.div`
+  padding-top: 2rem;
+  width: 100%;
+`
+const Textarea = withTheme(styled.textarea`
+  width: -webkit-fill-available;
+  padding: 1rem;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    border: 1px solid ${props => props.theme.palette.default.main};
+  }
+`);
 
 const SummaryWrapper = withTheme(styled('div')`
   background-color: ${props => props.theme.palette.fourth.main};
