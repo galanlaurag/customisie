@@ -12,23 +12,23 @@ const Footer = () => {
                 <Left>
                     <NavbarLinkHome to={"/"}>
                         <Logo>
-                            <LogoIcon>
-                                <Image src="/assets/logo.png" />
-                            </LogoIcon>
-                            <LogoText>
+                            <LogoIcn>
+                                <Image src="/assets/logo4.png" />
+                            </LogoIcn>
+                            <LogoTxt>
                                 Customisie
-                            </LogoText>
+                            </LogoTxt>
                         </Logo>
                     </NavbarLinkHome>
                     <Desc>Handmade crochet teddy bears customisable by you!</Desc>
                     <SocialContainer>
                         <Link to={{ pathname: "https://instagram.com/customisie" }} target="_blank">
-                            <SocialIcon color="FFF">
-                                <InstagramIcon src="/assets/instagram.png" />
+                            <SocialIcon>
+                                <InstagramIcon color="#FFF" src="/assets/instagram.png" />
                             </SocialIcon>
                         </Link>
                         <Link to={{ pathname: "https://www.tiktok.com/@customisie" }} target="_blank">
-                            <SocialIcon color="FFF">
+                            <SocialIcon color="palette.default.main">
                                 <TikTokIcon src="/assets/tiktok.png" />
                             </SocialIcon>
                         </Link>
@@ -85,7 +85,6 @@ const footerPart = css`
   }
 `;
 const Title = styled.h1`
-  color: #fff;
   margin: 0 0 1rem 0;
   @media ${device.tabletL} {
     font-size: 1.5rem;
@@ -112,6 +111,12 @@ const Logo = styled.h1`
     font-size: 1.5rem;
   }
 `
+const LogoIcn = styled(LogoIcon)`
+  margin: auto 0 auto 0.5rem;
+`
+const LogoTxt = styled(LogoText)`
+  color: #000;
+`
 const Image = styled.img`  
   height: 40px;
   width: 40px;
@@ -120,8 +125,8 @@ const Desc = styled.div``;
 const SocialContainer = styled.div`
   display: flex;
 `
-const SocialIcon = styled.div`
-  background-color: #fff;
+const SocialIcon = withTheme(styled.div`
+  background-color: #000;
   width: 40px;
   height: 40px;
   margin: 0.5rem 0.5rem 0 0;
@@ -129,18 +134,20 @@ const SocialIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`);
 const socialMediaIcon = css`
   width: 1rem;
   height: 1rem;
   font-size: 1.5rem;
-`
-const InstagramIcon = styled.img`
-  ${socialMediaIcon};
+  -webkit-filter: invert(1);
+  filter: invert(1);
 `;
-const TikTokIcon = styled.img`
+const InstagramIcon = withTheme(styled.img`
   ${socialMediaIcon};
-`;
+`);
+const TikTokIcon = withTheme(styled.img`
+  ${socialMediaIcon};
+`);
 
 //middle
 const Center = styled.div`
