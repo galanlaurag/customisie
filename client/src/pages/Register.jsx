@@ -24,8 +24,8 @@ const Register = () => {
             <Wrapper>
                 <h1>Create an account</h1>
                 <Form>
-                    <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-                    <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <label>Email <span style={{color: "red"}}>*</span></label><Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                    <label>Password <span style={{color: "red"}}>*</span></label><Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
                     <Agreement>
                         By creating and account, I consent to the processing of my personal data in accordance with the <b>Privacy Policy</b>.
                     </Agreement>

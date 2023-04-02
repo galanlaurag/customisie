@@ -23,10 +23,10 @@ const Login = () => {
             <Wrapper>
                 <h1>Log in</h1>
                 <Form>
-                    <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-                    <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <label>Email</label><Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                    <label>Password</label><Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
                     <GeneralButton onClick={handleLogin} disabled={isFetching}>Login</GeneralButton>
-                    {errorLogin & <Error>Please enter correct credentials.</Error>}
+                    {errorLogin && <Error>Please enter correct credentials.</Error>}
                     <Span>Don't have an account?</Span>
                     <NavbarLink to={"/register"}>
                         <RegisterButton>Create a new account</RegisterButton>
