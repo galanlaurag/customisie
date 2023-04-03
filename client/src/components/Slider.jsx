@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { withTheme } from "@material-ui/core/styles"
 import {ArrowBackIosRounded, ArrowForwardIosRounded} from "@material-ui/icons";
 import {useState} from "react";
+import {device} from '../responsive&generalStyling';
 
 const sliderItems = [
     {
@@ -48,7 +49,7 @@ const Slider = () => {
                     <Slide bg={item.bg} key={item.id}>
                         <ImageContainer>
                             <Image src={item.img} />
-                            <Title>{item.title}</Title>
+                            <h1>{item.title}</h1>
                             <Desc>{item.desc}</Desc>
                         </ImageContainer>
                     </Slide>
@@ -64,17 +65,10 @@ export default Slider;
 
 
 const SliderContainer = styled.div`
-  //width: 100%;
-  //height: 20em;
   display: flex;
-  //here no flex
   position: relative;
-  //height: 55%;
-  //margin-top: 80px;
-  //height: fit-content;
 `
 const Arrow = withTheme(styled('div')`
-  //background-color: ${props => props.theme.palette.secondary.main};
   width: 4em;
   height: 4em;
   border-radius: 50%;
@@ -89,10 +83,21 @@ const Arrow = withTheme(styled('div')`
   right: ${props => props.direction === "right" && "10px"};
   cursor: pointer;
   z-index: 50;
+  @media ${device.laptop} {
+    width: 3rem;
+  }
+  @media ${device.tabletM} {
+    width: 2rem;
+  }
+  @media ${device.mobileL} {
+    width: 1rem;
+  }
+  @media ${device.mobileM} {
+    width: 0.5rem;
+  }
 `)
 
 const Wrapper = styled.div`
-  //height: 100%;
   height: fit-content;
   display: flex;
   transition: all 1.5s ease;
@@ -103,31 +108,48 @@ const Slide = styled.div`
   align-items: flex-start;
   width: 100vw;
   height: fit-content;
-  //height: 100%;
 `
 const ImageContainer = withTheme(styled.div`
-  margin: 2rem 5rem;
+  margin: 0 5rem;
   padding: 1rem;
   text-align: center;
-  //here
-  //width: 100vw;
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  @media ${device.laptop} {
+    margin: 0 4rem;
+  }
+  @media ${device.tabletM} {
+    margin: 0 3rem;
+  }
+  @media ${device.mobileL} {
+    margin: 0 2rem;
+  }
+  @media ${device.mobileM} {
+    margin: 0 1.5rem;
+    padding: 0.5rem;
+  }
 `)
-const Title = styled.h1``;
 const Desc = styled.p`
   margin: 2rem 0;
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 3px;
 `;
-// const InfoContainer = styled.div`
-//   flex: 1;
-// `
 const Image = styled.img`  
-  width: 80%;
-  
+  width: 75%;
+  @media ${device.laptop} {
+    width: 80%;
+  }
+  @media ${device.tabletL} {
+    width: 85%;
+  }
+  @media ${device.tabletM} {
+    width: 90%;
+  }
+  @media ${device.tabletS} {
+    width: 95%;
+  }
 `
 

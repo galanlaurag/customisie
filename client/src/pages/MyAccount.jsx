@@ -1,4 +1,4 @@
-import {Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
+import {Container, BackgroundImage, GlobalStyle, BackgroundImageTop} from '../responsive&generalStyling';
 import React from 'react';
 import styled from "styled-components";
 
@@ -6,6 +6,7 @@ const Home = () => {
     return (
         <Container>
             <GlobalStyle/>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
             <Title>[Demo version]</Title>
             <Info>You will soon be able to access information about your account.</Info>

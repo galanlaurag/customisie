@@ -13,7 +13,7 @@ const Footer = () => {
                     <NavbarLinkHome to={"/"}>
                         <Logo>
                             <LogoIcn>
-                                <Image src="/assets/logo4.png" />
+                                <Image src="/assets/logo3.png" />
                             </LogoIcn>
                             <LogoTxt>
                                 Customisie

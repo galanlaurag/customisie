@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from "styled-components/macro";
-import {device, Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {
+    device,
+    Container,
+    BackgroundImage,
+    GlobalStyle,
+    GeneralButton,
+    BackgroundImageTop
+} from '../responsive&generalStyling';
 import {Add, Remove, Close} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
 import {useEffect, useState} from "react";
@@ -57,6 +64,7 @@ const Cart = () => {
     return (
         <Container>
             <GlobalStyle/>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
             <Wrapper>
                 {cart.quantity !== 0 ?

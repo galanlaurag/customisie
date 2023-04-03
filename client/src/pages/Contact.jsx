@@ -1,4 +1,11 @@
-import {device, Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {
+    device,
+    Container,
+    BackgroundImage,
+    GlobalStyle,
+    GeneralButton,
+    BackgroundImageTop
+} from '../responsive&generalStyling';
 import {withTheme} from "@material-ui/core/styles";
 import React, {useState} from "react";
 import {publicRequest} from "../requestMethods";
@@ -45,6 +52,7 @@ const Contact = () => {
         <Container>
             <GlobalStyle/>
             <style>{`.grecaptcha-badge {z-index: 10;}`}</style>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
             <ContactForm onSubmit={sendMail} id="contactForm">
                 <Title>Fill this form to contact us:</Title>

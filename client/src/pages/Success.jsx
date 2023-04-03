@@ -1,4 +1,4 @@
-import {Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {Container, BackgroundImage, GlobalStyle, GeneralButton, BackgroundImageTop} from '../responsive&generalStyling';
 import {clearAllCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
@@ -26,6 +26,7 @@ const Success = () => {
         <Container>
             <SuccessWrapper>
                 <GlobalStyle/>
+                <BackgroundImageTop src={`/assets/tloTop.png`}/>
                 <BackgroundImage src={`/assets/tlo.png`}/>
                 <h2>Payment successful, thank you for your order!</h2>
                 <SuccessLink to={"/"}>

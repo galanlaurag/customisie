@@ -2,12 +2,13 @@ import React from 'react';
 import Slider from '../components/Slider.jsx';
 import {withTheme} from "@material-ui/core/styles";
 import styled from "styled-components/macro";
-import {Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {device, Container, BackgroundImage, BackgroundImageTop, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
 
 const Home = () => {
     return (
-        <Container>
+        <Container style={{justifyContent: "space-evenly"}}>
             <GlobalStyle/>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
         <Slider />
         <ButtonsWrapper>
@@ -24,12 +25,21 @@ const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   z-index: 20;
+  @media ${device.tabletS} {
+    flex-direction: column;
+  }
 `
 const GeneralButton1 = styled(GeneralButton)`
   margin: 0 1rem 0 auto;
+  @media ${device.tabletS} {
+    margin: 1rem auto;
+  }
 `
 const GeneralButton2 = withTheme(styled(GeneralButton)`
   background-color: ${props => props.theme.palette.secondary.main};
   color: #000;
   margin: 0 auto 0 1rem;
+  @media ${device.tabletS} {
+    margin: 1rem auto;
+  }
 `)

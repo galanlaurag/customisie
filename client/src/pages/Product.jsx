@@ -8,7 +8,7 @@ import {addProduct} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {withTheme} from "@material-ui/core/styles";
 import { ArrowBackIosRounded, ArrowForwardIosRounded, InfoRounded } from "@material-ui/icons";
-import {device, Container, BackgroundImage, GlobalStyle} from '../responsive&generalStyling';
+import {device, Container, BackgroundImage, GlobalStyle, BackgroundImageTop} from '../responsive&generalStyling';
 
 const Product = ({item}) => {
 
@@ -273,6 +273,7 @@ const Product = ({item}) => {
     return (
         <Container>
             <GlobalStyle/>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
             {/*top instructions*/}
             <SpanContainer>

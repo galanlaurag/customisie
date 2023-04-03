@@ -43,7 +43,7 @@ export const Container = styled.div`
 export const BackgroundImage = styled.img`
   display: block;
   position: absolute;
-  opacity: 0.3;
+  opacity: 0.2;
   padding: 0;
   margin: 0;
   bottom: 0;
@@ -61,6 +61,9 @@ export const BackgroundImage = styled.img`
   @media ${device.tabletS} {
     max-height: 300px;
   }
+`
+export const BackgroundImageTop = styled(BackgroundImage)`
+  top: 0;
 `
 export const GeneralButton = styled.button`
   cursor: pointer;

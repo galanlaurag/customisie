@@ -1,4 +1,4 @@
-import {Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {Container, BackgroundImage, GlobalStyle, GeneralButton, BackgroundImageTop} from '../responsive&generalStyling';
 import {Wrapper, Form, Input, Error, Span, RegisterButton} from './Login';
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
@@ -20,6 +20,7 @@ const Register = () => {
     return (
         <Container>
             <GlobalStyle/>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
             <Wrapper>
                 <h1>Create an account</h1>

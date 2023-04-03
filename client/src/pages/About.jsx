@@ -1,4 +1,11 @@
-import {device, Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {
+    device,
+    Container,
+    BackgroundImage,
+    GlobalStyle,
+    GeneralButton,
+    BackgroundImageTop
+} from '../responsive&generalStyling';
 import React, { useEffect, useState } from "react";
 import Faq from "react-faq-component";
 import styled from "styled-components/macro";
@@ -106,6 +113,7 @@ const About = () => {
                     }
                 }
             `}</style>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
 
             <FaqWrapper>

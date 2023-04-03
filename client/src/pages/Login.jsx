@@ -1,4 +1,11 @@
-import {device, Container, BackgroundImage, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {
+    device,
+    Container,
+    BackgroundImage,
+    GlobalStyle,
+    GeneralButton,
+    BackgroundImageTop
+} from '../responsive&generalStyling';
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
 import { withTheme } from "@material-ui/core/styles";
@@ -19,6 +26,7 @@ const Login = () => {
     return (
         <Container>
             <GlobalStyle/>
+            <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
             <Wrapper>
                 <h1>Log in</h1>
