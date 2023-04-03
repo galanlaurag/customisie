@@ -19,7 +19,7 @@ const Error = () => {
                     <GeneralButton>Contact us</GeneralButton>
                 </ErrorLink>
             </Wrapper>
-            <Image src={`/assets/backImg.png`}/>
+            <Image src={`/assets/teddyBears.png`}/>
         </Container>
     )
 }
@@ -44,7 +44,7 @@ const Image = styled.img`
   bottom: 0;
   left: 0;
   right: 0;
-  width: 50%;
+  width: 45%;
   margin: 0 auto 0.5rem auto;
   z-index: 50;
   @media ${device.laptop} {

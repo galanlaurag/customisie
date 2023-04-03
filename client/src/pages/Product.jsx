@@ -936,7 +936,7 @@ const ColoursWrapper = withTheme(styled.div`
     backdrop-filter: blur(10px);
     padding: 2rem;
     width: 50%;
-    margin: auto;
+    margin: 1rem auto;
     box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   }
   @media ${device.tabletL} {
