@@ -58,7 +58,7 @@ const Contact = () => {
                 <Title>Fill this form to contact us:</Title>
                 <ContactFormWrapper>
                     <InputWrapper>
-                        <FormLabel htmlFor="name">Name: <span style={{color: "red"}}>*</span></FormLabel>
+                        <FormLabel htmlFor="name">Name <span style={{color: "red"}}>*</span></FormLabel>
                         <FormInput id="name"
                                type="text"
                                name="name"
@@ -69,7 +69,7 @@ const Contact = () => {
                         />
                     </InputWrapper>
                     <InputWrapper>
-                        <FormLabel htmlFor="email">Email: <span style={{color: "red"}}>*</span></FormLabel>
+                        <FormLabel htmlFor="email">Email <span style={{color: "red"}}>*</span></FormLabel>
                         <FormInput id="email"
                                type="email"
                                name="email"

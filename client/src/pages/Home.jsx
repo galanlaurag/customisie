@@ -16,6 +16,8 @@ const Home = () => {
             <GeneralButton2>Find out more</GeneralButton2>
         </ButtonsWrapper>
 
+
+            {/*<p style={{height:"60rem"}}> O</p>*/}
         </Container>
     )
 }

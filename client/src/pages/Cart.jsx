@@ -224,7 +224,8 @@ const TopButton = withTheme(styled(GeneralButton)`
   background-color: ${props => props.theme.palette.secondary.main};
 `);
 const CartLink = withTheme(styled(Link)`
-   text-decoration: none;
+  text-decoration: none;
+  z-index: 50;
 `)
 
 const Bottom = styled.div`

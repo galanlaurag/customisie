@@ -1031,7 +1031,6 @@ const BrownButton = withTheme(styled.button`
    ${colourButton};
    background-color: #835632;
    z-index: 5;
-   color: #fff;
 `)
 const PinkButton = withTheme(styled.button`
    ${colourButton};
