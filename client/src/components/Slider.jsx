@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components/macro';
 import { withTheme } from "@material-ui/core/styles"
 import {ArrowBackIosRounded, ArrowForwardIosRounded} from "@material-ui/icons";
@@ -11,21 +11,18 @@ const sliderItems = [
         img: "/assets/teddyBears1.png",
         title: "CUSTOMISATION",
         desc: "Customisie - teddy bears customised by YOU!",
-        bg: "f5fafd",
     },
     {
         id: 2,
         img: "/assets/teddyBears2.png",
         title: "UNIQUENESS",
         desc: "390625 possible combinations of unique teddy bears!",
-        bg: "fcf1ed",
     },
     {
         id: 3,
         img: "/assets/teddyBears3.png",
         title: "QUALITY",
         desc: "Handmade using highest-quality materials!",
-        bg: "fbf0f4",
     },
 ];
 
@@ -39,20 +36,137 @@ const Slider = () => {
         }
     };
 
+    const timerRef = useRef(null);
+    const [auto, setAuto] = useState(true);
+    useEffect(() => {
+        if(timerRef.current){
+            clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+            if (auto) {
+                setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+            }
+        }, 3500);
+        return ()=>clearTimeout(timerRef.current);
+    }, [auto, slideIndex]);
+    const onHover = () => {
+        setAuto(auto => !auto)
+    }
+
     return (
         <SliderContainer>
+            <style> {`
+            @keyframes flasher {
+                from {
+                // background: red;
+                opacity: 0;
+            }
+                to {
+                opacity: 1;
+                // background: green;
+            }
+            }
+
+                .flasher {
+                display: block;
+                animation: flasher 1s;
+                // background: red;
+                opacity: 1;
+                // color: white;
+            }
+            `}</style>
             <Arrow direction="left" onClick={() => handleClick("left")}>
                 <ArrowBackIosRounded />
             </Arrow>
-            <Wrapper slideIndex={slideIndex}>
+            <Wrapper>
                 {sliderItems.map((item) => (
-                    <Slide bg={item.bg} key={item.id}>
-                        <ImageContainer>
-                            <Image src={item.img} />
-                            <h1>{item.title}</h1>
-                            <Desc>{item.desc}</Desc>
-                        </ImageContainer>
-                    </Slide>
+                    //infinite loop
+                    <div slideIndex={slideIndex} onMouseOver={onHover} onMouseOut={onHover}>
+
+                        {slideIndex === 0 ? (
+                            <Slides>
+
+                            <Slide className="flasher">
+                                <ImageContainer>
+                                    <Image src={`/assets/teddyBears1.png`}/>
+                                    <h1>CUSTOMISATION</h1>
+                                    <Desc>Customisie - teddy bears customised by YOU!</Desc>
+                                </ImageContainer>
+                            </Slide>
+                            <HiddenSlide className="flasher">
+                                <ImageContainer>
+                                    <Image src={`/assets/teddyBears2.png`}/>
+                                    <h1>UNIQUENESS</h1>
+                                    <Desc>390625 possible combinations of unique teddy bears!</Desc>
+                                </ImageContainer>
+                            </HiddenSlide>
+                            <HiddenSlide className="flasher">
+                                <ImageContainer>
+                                    <Image src={`/assets/teddyBears3.png`}/>
+                                    <h1>QUALITY</h1>
+                                    <Desc>Handmade using highest-quality materials!</Desc>
+                                </ImageContainer>
+                            </HiddenSlide>
+                            </Slides>
+                        ) : slideIndex === 1 ? (
+                            <Slides>
+                                <HiddenSlide className="flasher">
+                                    <ImageContainer>
+                                        <Image src={`/assets/teddyBears1.png`}/>
+                                        <h1>CUSTOMISATION</h1>
+                                        <Desc>Customisie - teddy bears customised by YOU!</Desc>
+                                    </ImageContainer>
+                                </HiddenSlide>
+                                <Slide className="flasher">
+                                    <ImageContainer>
+                                        <Image src={`/assets/teddyBears2.png`}/>
+                                        <h1>UNIQUENESS</h1>
+                                        <Desc>390625 possible combinations of unique teddy bears!</Desc>
+                                    </ImageContainer>
+                                </Slide>
+                                <HiddenSlide className="flasher">
+                                    <ImageContainer>
+                                        <Image src={`/assets/teddyBears3.png`}/>
+                                        <h1>QUALITY</h1>
+                                        <Desc>Handmade using highest-quality materials!</Desc>
+                                    </ImageContainer>
+                                </HiddenSlide>
+                            </Slides>
+                        ) : (
+                            <Slides>
+                                <HiddenSlide className="flasher">
+                                    <ImageContainer>
+                                        <Image src={`/assets/teddyBears1.png`}/>
+                                        <h1>CUSTOMISATION</h1>
+                                        <Desc>Customisie - teddy bears customised by YOU!</Desc>
+                                    </ImageContainer>
+                                </HiddenSlide>
+                                <HiddenSlide className="flasher">
+                                    <ImageContainer>
+                                        <Image src={`/assets/teddyBears2.png`}/>
+                                        <h1>UNIQUENESS</h1>
+                                        <Desc>390625 possible combinations of unique teddy bears!</Desc>
+                                    </ImageContainer>
+                                </HiddenSlide>
+                                <Slide>
+                                    <ImageContainer className="flasher">
+                                        <Image src={`/assets/teddyBears3.png`}/>
+                                        <h1>QUALITY</h1>
+                                        <Desc>Handmade using highest-quality materials!</Desc>
+                                    </ImageContainer>
+                                </Slide>
+                            </Slides>
+                        )}
+                    </div>
+
+                    //loop starting from slide 0 each time
+                    // <Slide key={item.id}>
+                    //     <ImageContainer >
+                    //         <Image src={item.img} />
+                    //         <h1>{item.title}</h1>
+                    //         <Desc>{item.desc}</Desc>
+                    //     </ImageContainer>
+                    // </Slide>
                 ))}
             </Wrapper>
             <Arrow direction="right" onClick={() => handleClick("right")}>
@@ -101,13 +215,33 @@ const Wrapper = styled.div`
   height: fit-content;
   display: flex;
   transition: all 1.5s ease;
-  transform: translateX(${(props) => props.slideIndex * -100}vw);
+  //transform: translateX(${(props) => props.slideIndex * -100}vw);
 `
+const Slides = withTheme(styled.div`
+  // width: 100%;
+  // margin: 0 5rem;
+  // //padding: 1rem;
+  // text-align: center;
+  // background-color: ${props => props.theme.palette.fourth.main};
+  // border-radius: 20px;
+  // backdrop-filter: blur(10px);
+  // box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+`)
 const Slide = styled.div`
   display: flex;
   align-items: flex-start;
   width: 100vw;
+  transition: all 1.5s ease;
   height: fit-content;
+  visibility: visible;
+  opacity: 1;
+`
+const HiddenSlide = styled(Slide)`
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  //opacity: 0;
+  transition: all 1.5s ease;
 `
 const ImageContainer = withTheme(styled.div`
   margin: 0 5rem;
