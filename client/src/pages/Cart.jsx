@@ -76,12 +76,15 @@ const Cart = () => {
                         ))}
                     </Top>
                 : <EmptyCartWrapper>
-                        <EmptyCart>Your cart is empty</EmptyCart>
-                        {products.map((item) => (
-                            <CartLink to={"/customise"} key={item._id}>
-                                <GeneralButton>Customise your teddy bear!</GeneralButton>
-                            </CartLink>
-                        ))}
+                        <EmptyImage src={`/assets/teddyBears4.png`}/>
+                        <Empty>
+                            <EmptyCart>Your cart is empty</EmptyCart>
+                            {products.map((item) => (
+                                <CartLink to={"/customise"} key={item._id}>
+                                    <GeneralButton>Customise your teddy bear!</GeneralButton>
+                                </CartLink>
+                            ))}
+                        </Empty>
                   </EmptyCartWrapper>}
                 <Bottom>
                     <Info>
@@ -405,15 +408,93 @@ const SummaryItem = withTheme(styled('div')`
   justify-content: space-between;
   margin: 1rem 0;
 `)
-const SummaryItemText = styled.span`
-`
+const SummaryItemText = styled.span``
 const SummaryItemPrice = styled.span`
     font-weight: bold;
 `
 const EmptyCartWrapper = styled.div`
-  justify-content: center;
+  text-align: center;
+  position: relative;
+  top: -11rem;
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+  @media ${device.tabletL} {
+    top: -10rem
+  }
+  @media ${device.tabletM} {
+    top: -9rem
+  }
+  @media ${device.mobileL} {
+    top: -8rem;
+  }
+  @media ${device.mobileM} {
+    top: -7rem;
+  }
+  @media ${device.mobileS} {
+    top: -6rem;
+  }
+`
+const Empty = withTheme(styled.div`
+  background-color: ${props => props.theme.palette.fourth.main};
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  padding: 7rem 3rem 5rem 3rem;
+  margin: auto;
+  width: 75%;
+  position: relative;
+  @media ${device.laptop} {
+    width: 85%;
+  }
+  @media ${device.tabletL} {
+    width: 90%;
+    padding: 6rem 1rem 3rem 1rem;
+  }
+  @media ${device.mobileL} {
+    width: 95%;
+    padding: 5rem 0.5rem 3rem 0.5rem;
+  }
+  @media ${device.mobileM} {
+    padding: 4rem 0.5rem 2rem 0.5rem;
+  }
+`)
+const EmptyCart = styled.h1`
   text-align: center;
 `
-const EmptyCart = styled.h1`
-    text-align: center;
+const EmptyImage = styled.img`
+  position: relative;
+  bottom: -9rem;
+  left: 0;
+  right: 0;
+  height: 24rem;
+  margin: 0 auto 0.5rem auto;
+  z-index: 50;
+  @media ${device.laptop} {
+    height: 22rem;
+    bottom: -8rem;
+  }
+  @media ${device.tabletL} {
+    height: 20rem;
+    bottom: -7.5rem;
+  }
+  @media ${device.tabletM} {
+    height: 18rem;
+    bottom: -7rem;
+  }
+  @media ${device.tabletS} {
+    height: 16rem;
+    bottom: -6rem;
+  }
+  @media ${device.mobileL} {
+    height: 12rem;
+    bottom: -5rem;
+  }
+  @media ${device.mobileM} {
+    height: 10rem;
+    bottom: -4rem;
+  }
+  @media ${device.mobileS} {
+    height: 8rem;
+    bottom: -3.5rem;
+  }
 `
