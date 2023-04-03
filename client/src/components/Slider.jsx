@@ -107,18 +107,18 @@ export default Slider;
 const SliderContainer = styled.div`
   display: flex;
   position: relative;
-  top: -4rem;
+  top: -3rem;
   @media ${device.laptop} {
-    top: -3rem;
-  }
-  @media ${device.tabletL} {
-    top: -2.5rem;
-  }
-  @media ${device.mobileL} {
     top: -2rem;
   }
-  @media ${device.mobileM} {
+  @media ${device.tabletL} {
     top: -1.5rem;
+  }
+  @media ${device.mobileL} {
+    top: -1rem;
+  }
+  @media ${device.mobileM} {
+    top: -0.5rem;
   }
 `
 const SwiperWrapper = withTheme(styled(Swiper)`
