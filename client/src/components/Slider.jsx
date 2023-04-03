@@ -8,11 +8,7 @@ import { Navigation, Pagination, Autoplay} from 'swiper';
 const Slider = () => {
     return (
         <SliderContainer>
-            <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-            />
-            <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+            <link rel="stylesheet" href={`/swiper/swiper.min.css`}/>
             <SwiperWrapper
                 modules={[Navigation, Pagination, Autoplay]}
                 loop={true}
@@ -47,6 +43,7 @@ const Slider = () => {
                     </ImageContainer>
                 </SwiperSlide>
             </SwiperWrapper>
+            <script src={`/swiper/swiper.min.js`}/>
         </SliderContainer>
     )
 }
