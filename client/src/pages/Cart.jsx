@@ -228,7 +228,7 @@ const TopButton = withTheme(styled(GeneralButton)`
 `);
 const CartLink = withTheme(styled(Link)`
   text-decoration: none;
-  z-index: 50;
+  z-index: 20;
 `)
 
 const Bottom = styled.div`
@@ -468,7 +468,7 @@ const EmptyImage = styled.img`
   right: 0;
   height: 24rem;
   margin: 0 auto 0.5rem auto;
-  z-index: 50;
+  z-index: 20;
   @media ${device.laptop} {
     height: 22rem;
     bottom: -8rem;

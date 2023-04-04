@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components/macro';
 import {PersonOutlined, ShoppingCartOutlined} from "@material-ui/icons";
 import {Badge} from "@material-ui/core";
@@ -20,8 +20,24 @@ const Header = () => {
         return signout(dispatch);
     }
 
+    //close dropdown on click outside
+    const ref = useRef();
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!ref?.current?.contains(event.target)) {
+                setIsNavExpanded(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+    }, [ref]);
+
     return (
         <header style={{position: "fixed", zIndex: "50", width: "100%", top: "0"}}>
+            <style> {`
+            .MuiBadge-anchorOriginTopRightRectangular.MuiBadge-invisible {
+                display: none;
+            }
+            `}</style>
             <Demo>This is a demo version - not a working store (yet:))!</Demo>
             <HeaderContainer>
                     {/*logo & name*/}
@@ -124,7 +140,6 @@ const Right = withTheme(styled('div')`
   justify-content: flex-end;
   height: 1.8rem;
   @media ${device.tabletM} {
-    display: none;
     position: absolute;
     top: 80px;
     background-color: ${props => props.theme.palette.primary.main}eb;
@@ -132,8 +147,13 @@ const Right = withTheme(styled('div')`
     right: 0;
     width: 100%;
     height: auto;
+    transition: all 0.5s;
+    overflow: hidden;
+    transform-origin: top center;
+    transform: scale(1,0);
+    display: block;
     &.expanded {
-      display: block;
+      transform: scale(1);
     }
   }
 `);
@@ -147,10 +167,10 @@ const MenuItem = styled.div`
   }
   @media ${device.tabletM} {
     margin-left: 0;
-    padding-right: 1rem;
+    margin-right: 1rem;
   }
   @media ${device.mobileL} {
-    padding-right: 0.5rem;
+    margin-right: 0.5rem;
   }
 `;
 

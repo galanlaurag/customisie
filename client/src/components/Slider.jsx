@@ -64,11 +64,11 @@ const Slider = () => {
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}
-                // autoplay={{
-                //     delay: 3500,
-                //     pauseOnMouseEnter: true,
-                //     disableOnInteraction: false,
-                // }}
+                autoplay={{
+                    delay: 3500,
+                    pauseOnMouseEnter: true,
+                    disableOnInteraction: false,
+                }}
              >
                 <SwiperSlide style={{padding: "10px 0"}}>
                     <SlideContainer>
@@ -108,8 +108,11 @@ const SliderContainer = styled.div`
   display: flex;
   position: relative;
   top: -3rem;
+  width: 85%;
+  margin: auto;
   @media ${device.laptop} {
     top: -2rem;
+    width: 100%;
   }
   @media ${device.tabletL} {
     top: -1.5rem;

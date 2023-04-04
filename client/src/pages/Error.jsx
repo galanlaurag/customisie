@@ -116,7 +116,7 @@ const Image = styled.img`
   right: 0;
   height: 20rem;
   margin: 0 auto 0.5rem auto;
-  z-index: 50;
+  z-index: 20;
   @media ${device.laptop} {
     height: 18rem;
   }
