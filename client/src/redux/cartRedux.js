@@ -15,7 +15,7 @@ const cartSlice = createSlice({
                 item.innerEarsColour === action.payload.innerEarsColour && item.armsColour === action.payload.armsColour && item.handsColour === action.payload.handsColour &&
                 item.legsColour === action.payload.legsColour && item.feetColour === action.payload.feetColour && item.noseColour === action.payload.noseColour);
             if(thisItem){
-                console.log("same product")
+                //same product
                 thisItem.productQuantity += 1;
                 state.quantity += 1;
                 state.total += action.payload.price*action.payload.productQuantity;
@@ -24,7 +24,7 @@ const cartSlice = createSlice({
                     return item;
                 })
             } else {
-                console.log("unique product")
+                //unique product
                 state.quantity += 1;
                 state.products.push(action.payload);
                 if (state.quantity > 1) {

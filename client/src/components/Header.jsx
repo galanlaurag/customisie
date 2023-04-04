@@ -1,10 +1,11 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components/macro';
 import {PersonOutlined, ShoppingCartOutlined} from "@material-ui/icons";
 import {Badge} from "@material-ui/core";
 import { withTheme } from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 import {useState} from "react";
+import {useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {signout} from "../redux/apiCalls";
 import { device } from '../responsive&generalStyling';
@@ -20,16 +21,18 @@ const Header = () => {
         return signout(dispatch);
     }
 
-    //close dropdown on click outside
-    const ref = useRef();
+    //add active class to current page
+    const location = useLocation();
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (!ref?.current?.contains(event.target)) {
-                setIsNavExpanded(false);
+        const divs =  document.querySelectorAll('[class*="NavbarLink"]');
+        divs.forEach((div) => {
+            if (window.location.href.indexOf(div.getAttribute('href')) !== -1) {
+                div.classList.add('active');
+            } else {
+                div.classList.remove('active');
             }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-    }, [ref]);
+        });
+    }, [location]);
 
     return (
         <header style={{position: "fixed", zIndex: "50", width: "100%", top: "0"}}>
@@ -43,7 +46,7 @@ const Header = () => {
                     {/*logo & name*/}
                     <Left>
                         {/*<Language>EN</Language>*/}
-                        <NavbarLink to={"/"}>
+                        <HomeLink to={"/"}>
                             <Logo>
                                 <LogoIcon>
                                     <Image src="/assets/logo.png" />
@@ -52,7 +55,7 @@ const Header = () => {
                                     Customisie
                                 </LogoText>
                             </Logo>
-                        </NavbarLink>
+                        </HomeLink>
                     </Left>
                     {/*navbar*/}
                     <HamburgerImg src={`/assets/hamburger.png`} onClick={() => {setIsNavExpanded(!isNavExpanded)}}/>
@@ -99,10 +102,37 @@ const Demo = withTheme(styled('span')`
   display: block;
   text-align: center;
 `);
+const HomeLink = styled(Link)`
+  text-decoration: none;
+  color: #fff;
+  margin: 0 1rem;
+  @media ${device.tabletL} {
+    margin: 0 0.5rem;
+  }
+`
 const NavbarLink = styled(Link)`
   text-decoration: none;
   color: #fff;
-  margin: 0;
+  position: relative;
+  display: inline;
+  background-image: linear-gradient(to right, #fff, #fff);
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  background-position: bottom left;
+  transition: background-size 0.3s ease-out;
+  margin: 0 1rem;
+  height: fit-content;
+  &.active {
+    background-size: 100% 2px;
+  }
+  @media ${device.tabletL} {
+    margin: 0 0.5rem;
+  }
+  @media ${device.tabletM} {
+    display: block;
+    width: fit-content;
+    margin: 0.5rem 0.5rem 0.5rem auto;
+  }
 `;
 
 //logo & name
@@ -157,21 +187,9 @@ const Right = withTheme(styled('div')`
     }
   }
 `);
-
 const MenuItem = styled.div`
   cursor: pointer;
-  margin-left: 1.5rem;
   height: 2rem;
-  @media ${device.tabletL} {
-    margin-left: 1rem;
-  }
-  @media ${device.tabletM} {
-    margin-left: 0;
-    margin-right: 1rem;
-  }
-  @media ${device.mobileL} {
-    margin-right: 0.5rem;
-  }
 `;
 
 // const Language = styled.span`
