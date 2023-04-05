@@ -4,7 +4,7 @@ import {
     BackgroundImage,
     GlobalStyle,
     GeneralButton,
-    BackgroundImageTop
+    BackgroundImageTop, showOpacity, toTop
 } from '../responsive&generalStyling';
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
@@ -33,12 +33,12 @@ const Login = () => {
                 <Form>
                     <label>Email</label><Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
                     <label>Password</label><Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
-                    <GeneralButton onClick={handleLogin} disabled={isFetching}>Login</GeneralButton>
+                    <ActionBtn onClick={handleLogin} disabled={isFetching}>Login</ActionBtn>
                     {errorLogin && <Error>Please enter correct credentials.</Error>}
                     <Span>Don't have an account?</Span>
-                    <NavbarLink to={"/register"}>
+                    <RegLink to={"/register"}>
                         <RegisterButton>Create a new account</RegisterButton>
-                    </NavbarLink>
+                    </RegLink>
                 </Form>
             </Wrapper>
         </Container>
@@ -60,6 +60,7 @@ export const Wrapper = withTheme(styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
+  animation: ${showOpacity} ease-in-out 1s forwards;
   @media ${device.laptop} {
     width: 55%;
   }
@@ -103,11 +104,14 @@ export const Input = withTheme(styled.input`
     border: 1px solid ${props => props.theme.palette.default.main};
   }
 `);
+export const ActionBtn = styled(GeneralButton)`
+  animation: ${toTop} ease-in-out 1s forwards;
+`
 export const Error = styled.p`
   color: red;
   width: 100%;
 `
-const NavbarLink = styled(Link)`
+const RegLink = styled(Link)`
   width: fit-content;
   margin: auto;
   text-decoration: none;

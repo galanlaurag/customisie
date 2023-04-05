@@ -4,7 +4,9 @@ import {
     BackgroundImage,
     GlobalStyle,
     GeneralButton,
-    BackgroundImageTop
+    BackgroundImageTop,
+    showOpacity,
+    toTop
 } from '../responsive&generalStyling';
 import {withTheme} from "@material-ui/core/styles";
 import React, {useState} from "react";
@@ -137,6 +139,7 @@ const ContactFormWrapper = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  animation: ${showOpacity} ease-in-out 1s forwards;
   @media ${device.tabletL} {
     padding: 2rem;
   }
@@ -189,7 +192,9 @@ const FormTextarea = withTheme(styled.textarea`
     border: 1px solid ${props => props.theme.palette.default.main};
   }
 `);
-const SendButton = withTheme(styled(GeneralButton)``);
+const SendButton = withTheme(styled(GeneralButton)`
+  animation: ${toTop} ease-in-out 1s forwards;
+`);
 const SuccessMessage = styled.p`
   text-align: center;
 `

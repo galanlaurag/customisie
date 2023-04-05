@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from '../components/Slider.jsx';
 import {withTheme} from "@material-ui/core/styles";
 import styled from "styled-components/macro";
-import {device, Container, BackgroundImage, BackgroundImageTop, GlobalStyle, GeneralButton} from '../responsive&generalStyling';
+import {device, Container, BackgroundImage, BackgroundImageTop, GlobalStyle, GeneralButton, toRight, toLeft, showOpacity} from '../responsive&generalStyling';
 
 const Home = () => {
     return (
@@ -42,6 +42,7 @@ const Load = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  animation: ${showOpacity} ease-in-out 1s forwards;
 `
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -67,14 +68,14 @@ const ButtonsWrapper = styled.div`
 `
 const GeneralButton1 = styled(GeneralButton)`
   margin: 0 1rem 0 auto;
+  animation: ${toRight} ease-in-out 1s forwards;
   @media ${device.tabletM} {
     margin: 1rem auto;
   }
 `
 const GeneralButton2 = withTheme(styled(GeneralButton)`
-  background-color: ${props => props.theme.palette.secondary.main};
-  color: #000;
   margin: 0 auto 0 1rem;
+  animation: ${toLeft} ease-in-out 1s forwards;
   @media ${device.tabletM} {
     margin: 1rem auto;
   }

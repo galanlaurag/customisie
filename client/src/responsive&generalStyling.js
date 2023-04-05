@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, {keyframes} from "styled-components/macro";
 import { createGlobalStyle } from 'styled-components';
 
 const size = {
@@ -78,6 +78,40 @@ export const GeneralButton = styled.button`
   color: #fff;
   @media ${device.mobileL} {
     font-size: 1rem;
+  }
+`
+
+//animations
+export const toRight = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`
+export const toLeft = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`
+export const toTop = keyframes`
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`
+export const showOpacity =  keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 `
 

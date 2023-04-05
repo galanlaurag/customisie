@@ -1,5 +1,5 @@
-import {Container, BackgroundImage, GlobalStyle, GeneralButton, BackgroundImageTop} from '../responsive&generalStyling';
-import {Wrapper, Form, Input, Error, Span, RegisterButton} from './Login';
+import {Container, BackgroundImage, GlobalStyle, BackgroundImageTop} from '../responsive&generalStyling';
+import {Wrapper, Form, Input, Error, Span, RegisterButton, ActionBtn} from './Login';
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
 import { withTheme } from "@material-ui/core/styles"
@@ -30,7 +30,7 @@ const Register = () => {
                     <Agreement>
                         By creating and account, I consent to the processing of my personal data in accordance with the <b>Privacy Policy</b>.
                     </Agreement>
-                    <GeneralButton onClick={handleRegister} disabled={isFetching}>Register</GeneralButton>
+                    <ActionBtn onClick={handleRegister} disabled={isFetching}>Register</ActionBtn>
                     {errorRegister && <Error>Something went wrong. Please try again.</Error> }
 
                     <Span>Already have an account?</Span>
