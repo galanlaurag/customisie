@@ -4,7 +4,7 @@ import {
     BackgroundImage,
     GlobalStyle,
     GeneralButton,
-    BackgroundImageTop
+    BackgroundImageTop, showOpacity, toRight, toLeft
 } from '../responsive&generalStyling';
 import React from 'react';
 import styled from "styled-components/macro";
@@ -23,10 +23,10 @@ const Error = () => {
                     <Title>Oops! You seem to be lost.</Title>
                     <p>Here are some helpful links:</p>
                     <ErrorLink to={"/"}>
-                        <GeneralButton>Go back to the homepage</GeneralButton>
+                        <HomeButton>Go back to the homepage</HomeButton>
                     </ErrorLink>
                     <ErrorLink to={"/contact"}>
-                        <GeneralButton>Contact us</GeneralButton>
+                        <ContactButton>Contact us</ContactButton>
                     </ErrorLink>
                 </Wrapper>
             </ErrorWrapper>
@@ -71,6 +71,7 @@ const Wrapper = withTheme(styled.div`
   width: 75%;
   height: 18rem;
   position: relative;
+  animation: ${showOpacity} ease 1s;
   @media ${device.laptop} {
     width: 85%;
     height: 16rem;
@@ -108,6 +109,12 @@ const Title = styled.h1`
   @media ${device.tabletS} {
     font-size: 1.5rem;
   }
+`
+const HomeButton = styled(GeneralButton)`
+  animation: ${toRight} ease 1s;
+`
+const ContactButton = styled(GeneralButton)`
+  animation: ${toLeft} ease 1s;
 `
 const Image = styled.img`
   position: relative;

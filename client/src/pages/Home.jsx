@@ -42,7 +42,7 @@ const Load = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  animation: ${showOpacity} ease-in-out 1s forwards;
+  animation: ${showOpacity} ease 2s;
 `
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -68,18 +68,18 @@ const ButtonsWrapper = styled.div`
 `
 const GeneralButton1 = styled(GeneralButton)`
   margin: 0 1rem 0 auto;
-  animation: ${toRight} ease-in-out 1s forwards;
+  animation: ${toRight} ease 2s;
   @media ${device.tabletM} {
     margin: 1rem auto;
   }
 `
-const GeneralButton2 = withTheme(styled(GeneralButton)`
+const GeneralButton2 = styled(GeneralButton)`
   margin: 0 auto 0 1rem;
-  animation: ${toLeft} ease-in-out 1s forwards;
+  animation: ${toLeft} ease 2s;
   @media ${device.tabletM} {
     margin: 1rem auto;
   }
-`)
+`
 
 const ReviewsWrapper = styled.div`
   display: flex;

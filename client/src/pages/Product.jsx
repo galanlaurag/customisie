@@ -8,7 +8,14 @@ import {addProduct} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {withTheme} from "@material-ui/core/styles";
 import { ArrowBackIosRounded, ArrowForwardIosRounded, InfoRounded } from "@material-ui/icons";
-import {device, Container, BackgroundImage, GlobalStyle, BackgroundImageTop} from '../responsive&generalStyling';
+import {
+    device,
+    Container,
+    BackgroundImage,
+    GlobalStyle,
+    BackgroundImageTop,
+    toRight, showOpacity, toLeft, toTop
+} from '../responsive&generalStyling';
 
 const Product = ({item}) => {
 
@@ -574,7 +581,9 @@ const Product = ({item}) => {
 export default Product;
 
 //top instructions
-const SpanContainer = styled.div``;
+const SpanContainer = styled.div`
+  animation: ${showOpacity} ease 1s;
+`;
 const sharedStylesForTopSpans = css`
     margin: 0;
     padding: 1rem 0;
@@ -740,6 +749,10 @@ const RButton = withTheme(styled.p`
   border-radius: 0 20px 20px 0;
   cursor: pointer;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  animation: ${toRight} ease 1s;
+  &:last-of-type {
+    animation: ${toRight} ease 1.5s;
+  }
   @media ${device.laptop} {
     font-size: 1rem;
   }
@@ -749,6 +762,7 @@ const RButton = withTheme(styled.p`
     border-radius: 20px 0 0 20px;
     width: fit-content;
     padding: 1.5rem 0.4rem 1.5rem 0.9rem;
+    animation: ${showOpacity} ease 1s;
   }
   @media ${device.tabletM} {
     writing-mode: horizontal-tb;
@@ -773,6 +787,8 @@ const ImagesContainer = withTheme(styled.div`
   margin: 0;
   width: 50%;
   position: relative;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.25s forwards;
   @media ${device.tabletL} {
     width: 60%;
   }
@@ -781,7 +797,7 @@ const ImagesContainer = withTheme(styled.div`
     width: 80%;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: 0 auto 1rem auto;
   }
   @media ${device.mobileL} {
     width: 90%;
@@ -806,6 +822,7 @@ const Image = styled.img`
   right: 0;
   margin: auto;
   padding: 1rem 0;
+  //animation: ${showOpacity} ease 3s;
 `
 //arrows
 const sharedStyleForArrows = css`
@@ -824,6 +841,7 @@ const sharedStyleForArrows = css`
   cursor: pointer;
   z-index: 20;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  opacity: 0;
   @media ${device.laptop} {
     left: ${(props) => props.direction === "left" && "2%"};
     right: ${(props) => props.direction === "right" && "2%"};
@@ -838,6 +856,10 @@ const sharedStyleForArrows = css`
     left: ${(props) => props.direction === "left" && "5%"};
     right: ${(props) => props.direction === "right" && "5%"};
   }
+  @media ${device.mobileL} {
+    left: ${(props) => props.direction === "left" && "2%"};
+    right: ${(props) => props.direction === "right" && "2%"};
+  }
   @media screen and (max-height: 450px) {
     width: 40px;
     height: 40px;
@@ -846,18 +868,22 @@ const sharedStyleForArrows = css`
 const EarsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: -60%;
+  animation: ${showOpacity} ease 1s 0.25s forwards;
 `);
 const HeadArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: -20%;
+   animation: ${showOpacity} ease 1s 0.5s forwards;
 `);
 const ArmsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: 20%;
+   animation: ${showOpacity} ease 1s 0.75s forwards;
 `);
 const LegsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: 60%;
+  animation: ${showOpacity} ease 1s 1s forwards;
 `);
 
 
@@ -891,10 +917,23 @@ const BodyPartButton = withTheme(styled.button`
   border: none;
   margin: 0.3rem;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  opacity: 0;
   &.activeBodyPartButton {
     transform: scale(1.1);
     background-color: ${props => props.theme.palette.secondary.main};
     border: 2px solid #000;
+  }
+  &:first-of-type {
+    animation: ${showOpacity} ease 1s 1s forwards;
+  }
+  &:nth-of-type(2n) {
+    animation: ${showOpacity} ease 1s 1.25s forwards;
+  }
+  &:nth-of-type(3n) {
+    animation: ${showOpacity} ease 1s 1.5s forwards;
+  }
+  &:last-of-type {
+    animation: ${showOpacity} ease 1s 1.75s forwards;
   }
   @media ${device.laptop} {
     padding: 1rem 1.1rem;
@@ -931,6 +970,8 @@ const ColoursWrapper = withTheme(styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 2s forwards;
   &:not(:empty){
     background-color: ${props => props.theme.palette.fourth.main};
     border-radius: 20px;
@@ -983,13 +1024,13 @@ const colourPicker = css`
 const ColourWrapper = styled.div`
   ${colourPicker};
   @media ${device.tabletM} {
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0;
   }
 `;
 const AdditionalColourWrapper = styled.div`
   ${colourPicker};
   @media ${device.tabletM} {
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0;
   }
 `;
 const colourButton = css`
@@ -1002,6 +1043,7 @@ const colourButton = css`
    padding: 0; 
    box-shadow: 0 7px 10px ${props => props.theme.palette.default.main};
    font-size: 1rem;
+   opacity: 0;
   @media ${device.laptop} {
     height: 3.5rem;
     width: 3.5rem;
@@ -1031,26 +1073,31 @@ const BrownButton = withTheme(styled.button`
    ${colourButton};
    background-color: #835632;
    z-index: 5;
+   animation: ${showOpacity} ease 1s 2s forwards;
 `)
 const PinkButton = withTheme(styled.button`
    ${colourButton};
    background-color: #c99d96;
    z-index: 6;
+   animation: ${showOpacity} ease 1s 2.25s forwards;
 `)
 const BeigeButton = withTheme(styled.button`
    ${colourButton};
    background-color: #bd9e86;
    z-index: 7;
+   animation: ${showOpacity} ease 1s 2.5s forwards;
 `)
 const CreamButton = withTheme(styled.button`
    ${colourButton};
    background-color: #F5EBD3;
    z-index: 8;
+   animation: ${showOpacity} ease 1s 2.75s forwards;
 `)
 const GrayButton = withTheme(styled.button`
    ${colourButton};
    background-color: #BCBCBC;
    z-index: 9;
+   animation: ${showOpacity} ease 1s 3s forwards;
 `)
 //cart
 const NavbarLink = withTheme(styled(Link)`
@@ -1070,12 +1117,15 @@ const ConfirmButton = withTheme(styled.button`
   background-color: ${props => props.theme.palette.primary.main};
   color: #fff;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  transform: translateX(100%);
+  animation: ${toLeft} ease 1s 3s forwards;
   @media ${device.laptop} {
     margin-right: 0;
   }
   @media ${device.tabletM} {
     border-radius: 20px 20px 0 0;
     font-size: 1.2rem;
+    animation: ${toTop} ease 2s;
   }
   @media ${device.mobileL} {
     padding: 1.25rem 2.5rem;
@@ -1087,10 +1137,6 @@ const ConfirmButton = withTheme(styled.button`
   }
 `)
 
-// const FilterSize = styled.select`
-//  `
-// const FilterSizeOption = styled.option`
-//  `
 
 
 

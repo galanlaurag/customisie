@@ -60,7 +60,7 @@ export const Wrapper = withTheme(styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
-  animation: ${showOpacity} ease-in-out 1s forwards;
+  animation: ${showOpacity} ease 1s;
   @media ${device.laptop} {
     width: 55%;
   }
@@ -105,7 +105,7 @@ export const Input = withTheme(styled.input`
   }
 `);
 export const ActionBtn = styled(GeneralButton)`
-  animation: ${toTop} ease-in-out 1s forwards;
+  animation: ${toTop} ease 1s;
 `
 export const Error = styled.p`
   color: red;
@@ -116,6 +116,7 @@ const RegLink = styled(Link)`
   margin: auto;
   text-decoration: none;
   display: block;
+  animation: ${showOpacity} ease 2s;
 `
 export const Span = styled.p`
   font-size: 0.7rem;

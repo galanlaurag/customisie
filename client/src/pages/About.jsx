@@ -5,13 +5,17 @@ import {
     GlobalStyle,
     GeneralButton,
     BackgroundImageTop,
-    showOpacity
+    toTop
 } from '../responsive&generalStyling';
 import React, { useEffect, useState } from "react";
 import Faq from "react-faq-component";
 import styled from "styled-components/macro";
 import {ExpandMoreRounded} from '@material-ui/icons';
 import {Link} from "react-router-dom";
+const CustomiseButton = styled(GeneralButton)`
+  margin: 1rem;
+  animation: ${toTop} ease 2s;
+`
 
 const data = {
     rows: [
@@ -23,7 +27,7 @@ const data = {
                          It allows you to see a <b>preview of your teddy bear</b> in real-time while you customise it!</p>
                      <p>A word "Customisie" is a combination of the English word <b>“customise”</b> and Polish <b>“misie”</b> – meaning teddy bears <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style={{marginBottom: "-5px"}}><path fill="currentColor" d="M15.75 19.13c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 11.25c-1.24 0-2.25-.84-2.25-1.87c0-1.04 1.01-1.88 2.25-1.88s2.25.84 2.25 1.88c0 1.03-1.01 1.87-2.25 1.87m-3.75 7.88c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 8.25c.41 0 .75.34.75.75s-.34.75-.75.75s-.75-.34-.75-.75s.34-.75.75-.75M18.75 12c-.32 0-.63.07-.91.2c-.48-.61-1.13-1.13-1.91-1.53c.57-.8.91-1.77.91-2.82v-.06c1.09-.23 1.91-1.2 1.91-2.37c0-1.33-1.09-2.42-2.42-2.42c-.69 0-1.33.29-1.75.75a4.813 4.813 0 0 0-5.16 0C9 3.29 8.36 3 7.67 3C6.34 3 5.25 4.09 5.25 5.42c0 1.16.82 2.13 1.9 2.37v.06c0 1.05.35 2.03.91 2.82c-.77.4-1.42.92-1.9 1.53A2.24 2.24 0 0 0 3 14.25c0 1.25 1 2.25 2.25 2.25h.06c-.04.24-.06.5-.06.75c0 2.07 1.34 3.75 3 3.75c1.01 0 1.9-.63 2.45-1.59c.42.06.85.09 1.3.09c.45 0 .88-.03 1.3-.09c.55.96 1.44 1.59 2.45 1.59c1.66 0 3-1.68 3-3.75c0-.25-.02-.51-.06-.75h.06c1.25 0 2.25-1 2.25-2.25S20 12 18.75 12"/></svg>.</p>
                      <p style={{fontSize: "0.8rem"}}><span style={{color: "red"}}>*</span> Actual colours can slightly differ from those that you see on the website.</p>
-                <div style={{textAlign: "center"}}><Link to={"/customise"}><GeneralButton style={{marginBottom: "1rem"}}>Try it yourself!</GeneralButton></Link></div></div>,
+                     <div style={{textAlign: "center"}}><Link to={"/customise"}><CustomiseButton>Try it yourself!</CustomiseButton></Link></div></div>,
         },
         {
             title: "How long does it take until I receive my order?",
@@ -84,6 +88,14 @@ const About = () => {
         <Container>
             <GlobalStyle/>
             <style>{`
+                @keyframes showOpacity {
+                  0% {
+                    opacity: 0;
+                  }
+                  100% {
+                    opacity: 1;
+                  }
+                }
                 .styles_row-body__1NvUo {
                     padding: 2rem;
                 }
@@ -95,6 +107,7 @@ const About = () => {
                   border-radius: 20px;
                   backdrop-filter: blur(10px);
                   box-shadow: 0 0 10px #98878F;
+                  animation: showOpacity 2s ease;
                 }
                 .styles_row-title-text__1MuhU {
                   font-weight: bold;
@@ -103,7 +116,7 @@ const About = () => {
                     right: 0 !important;
                 }
                 .expanded + .styles_row-content__QOGZd {
-                    height: 100% !important;
+                    height: fit-content !important;
                 }
                 @media ${device.tabletL} {
                     .styles_row-body__1NvUo {
@@ -130,7 +143,6 @@ const FaqWrapper = styled.div`
   height: 100%;
   width: 75%;
   margin: 3rem auto;
-  animation: ${showOpacity} ease-in-out 1s forwards;
   @media ${device.laptop} {
     width: 85%;
     height: 85%;

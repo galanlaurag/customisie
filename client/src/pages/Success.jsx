@@ -1,4 +1,11 @@
-import {Container, BackgroundImage, GlobalStyle, GeneralButton, BackgroundImageTop} from '../responsive&generalStyling';
+import {
+    Container,
+    BackgroundImage,
+    GlobalStyle,
+    GeneralButton,
+    BackgroundImageTop,
+    toRight, toLeft
+} from '../responsive&generalStyling';
 import {clearAllCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
@@ -30,10 +37,10 @@ const Success = () => {
                 <BackgroundImage src={`/assets/tlo.png`}/>
                 <h2>Payment successful, thank you for your order!</h2>
                 <SuccessLink to={"/"}>
-                    <GeneralButton>Go back to the homepage</GeneralButton>
+                    <HomeButton>Go back to the homepage</HomeButton>
                 </SuccessLink>
                 <SuccessLink to={"/myaccount"}>
-                    <GeneralButton>Go to your account</GeneralButton>
+                    <AccountButton>Go to your account</AccountButton>
                 </SuccessLink>
             </SuccessWrapper>
         </Container>
@@ -44,6 +51,12 @@ export default Success;
 
 const SuccessWrapper = styled.div`
   text-align: center;
+`
+const HomeButton = styled(GeneralButton)`
+  animation: ${toRight} ease 1s;
+`
+const AccountButton = styled(GeneralButton)`
+  animation: ${toLeft} ease 1s;
 `
 const SuccessLink = withTheme(styled(Link)`
   width: fit-content;

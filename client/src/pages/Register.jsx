@@ -1,4 +1,4 @@
-import {Container, BackgroundImage, GlobalStyle, BackgroundImageTop} from '../responsive&generalStyling';
+import {Container, BackgroundImage, GlobalStyle, BackgroundImageTop, showOpacity} from '../responsive&generalStyling';
 import {Wrapper, Form, Input, Error, Span, RegisterButton, ActionBtn} from './Login';
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
@@ -34,9 +34,9 @@ const Register = () => {
                     {errorRegister && <Error>Something went wrong. Please try again.</Error> }
 
                     <Span>Already have an account?</Span>
-                    <NavbarLink to={"/login"}>
+                    <LogLink to={"/login"}>
                         <LoginButton>Log in</LoginButton>
-                    </NavbarLink>
+                    </LogLink>
                 </Form>
             </Wrapper>
         </Container>
@@ -50,9 +50,10 @@ const Agreement = styled.p`
 `
 const LoginButton = withTheme(styled(RegisterButton)`
 `)
-const NavbarLink = styled(Link)`
+const LogLink = styled(Link)`
   width: fit-content;
   margin: auto;
   text-decoration: none;
   display: block;
+  animation: ${showOpacity} ease 2s;
 `

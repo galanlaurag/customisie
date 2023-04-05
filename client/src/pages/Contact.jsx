@@ -139,7 +139,7 @@ const ContactFormWrapper = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  animation: ${showOpacity} ease-in-out 1s forwards;
+  animation: ${showOpacity} ease 1s;
   @media ${device.tabletL} {
     padding: 2rem;
   }
@@ -192,9 +192,9 @@ const FormTextarea = withTheme(styled.textarea`
     border: 1px solid ${props => props.theme.palette.default.main};
   }
 `);
-const SendButton = withTheme(styled(GeneralButton)`
-  animation: ${toTop} ease-in-out 1s forwards;
-`);
+const SendButton = styled(GeneralButton)`
+  animation: ${toTop} ease 1s;
+`;
 const SuccessMessage = styled.p`
   text-align: center;
 `

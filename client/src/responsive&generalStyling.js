@@ -76,6 +76,11 @@ export const GeneralButton = styled.button`
   box-shadow: 0 0 10px #98878F;
   background-color: #4C4F6B;
   color: #fff;
+  transition: 0.5s;
+  &:hover {
+    box-shadow: 0 0 10px #4C4F6B;
+    transform: scale(1.02);
+  }
   @media ${device.mobileL} {
     font-size: 1rem;
   }
@@ -101,6 +106,14 @@ export const toLeft = keyframes`
 export const toTop = keyframes`
   0% {
     transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`
+export const toBottom = keyframes`
+  0% {
+    transform: translateY(-100%);
   }
   100% {
     transform: translateY(0);

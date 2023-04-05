@@ -6,13 +6,11 @@ import {
     BackgroundImage,
     GlobalStyle,
     GeneralButton,
-    BackgroundImageTop
+    BackgroundImageTop, showOpacity, toTop, toBottom
 } from '../responsive&generalStyling';
 import {Add, Remove, Close} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
 import {useEffect, useState} from "react";
-// import axios from "axios";
-// import Product from "../components/Product";
 import {useSelector} from "react-redux";
 import {increaseProductQuantity, decreaseProductQuantity, clearCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
@@ -81,7 +79,7 @@ const Cart = () => {
                             <EmptyCart>Your cart is empty</EmptyCart>
                             {products.map((item) => (
                                 <CartLink to={"/customise"} key={item._id}>
-                                    <GeneralButton>Customise your teddy bear!</GeneralButton>
+                                    <EmptyButton>Customise your teddy bear!</EmptyButton>
                                 </CartLink>
                             ))}
                         </Empty>
@@ -91,11 +89,6 @@ const Cart = () => {
                         <CartProduct>
                             {cart.products.map((product) => (
                             <ProductDetail key={product.size+product.headShape+product.earsShape+product.armsShape+product.legsShape+product.headColour+product.eyesColour+ product.earsColour+product.innerEarsColour+product.armsColour+product.handsColour+product.legsColour+product.feetColour+product.noseColour}>
-                                {/*{products.map((item) => <Product item={item} key={item._id} />)}*/}
-                                {/*<Image src={require('../assets/krolik.png')} />*/}
-
-
-                                    {/*<Image src={product.img} />*/}
                                 <ImageContainer>
                                     {/*head*/}
                                     <Image id="headImg" src={`/assets/head/${product.headColour}/${product.headShape}.png`} style={{zIndex: "11"}}/>
@@ -194,7 +187,7 @@ const Cart = () => {
                                         amount={cart.total * 100}
                                         token={onToken}
                                         stripeKey={KEY}>
-                                        <GeneralButton>Checkout now</GeneralButton>
+                                        <CheckoutButton>Checkout now</CheckoutButton>
                                     </StripeCheckout>
                                 )}
                             </Summary>
@@ -225,6 +218,8 @@ const Top = styled.div`
 `
 const TopButton = withTheme(styled(GeneralButton)`
   background-color: ${props => props.theme.palette.secondary.main};
+  transform: translateY(-500%);
+  animation: ${toBottom} ease 1s 0.75s forwards;
 `);
 const CartLink = withTheme(styled(Link)`
   text-decoration: none;
@@ -261,6 +256,8 @@ const ProductDetail = withTheme(styled.div`
   flex-wrap: wrap;
   padding: 2rem 3rem;
   margin-bottom: 2rem;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.25s forwards;
   @media ${device.laptop} {
     padding: 1rem;
   }
@@ -368,6 +365,8 @@ const SummaryWrapper = withTheme(styled('div')`
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   width: 40%;
   height: fit-content;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
   @media ${device.tabletM} {
     width: 100%;
     margin-top: 2rem;
@@ -412,12 +411,18 @@ const SummaryItemText = styled.span``
 const SummaryItemPrice = styled.span`
     font-weight: bold;
 `
+const CheckoutButton = styled(GeneralButton)`
+  transform: translateY(1000%);
+  animation: ${toTop} ease 1s 0.75s forwards;
+`
+
 const EmptyCartWrapper = styled.div`
   text-align: center;
   position: relative;
   top: -11rem;
   min-height: calc(100vh - 80px);
   margin-top: 80px;
+  animation: ${showOpacity} ease 1s;
   @media ${device.tabletL} {
     top: -10rem
   }
@@ -497,4 +502,7 @@ const EmptyImage = styled.img`
     height: 8rem;
     bottom: -3.5rem;
   }
+`
+const EmptyButton = styled(GeneralButton)`
+  animation: ${toTop} ease 1s;
 `
