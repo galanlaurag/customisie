@@ -6,7 +6,6 @@ import {
     GeneralButton,
     BackgroundImageTop,
     showOpacity,
-    toTop
 } from '../responsive&generalStyling';
 import {withTheme} from "@material-ui/core/styles";
 import React, {useState} from "react";
@@ -53,7 +52,20 @@ const Contact = () => {
     return (
         <Container>
             <GlobalStyle/>
-            <style>{`.grecaptcha-badge {z-index: 10;}`}</style>
+            <style>{`
+            @keyframes toLeft {
+                  0% {
+                    transform: translateX(100%);
+                  }
+                  100% {
+                    transform: translateX(0);
+                  }
+            }
+            .grecaptcha-badge {
+                z-index: 10;
+                animation: toLeft ease 2s
+            }`
+            }</style>
             <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
             <ContactForm onSubmit={sendMail} id="contactForm">
@@ -193,7 +205,8 @@ const FormTextarea = withTheme(styled.textarea`
   }
 `);
 const SendButton = styled(GeneralButton)`
-  animation: ${toTop} ease 1s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
 `;
 const SuccessMessage = styled.p`
   text-align: center;

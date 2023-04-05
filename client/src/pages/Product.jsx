@@ -763,15 +763,25 @@ const RButton = withTheme(styled.p`
     width: fit-content;
     padding: 1.5rem 0.4rem 1.5rem 0.9rem;
     animation: ${showOpacity} ease 1s;
+    &:last-of-type {
+      animation: ${showOpacity} ease 1.5s;
+    }
   }
   @media ${device.tabletM} {
     writing-mode: horizontal-tb;
     transform: rotate(0);
     font-size: 1.1rem;
-    padding: 1rem 0;
-    width: 40%;
+    padding: 0.75rem 0;
+    width: 30%;
     border-radius: ${(props) => props.type === "reset" && "0 20px 20px 0"};
     border-radius: ${(props) => props.type === "randomise" && "20px 0 0 20px"};
+    animation: ${toRight} ease 1s;
+    &:last-of-type {
+      animation: ${toLeft} ease 1.5s;
+    }
+  }
+  @media ${device.mobileL} {
+    width: 40%;
   }
 `)
 
@@ -788,7 +798,7 @@ const ImagesContainer = withTheme(styled.div`
   width: 50%;
   position: relative;
   opacity: 0;
-  animation: ${showOpacity} ease 1s 0.25s forwards;
+  animation: ${showOpacity} ease 1s 0.3s forwards;
   @media ${device.tabletL} {
     width: 60%;
   }
@@ -868,22 +878,22 @@ const sharedStyleForArrows = css`
 const EarsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: -60%;
-  animation: ${showOpacity} ease 1s 0.25s forwards;
+  animation: ${showOpacity} ease 1s 0.3s forwards;
 `);
 const HeadArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: -20%;
-   animation: ${showOpacity} ease 1s 0.5s forwards;
+   animation: ${showOpacity} ease 1s 0.4s forwards;
 `);
 const ArmsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: 20%;
-   animation: ${showOpacity} ease 1s 0.75s forwards;
+   animation: ${showOpacity} ease 1s 0.5s forwards;
 `);
 const LegsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: 60%;
-  animation: ${showOpacity} ease 1s 1s forwards;
+  animation: ${showOpacity} ease 1s 0.6s forwards;
 `);
 
 
@@ -924,16 +934,16 @@ const BodyPartButton = withTheme(styled.button`
     border: 2px solid #000;
   }
   &:first-of-type {
-    animation: ${showOpacity} ease 1s 1s forwards;
+    animation: ${showOpacity} ease 1s 0.9s forwards;
   }
   &:nth-of-type(2n) {
-    animation: ${showOpacity} ease 1s 1.25s forwards;
+    animation: ${showOpacity} ease 1s 1s forwards;
   }
   &:nth-of-type(3n) {
-    animation: ${showOpacity} ease 1s 1.5s forwards;
+    animation: ${showOpacity} ease 1s 1.1s forwards;
   }
   &:last-of-type {
-    animation: ${showOpacity} ease 1s 1.75s forwards;
+    animation: ${showOpacity} ease 1s 1.2s forwards;
   }
   @media ${device.laptop} {
     padding: 1rem 1.1rem;
@@ -971,7 +981,7 @@ const ColoursWrapper = withTheme(styled.div`
   justify-content: center;
   align-items: flex-end;
   opacity: 0;
-  animation: ${showOpacity} ease 1s 2s forwards;
+  animation: ${showOpacity} ease 1s 1.5s forwards;
   &:not(:empty){
     background-color: ${props => props.theme.palette.fourth.main};
     border-radius: 20px;
@@ -1073,31 +1083,31 @@ const BrownButton = withTheme(styled.button`
    ${colourButton};
    background-color: #835632;
    z-index: 5;
-   animation: ${showOpacity} ease 1s 2s forwards;
+   animation: ${showOpacity} ease 1s 1.5s forwards;
 `)
 const PinkButton = withTheme(styled.button`
    ${colourButton};
    background-color: #c99d96;
    z-index: 6;
-   animation: ${showOpacity} ease 1s 2.25s forwards;
+   animation: ${showOpacity} ease 1s 1.6s forwards;
 `)
 const BeigeButton = withTheme(styled.button`
    ${colourButton};
    background-color: #bd9e86;
    z-index: 7;
-   animation: ${showOpacity} ease 1s 2.5s forwards;
+   animation: ${showOpacity} ease 1s 1.7s forwards;
 `)
 const CreamButton = withTheme(styled.button`
    ${colourButton};
    background-color: #F5EBD3;
    z-index: 8;
-   animation: ${showOpacity} ease 1s 2.75s forwards;
+   animation: ${showOpacity} ease 1s 1.8s forwards;
 `)
 const GrayButton = withTheme(styled.button`
    ${colourButton};
    background-color: #BCBCBC;
    z-index: 9;
-   animation: ${showOpacity} ease 1s 3s forwards;
+   animation: ${showOpacity} ease 1s 1.9s forwards;
 `)
 //cart
 const NavbarLink = withTheme(styled(Link)`
@@ -1118,18 +1128,19 @@ const ConfirmButton = withTheme(styled.button`
   color: #fff;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   transform: translateX(100%);
-  animation: ${toLeft} ease 1s 3s forwards;
+  animation: ${toLeft} ease 1s 2s forwards;
   @media ${device.laptop} {
     margin-right: 0;
   }
   @media ${device.tabletM} {
     border-radius: 20px 20px 0 0;
     font-size: 1.2rem;
-    animation: ${toTop} ease 2s;
   }
   @media ${device.mobileL} {
     padding: 1.25rem 2.5rem;
     font-size: 1.15rem;
+    transform: translateX(0) translateY(100%);
+    animation: ${toTop} ease 1s 2s forwards;
   }
   @media ${device.mobileM} {
     padding: 1rem 2rem;

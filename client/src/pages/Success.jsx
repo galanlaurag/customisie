@@ -4,7 +4,7 @@ import {
     GlobalStyle,
     GeneralButton,
     BackgroundImageTop,
-    toRight, toLeft
+    showOpacity
 } from '../responsive&generalStyling';
 import {clearAllCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
@@ -53,10 +53,12 @@ const SuccessWrapper = styled.div`
   text-align: center;
 `
 const HomeButton = styled(GeneralButton)`
-  animation: ${toRight} ease 1s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
 `
 const AccountButton = styled(GeneralButton)`
-  animation: ${toLeft} ease 1s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 1s forwards;
 `
 const SuccessLink = withTheme(styled(Link)`
   width: fit-content;

@@ -4,7 +4,7 @@ import {
     BackgroundImage,
     GlobalStyle,
     GeneralButton,
-    BackgroundImageTop, showOpacity, toRight, toLeft
+    BackgroundImageTop, showOpacity,
 } from '../responsive&generalStyling';
 import React from 'react';
 import styled from "styled-components/macro";
@@ -111,10 +111,12 @@ const Title = styled.h1`
   }
 `
 const HomeButton = styled(GeneralButton)`
-  animation: ${toRight} ease 1s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
 `
 const ContactButton = styled(GeneralButton)`
-  animation: ${toLeft} ease 1s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 1s forwards;
 `
 const Image = styled.img`
   position: relative;

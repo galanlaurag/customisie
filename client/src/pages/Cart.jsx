@@ -6,7 +6,7 @@ import {
     BackgroundImage,
     GlobalStyle,
     GeneralButton,
-    BackgroundImageTop, showOpacity, toTop, toBottom
+    BackgroundImageTop, showOpacity
 } from '../responsive&generalStyling';
 import {Add, Remove, Close} from "@material-ui/icons";
 import {withTheme} from "@material-ui/core/styles";
@@ -218,8 +218,11 @@ const Top = styled.div`
 `
 const TopButton = withTheme(styled(GeneralButton)`
   background-color: ${props => props.theme.palette.secondary.main};
-  transform: translateY(-500%);
-  animation: ${toBottom} ease 1s 0.75s forwards;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 1s forwards;
+  @media ${device.tabletM} {
+    animation: ${showOpacity} ease 1s 0.5s forwards;
+  }
 `);
 const CartLink = withTheme(styled(Link)`
   text-decoration: none;
@@ -412,8 +415,11 @@ const SummaryItemPrice = styled.span`
     font-weight: bold;
 `
 const CheckoutButton = styled(GeneralButton)`
-  transform: translateY(1000%);
-  animation: ${toTop} ease 1s 0.75s forwards;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.75s forwards;
+  @media ${device.tabletM} {
+    animation: ${showOpacity} ease 1s 1s forwards;
+  }
 `
 
 const EmptyCartWrapper = styled.div`
@@ -504,5 +510,6 @@ const EmptyImage = styled.img`
   }
 `
 const EmptyButton = styled(GeneralButton)`
-  animation: ${toTop} ease 1s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
 `

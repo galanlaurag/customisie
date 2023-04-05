@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from '../components/Slider.jsx';
 import {withTheme} from "@material-ui/core/styles";
 import styled from "styled-components/macro";
-import {device, Container, BackgroundImage, BackgroundImageTop, GlobalStyle, GeneralButton, toRight, toLeft, showOpacity} from '../responsive&generalStyling';
+import {device, Container, BackgroundImage, BackgroundImageTop, GlobalStyle, GeneralButton, showOpacity} from '../responsive&generalStyling';
 
 const Home = () => {
     return (
@@ -68,14 +68,17 @@ const ButtonsWrapper = styled.div`
 `
 const GeneralButton1 = styled(GeneralButton)`
   margin: 0 1rem 0 auto;
-  animation: ${toRight} ease 2s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
   @media ${device.tabletM} {
     margin: 1rem auto;
   }
 `
 const GeneralButton2 = styled(GeneralButton)`
   margin: 0 auto 0 1rem;
-  animation: ${toLeft} ease 2s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 1s forwards;
+  
   @media ${device.tabletM} {
     margin: 1rem auto;
   }

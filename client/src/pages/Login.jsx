@@ -4,7 +4,7 @@ import {
     BackgroundImage,
     GlobalStyle,
     GeneralButton,
-    BackgroundImageTop, showOpacity, toTop
+    BackgroundImageTop, showOpacity
 } from '../responsive&generalStyling';
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
@@ -105,7 +105,8 @@ export const Input = withTheme(styled.input`
   }
 `);
 export const ActionBtn = styled(GeneralButton)`
-  animation: ${toTop} ease 1s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
 `
 export const Error = styled.p`
   color: red;
@@ -116,7 +117,8 @@ const RegLink = styled(Link)`
   margin: auto;
   text-decoration: none;
   display: block;
-  animation: ${showOpacity} ease 2s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 1s forwards;
 `
 export const Span = styled.p`
   font-size: 0.7rem;

@@ -5,7 +5,7 @@ import {
     GlobalStyle,
     GeneralButton,
     BackgroundImageTop,
-    toTop
+    showOpacity
 } from '../responsive&generalStyling';
 import React, { useEffect, useState } from "react";
 import Faq from "react-faq-component";
@@ -14,7 +14,8 @@ import {ExpandMoreRounded} from '@material-ui/icons';
 import {Link} from "react-router-dom";
 const CustomiseButton = styled(GeneralButton)`
   margin: 1rem;
-  animation: ${toTop} ease 2s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 0.5s forwards;
 `
 
 const data = {

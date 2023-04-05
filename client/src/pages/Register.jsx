@@ -55,5 +55,6 @@ const LogLink = styled(Link)`
   margin: auto;
   text-decoration: none;
   display: block;
-  animation: ${showOpacity} ease 2s;
+  opacity: 0;
+  animation: ${showOpacity} ease 1s 1s forwards;
 `

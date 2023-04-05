@@ -111,14 +111,6 @@ export const toTop = keyframes`
     transform: translateY(0);
   }
 `
-export const toBottom = keyframes`
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-`
 export const showOpacity =  keyframes`
   0% {
     opacity: 0;
