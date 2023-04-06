@@ -75,6 +75,9 @@ const config = {
 };
 
 const About = () => {
+    useEffect(() => {
+        document.title = 'Customisie - About';
+    }, []);
     const [rows, setRowsOption] = useState(null);
 
     useEffect(() => {

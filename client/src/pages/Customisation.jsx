@@ -4,6 +4,9 @@ import {publicRequest} from "../requestMethods";
 import {Container} from '../responsive&generalStyling';
 
 const Customisation = () => {
+    useEffect(() => {
+        document.title = 'Customisie - Customise';
+    }, []);
     const [products, setProducts] = useState([]);
     useEffect(() =>{
         const getProducts = async () => {

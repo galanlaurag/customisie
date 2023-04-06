@@ -6,12 +6,15 @@ import {
     GeneralButton,
     BackgroundImageTop, showOpacity,
 } from '../responsive&generalStyling';
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components/macro";
 import {withTheme} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 
 const Error = () => {
+    useEffect(() => {
+        document.title = 'Customisie - Page not found';
+    }, []);
     return (
         <Container>
             <GlobalStyle/>

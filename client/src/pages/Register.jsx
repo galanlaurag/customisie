@@ -1,6 +1,6 @@
 import {Container, BackgroundImage, GlobalStyle, BackgroundImageTop, showOpacity} from '../responsive&generalStyling';
 import {Wrapper, Form, Input, Error, Span, RegisterButton, ActionBtn} from './Login';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components/macro";
 import { withTheme } from "@material-ui/core/styles"
 import {Link} from "react-router-dom";
@@ -8,6 +8,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {register} from "../redux/apiCalls";
 
 const Register = () => {
+    useEffect(() => {
+        document.title = 'Customisie - Register';
+    }, []);
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();

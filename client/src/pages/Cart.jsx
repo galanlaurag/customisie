@@ -22,6 +22,9 @@ const KEY = process.env.REACT_APP_STRIPE;
 
 
 const Cart = () => {
+    useEffect(() => {
+        document.title = 'Customisie - Cart';
+    }, []);
     const [products, setProducts] = useState([]);
     useEffect(() =>{
         const getProducts = async () => {

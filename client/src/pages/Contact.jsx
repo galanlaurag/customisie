@@ -8,12 +8,15 @@ import {
     showOpacity,
 } from '../responsive&generalStyling';
 import {withTheme} from "@material-ui/core/styles";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {publicRequest} from "../requestMethods";
 import ReCAPTCHA from "react-google-recaptcha";
 import styled from "styled-components/macro";
 
 const Contact = () => {
+    useEffect(() => {
+        document.title = 'Customisie - Contact';
+    }, []);
     const captchaRef = React.useRef(null);
     const [result, setResult] = useState(null);
     const [state, setState] = useState({

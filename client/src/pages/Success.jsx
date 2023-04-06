@@ -8,13 +8,15 @@ import {
 } from '../responsive&generalStyling';
 import {clearAllCart} from "../redux/cartRedux";
 import {useDispatch} from "react-redux";
-import {useEffect} from "react";
-import React from "react";
+import React, {useEffect} from "react";
 import {withTheme} from "@material-ui/core/styles";
 import styled from "styled-components/macro";
 import {Link} from "react-router-dom";
 
 const Success = () => {
+    useEffect(() => {
+        document.title = 'Customisie - Payment successful';
+    }, []);
     const dispatch = useDispatch();
     useEffect(() => {
         const emptyCart = async() => {

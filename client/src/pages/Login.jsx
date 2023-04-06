@@ -6,7 +6,7 @@ import {
     GeneralButton,
     BackgroundImageTop, showOpacity
 } from '../responsive&generalStyling';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components/macro";
 import { withTheme } from "@material-ui/core/styles";
 import { login } from "../redux/apiCalls";
@@ -14,6 +14,9 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {
+    useEffect(() => {
+        document.title = 'Customisie - Login';
+    }, []);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
