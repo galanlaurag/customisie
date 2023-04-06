@@ -44,7 +44,7 @@ const Header = () => {
             <Demo>This is a demo version - not a working store (yet:))!</Demo>
             <HeaderContainer>
                     {/*logo & name*/}
-                    <Left>
+                    <Left onClick={() => {isNavExpanded && setIsNavExpanded(!isNavExpanded)}}>
                         <HomeLink to={"/"}>
                             <Logo>
                                 <LogoIcon>

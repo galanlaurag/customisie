@@ -58,6 +58,7 @@ const ButtonsWrapper = styled.div`
   top: -3rem;
   @media ${device.tabletM} {
     flex-direction: column;
+    top: -3.5rem;
   }
 `
 const GeneralButton1 = styled(GeneralButton)`
