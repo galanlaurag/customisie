@@ -128,6 +128,7 @@ const ContactForm = styled.form`
   }
   @media ${device.mobileL} {
     width: 95%;
+    margin: 1.5rem auto;
   }
 `
 const ContactFormWrapper = withTheme(styled.div`

@@ -56,20 +56,11 @@ const ButtonsWrapper = styled.div`
   z-index: 20;
   position: relative;
   top: -3rem;
-  @media ${device.laptop} {
-    top: -2rem;
-  }
-  @media ${device.tabletL} {
-    top: -1.5rem;
-  }
   @media ${device.tabletM} {
     flex-direction: column;
   }
   @media ${device.mobileL} {
-    top: -1rem;
-  }
-  @media ${device.mobileM} {
-    top: -0.5rem;
+    top: -5rem;
   }
 `
 const GeneralButton1 = styled(GeneralButton)`
@@ -79,14 +70,19 @@ const GeneralButton1 = styled(GeneralButton)`
   @media ${device.tabletM} {
     margin: 1rem auto;
   }
+  @media ${device.mobileL} {
+    margin: 0.5rem auto;
+  }
 `
 const GeneralButton2 = styled(GeneralButton)`
   margin: 0 auto 0 1rem;
   opacity: 0;
   animation: ${showOpacity} ease 1s 1s forwards;
-  
   @media ${device.tabletM} {
     margin: 1rem auto;
+  }
+  @media ${device.mobileL} {
+    margin: 0.5rem auto;
   }
 `
 

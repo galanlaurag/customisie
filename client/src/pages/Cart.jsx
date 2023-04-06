@@ -213,9 +213,11 @@ const Top = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
+  @media ${device.tabletM} {
+    margin-bottom: 1.5rem;
+  }
 `
 const TopButton = withTheme(styled(GeneralButton)`
-  background-color: ${props => props.theme.palette.secondary.main};
   opacity: 0;
   animation: ${showOpacity} ease 1s 1s forwards;
   @media ${device.tabletM} {
@@ -266,6 +268,7 @@ const ProductDetail = withTheme(styled.div`
   }
   @media ${device.tabletM} {
     padding: 1rem 4rem;
+    margin-bottom: 1.5rem;
   }
   @media ${device.tabletS} {
     padding: 1rem 2rem;
@@ -348,6 +351,7 @@ const Comment = styled.div`
   width: 100%;
 `
 const Textarea = withTheme(styled.textarea`
+  font-size: 1rem;
   width: -webkit-fill-available;
   padding: 1rem;
   border: none;
