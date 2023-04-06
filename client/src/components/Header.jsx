@@ -91,9 +91,6 @@ const HeaderContainer = withTheme(styled('div')`
   @media ${device.tabletL} {
     padding: 0 1rem 0 0;
   }
-  @media ${device.mobileL} {
-    padding: 0 0.5rem 0 0;
-  }
 `);
 const Demo = withTheme(styled('span')`
   background-color: ${props => props.theme.palette.secondary.main};
@@ -131,7 +128,7 @@ const NavbarLink = styled(Link)`
   @media ${device.tabletM} {
     display: block;
     width: fit-content;
-    margin: 0.5rem 0.5rem 0.5rem auto;
+    margin: 0.5rem 1rem 0.5rem auto;
   }
 `;
 
@@ -150,6 +147,7 @@ export const LogoIcon = styled.div`
 `;
 const Image = styled.img`  
   height: 3rem;
+  vertical-align: middle;
 `;
 export const LogoText = styled(LogoIcon)``;
 
@@ -177,7 +175,7 @@ const Right = withTheme(styled('div')`
     right: 0;
     width: 100%;
     height: auto;
-    transition: all 0.5s;
+    transition: all 0.25s;
     overflow: hidden;
     transform-origin: top center;
     transform: scale(1,0);

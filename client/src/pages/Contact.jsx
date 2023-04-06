@@ -63,7 +63,7 @@ const Contact = () => {
             }
             .grecaptcha-badge {
                 z-index: 10;
-                animation: toLeft ease 2s
+                animation: toLeft ease 2s;
             }`
             }</style>
             <BackgroundImageTop src={`/assets/tloTop.png`}/>
@@ -117,21 +117,11 @@ const Contact = () => {
 
 export default Contact;
 
-const ContactForm = withTheme(styled.form`
-  overflow: hidden;
-  margin: auto;
-  width: 75%;
-  //height: 75%;
-  display: flex;
-  flex-direction: column;
-  background-color: ${props => props.theme.palette.fourth.main};
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+const ContactForm = styled.form`
+   margin: 3rem auto;
+   width: 75%;
   @media ${device.laptop} {
     width: 85%;
-    //height: 85%;
   }
   @media ${device.tabletL} {
     width: 90%;
@@ -139,8 +129,8 @@ const ContactForm = withTheme(styled.form`
   @media ${device.mobileL} {
     width: 95%;
   }
-`)
-const ContactFormWrapper = styled.div`
+`
+const ContactFormWrapper = withTheme(styled.div`
   padding: 1rem 3rem 3rem 3rem;
   height: 100%;
   width: -webkit-fill-available;
@@ -148,6 +138,12 @@ const ContactFormWrapper = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   animation: ${showOpacity} ease 1s;
+  overflow: hidden;
+  background-color: ${props => props.theme.palette.fourth.main};
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   @media ${device.tabletL} {
     padding: 1rem 2rem 2rem 2rem;
   }
@@ -157,7 +153,7 @@ const ContactFormWrapper = styled.div`
   @media ${device.mobileM} {
     padding: 0.5rem;
   }
-`
+`)
 const Title = styled.h2`
   margin: 1rem;
   text-align: center;

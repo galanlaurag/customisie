@@ -51,13 +51,10 @@ const ErrorWrapper = styled.div`
     top: -7rem
   }
   @media ${device.mobileL} {
-    top: -4rem;
-  }
-  @media ${device.mobileM} {
-    top: -3rem;
+    top: -5rem;
   }
   @media ${device.mobileS} {
-    top: -2.5rem;
+    top: -3rem;
   }
 `
 const Wrapper = withTheme(styled.div`

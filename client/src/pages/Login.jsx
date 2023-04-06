@@ -56,7 +56,7 @@ export const Wrapper = withTheme(styled.div`
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   padding: 3rem;
-  margin: auto;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

@@ -16,7 +16,7 @@ import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom
 import {useSelector} from "react-redux";
 import MyAccount from "./pages/MyAccount";
 import {Main} from './responsive&generalStyling';
-
+import ScrollToTop from "./components/ScrollToTop";
 
 const theme = createTheme({
     palette: {
@@ -43,8 +43,7 @@ const App = () => {
     return (
         <Router>
             <ThemeProvider theme={theme}>
-            <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" />
-            <meta name="apple-mobile-web-app-capable" content="yes" />
+                <ScrollToTop />
                 <Header />
                     <Routes>
                         <Route exact path="/" element={<Main><Home/></Main>}/>

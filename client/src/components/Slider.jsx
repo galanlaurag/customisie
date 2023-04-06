@@ -109,7 +109,7 @@ const SliderContainer = styled.div`
   position: relative;
   top: -3rem;
   width: 85%;
-  margin: auto;
+  margin: 0 auto;
   @media ${device.laptop} {
     top: -2rem;
     width: 100%;

@@ -706,6 +706,8 @@ const InfoText = withTheme(styled.span`
 `);
 const Info = withTheme(styled(InfoRounded)`
   font-size: 1.2rem !important;
+  width: 1.6rem !important;
+  height: 1.4rem !important;
   color: ${props => props.theme.palette.primary.main};
   &:hover + ${InfoText}, &:active + ${InfoText} {
     visibility: visible;
@@ -1025,6 +1027,7 @@ const ColoursWrapper = withTheme(styled.div`
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 1.5rem 2rem;
+    gap: 2rem;
     width: 50%;
     margin: 1rem auto;
     box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
@@ -1032,6 +1035,7 @@ const ColoursWrapper = withTheme(styled.div`
   @media ${device.tabletL} {
     &:not(:empty) {
       width: 60%;
+      gap: 1rem;
     }
   }
   @media ${device.tabletM} {
@@ -1039,7 +1043,7 @@ const ColoursWrapper = withTheme(styled.div`
     align-items: center;
     &:not(:empty) {
       gap: 0.5rem;
-      padding: 1rem 0;
+      padding: 1rem;
       width: 80%;
     }
   }
@@ -1058,7 +1062,7 @@ const colourPicker = css`
   height: fit-content;
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
+  //padding: 0 1rem;
   &.Brown .brownBtn, &.Pink .pinkBtn, &.Beige .beigeBtn, &.Cream .creamBtn, &.Gray .grayBtn {
     transform: scale(1.2) !important;
     border: 2px solid #000;

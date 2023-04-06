@@ -60,11 +60,10 @@ const Cart = () => {
     },[stripeToken, cart, navigate])
 
     return (
-        <Container>
+        <CartContainer>
             <GlobalStyle/>
             <BackgroundImageTop src={`/assets/tloTop.png`}/>
             <BackgroundImage src={`/assets/tlo.png`}/>
-            <Wrapper>
                 {cart.quantity !== 0 ?
                     <Top>
                         {products.map((item) => (
@@ -167,7 +166,7 @@ const Cart = () => {
                                 <SummaryTitle>Order summary</SummaryTitle>
                                 <SummaryItem>
                                     <SummaryItemText>Subtotal</SummaryItemText>
-                                    <SummaryItemPrice>£{cart.total - 20}</SummaryItemPrice>
+                                    <SummaryItemPrice>£{cart.total}</SummaryItemPrice>
                                 </SummaryItem>
                                 <SummaryItem>
                                     <SummaryItemText>Shipping</SummaryItemText>
@@ -175,7 +174,7 @@ const Cart = () => {
                                 </SummaryItem>
                                 <SummaryItem type="total">
                                     <SummaryItemText>Total</SummaryItemText>
-                                    <SummaryItemPrice>£{cart.total}</SummaryItemPrice>
+                                    <SummaryItemPrice>£{cart.total+20}</SummaryItemPrice>
                                 </SummaryItem>
                                 {stripeToken ? (<span>Processing. Please wait...</span>) : (
                                     <StripeCheckout
@@ -194,14 +193,13 @@ const Cart = () => {
                         </SummaryWrapper>
                     }
                 </Bottom>
-            </Wrapper>
-        </Container>
+        </CartContainer>
     )
 }
 export default Cart;
 
 
-const Wrapper = styled.div`
+const CartContainer = styled(Container)`
   padding: 1rem 2rem;
   @media ${device.laptop} {
     padding: 1rem;
@@ -251,6 +249,7 @@ const CartProduct = styled.div`
   justify-content: space-between;
 `
 const ProductDetail = withTheme(styled.div`
+  position: relative;
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
@@ -429,7 +428,6 @@ const EmptyCartWrapper = styled.div`
   text-align: center;
   position: relative;
   top: -11rem;
-  min-height: calc(100vh - 80px);
   margin-top: 80px;
   animation: ${showOpacity} ease 1s;
   @media ${device.tabletL} {

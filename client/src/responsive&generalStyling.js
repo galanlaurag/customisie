@@ -36,7 +36,7 @@ export const Main = styled.main`
   margin-top: 80px;
   background-color: #F4EBE6;
   display: flex;
-  flexDirection: column;
+  flex-direction: column;
 `;
 export const Container = styled.div`
   flex: 1;
@@ -52,10 +52,11 @@ export const BackgroundImage = styled.img`
   padding: 0;
   margin: 0;
   bottom: 0;
-  max-height: 500px;
+  width: 100%;
   align-self: center;
   @media ${device.laptop} {
     max-height: 450px;
+    width: auto;
   }
   @media ${device.tabletL} {
     max-height: 400px;
