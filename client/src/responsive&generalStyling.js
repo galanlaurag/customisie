@@ -25,6 +25,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
     //font-family: Arial, Helvetica, sans-serif;
   }
+  .animate {
+    animation: none;
+    opacity: 1 !important;
+    transform: translateX(0) translateY(0) scale(1);
+  }
 `
 export const Main = styled.main`
   min-height: calc(100vh - 80px);
@@ -76,7 +81,7 @@ export const GeneralButton = styled.button`
   box-shadow: 0 0 10px #98878F;
   background-color: #4C4F6B;
   color: #fff;
-  transition: 0.5s;
+  transition: 0.3s;
   &:hover {
     box-shadow: 0 0 10px #4C4F6B;
     transform: scale(1.02);
@@ -119,14 +124,3 @@ export const showOpacity =  keyframes`
     opacity: 1;
   }
 `
-
-//header & footer
-// export const NavbarLink = styled(Link)`
-//   text-decoration: none;
-//   color: #fff;
-//   margin: auto 0;
-// `;
-// export const LogoIcon = styled.div`
-//   margin-left: 0.5rem;
-// `;
-// export const LogoText = styled(LogoIcon)``;

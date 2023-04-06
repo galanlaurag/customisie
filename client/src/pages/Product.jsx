@@ -14,7 +14,7 @@ import {
     BackgroundImage,
     GlobalStyle,
     BackgroundImageTop,
-    toRight, showOpacity, toLeft, toTop
+    toRight, showOpacity, toLeft, toTop,
 } from '../responsive&generalStyling';
 
 const Product = ({item}) => {
@@ -277,6 +277,15 @@ const Product = ({item}) => {
         }
     }
 
+    //check if animation ended to make onhover scale work for confirm button & other elements after loaded
+    const [animate, setAnimate] = useState(true);
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setAnimate(false);
+        }, 3000);
+        return () => clearTimeout(timeout);
+    }, []);
+
     return (
         <Container>
             <GlobalStyle/>
@@ -303,7 +312,7 @@ const Product = ({item}) => {
                     <HeadShapeWrapper headShapeIndex={headShapeIndex}/>
                     {product.headShape?.slice(0, 1).map(() => (
                         <ImagesWrapper key={product.headShape[headShapeIndex]} className={product.headShape[headShapeIndex]}>
-                            <HeadArrow direction="left" onClick={() => {handleBodyShape("left"); handleClickColour("head")}}>
+                            <HeadArrow direction="left" onClick={() => {handleBodyShape("left"); handleClickColour("head")}} className={animate ? "" : "animate"}>
                                 <ArrowBackIosRounded />
                             </HeadArrow>
 
@@ -323,7 +332,7 @@ const Product = ({item}) => {
                                 )}
                             </ImageWrapper>
 
-                            <HeadArrow direction="right" onClick={() => {handleBodyShape("right"); handleClickColour("head")}}>
+                            <HeadArrow direction="right" onClick={() => {handleBodyShape("right"); handleClickColour("head")}} className={animate ? "" : "animate"}>
                                 <ArrowForwardIosRounded />
                             </HeadArrow>
                         </ImagesWrapper>
@@ -331,7 +340,7 @@ const Product = ({item}) => {
                     {/*ears*/}
                     {product.earsShape?.slice(0, 1).map(() => (
                         <ImagesWrapper key={product.earsShape[earsShapeIndex]} className={product.earsShape[earsShapeIndex]} >
-                            <EarsArrow direction="left" onClick={() => {handleEarsShape("left"); handleClickColour("ears")}} >
+                            <EarsArrow direction="left" onClick={() => {handleEarsShape("left"); handleClickColour("ears")}} className={animate ? "" : "animate"}>
                                 <ArrowBackIosRounded />
                             </EarsArrow>
 
@@ -343,7 +352,7 @@ const Product = ({item}) => {
                                 )}
                             </ImageWrapper>
 
-                            <EarsArrow direction="right" onClick={() => {handleEarsShape("right"); handleClickColour("ears")}}>
+                            <EarsArrow direction="right" onClick={() => {handleEarsShape("right"); handleClickColour("ears")}} className={animate ? "" : "animate"}>
                                 <ArrowForwardIosRounded />
                             </EarsArrow>
                         </ImagesWrapper>
@@ -351,7 +360,7 @@ const Product = ({item}) => {
                     {/*arms*/}
                     {product.armsShape?.slice(0, 1).map(() => (
                         <ImagesWrapper key={product.armsShape[armsShapeIndex]} className={product.armsShape[armsShapeIndex]} >
-                            <ArmsArrow direction="left" onClick={() => {handleArmsShape("left"); handleClickColour("arms")}} >
+                            <ArmsArrow direction="left" onClick={() => {handleArmsShape("left"); handleClickColour("arms")}} className={animate ? "" : "animate"}>
                                 <ArrowBackIosRounded />
                             </ArmsArrow>
 
@@ -367,7 +376,7 @@ const Product = ({item}) => {
                                 )}
                             </ImageWrapper>
 
-                            <ArmsArrow direction="right" onClick={() => {handleArmsShape("right"); handleClickColour("arms")}}>
+                            <ArmsArrow direction="right" onClick={() => {handleArmsShape("right"); handleClickColour("arms")}} className={animate ? "" : "animate"}>
                                 <ArrowForwardIosRounded />
                             </ArmsArrow>
                         </ImagesWrapper>
@@ -375,7 +384,7 @@ const Product = ({item}) => {
                     {/*legs*/}
                     {product.legsShape?.slice(0, 1).map(() => (
                         <ImagesWrapper key={product.legsShape[legsShapeIndex]} className={product.legsShape[legsShapeIndex]} >
-                            <LegsArrow direction="left" onClick={() => {handleLegsShape("left"); handleClickColour("legs")}} >
+                            <LegsArrow direction="left" onClick={() => {handleLegsShape("left"); handleClickColour("legs")}} className={animate ? "" : "animate"}>
                                 <ArrowBackIosRounded />
                             </LegsArrow>
 
@@ -391,7 +400,7 @@ const Product = ({item}) => {
                                 )}
                             </ImageWrapper>
 
-                            <LegsArrow direction="right" onClick={() => {handleLegsShape("right"); handleClickColour("legs")}}>
+                            <LegsArrow direction="right" onClick={() => {handleLegsShape("right"); handleClickColour("legs")}} className={animate ? "" : "animate"}>
                                 <ArrowForwardIosRounded />
                             </LegsArrow>
                         </ImagesWrapper>
@@ -435,15 +444,15 @@ const Product = ({item}) => {
                     <Wrapper>
                         {/*head*/}
                         {product.headColour?.slice(0, 1).map(() => (
-                            <ColoursWrapper key={product.headColour[headColourIndex]}>
+                            <ColoursWrapper key={product.headColour+product.eyesColour+product.noseColour}>
                                 { headClicked ?
                                     <ColourWrapper id="headColour" className={product.headColour[headColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Head</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setHeadColour(product.headColour[0]); setHeadColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setHeadColour(product.headColour[1]); setHeadColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setHeadColour(product.headColour[2]); setHeadColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setHeadColour(product.headColour[3]); setHeadColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setHeadColour(product.headColour[4]); setHeadColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setHeadColour(product.headColour[0]); setHeadColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setHeadColour(product.headColour[1]); setHeadColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setHeadColour(product.headColour[2]); setHeadColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setHeadColour(product.headColour[3]); setHeadColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setHeadColour(product.headColour[4]); setHeadColourIndex(4)}}>gray</GrayButton>
                                     </ColourWrapper>
                                     : null}
 
@@ -451,37 +460,37 @@ const Product = ({item}) => {
                                 {((headShapeIndex === 2 || headShapeIndex === 3) && headClicked) ?
                                     <AdditionalColourWrapper id="eyesColour" className={product.eyesColour[eyesColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Eyes</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setEyesColour(product.eyesColour[0]); setEyesColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setEyesColour(product.eyesColour[1]); setEyesColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setEyesColour(product.eyesColour[2]); setEyesColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setEyesColour(product.eyesColour[3]); setEyesColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setEyesColour(product.eyesColour[4]); setEyesColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setEyesColour(product.eyesColour[0]); setEyesColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setEyesColour(product.eyesColour[1]); setEyesColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setEyesColour(product.eyesColour[2]); setEyesColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setEyesColour(product.eyesColour[3]); setEyesColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setEyesColour(product.eyesColour[4]); setEyesColourIndex(4)}}>gray</GrayButton>
                                     </AdditionalColourWrapper>
                                 : null }
                                 {/*nose*/}
                                 {headShapeIndex === 0 && headClicked ?
                                     <AdditionalColourWrapper id="noseColour" className={product.noseColour[noseColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Nose</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setNoseColour(product.noseColour[0]); setNoseColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setNoseColour(product.noseColour[1]); setNoseColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setNoseColour(product.noseColour[2]); setNoseColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setNoseColour(product.noseColour[3]); setNoseColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setNoseColour(product.noseColour[4]); setNoseColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setNoseColour(product.noseColour[0]); setNoseColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setNoseColour(product.noseColour[1]); setNoseColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setNoseColour(product.noseColour[2]); setNoseColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setNoseColour(product.noseColour[3]); setNoseColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setNoseColour(product.noseColour[4]); setNoseColourIndex(4)}}>gray</GrayButton>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
                         ))}
                         {/*ears*/}
                         {product.earsColour?.slice(0, 1).map(() => (
-                            <ColoursWrapper key={product.earsColour[earsColourIndex]}>
+                            <ColoursWrapper key={product.earsColour+product.innerEarsColour}>
                                 { earsClicked ?
                                     <ColourWrapper id="earsColour" className={product.earsColour[earsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Ears</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setEarsColour(product.earsColour[0]); setEarsColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setEarsColour(product.earsColour[1]); setEarsColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setEarsColour(product.earsColour[2]); setEarsColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setEarsColour(product.earsColour[3]); setEarsColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setEarsColour(product.earsColour[4]); setEarsColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setEarsColour(product.earsColour[0]); setEarsColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setEarsColour(product.earsColour[1]); setEarsColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setEarsColour(product.earsColour[2]); setEarsColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setEarsColour(product.earsColour[3]); setEarsColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setEarsColour(product.earsColour[4]); setEarsColourIndex(4)}}>gray</GrayButton>
                                     </ColourWrapper>
                                     : null }
 
@@ -489,52 +498,52 @@ const Product = ({item}) => {
                                 {earsShapeIndex === 2 && earsClicked ?
                                     <AdditionalColourWrapper id="innerEarsColour" className={product.innerEarsColour[innerEarsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Inner ears</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[0]); setInnerEarsColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[1]); setInnerEarsColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[2]); setInnerEarsColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[3]); setInnerEarsColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setInnerEarsColour(product.innerEarsColour[4]); setInnerEarsColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[0]); setInnerEarsColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[1]); setInnerEarsColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[2]); setInnerEarsColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[3]); setInnerEarsColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[4]); setInnerEarsColourIndex(4)}}>gray</GrayButton>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
                         ))}
                         {/*arms*/}
                         {product.armsColour?.slice(0, 1).map(() => (
-                            <ColoursWrapper key={product.armsColour[armsColourIndex]}>
+                            <ColoursWrapper key={product.armsColour+product.handsColour}>
                                 { armsClicked ?
                                     <ColourWrapper id="armsColour" className={product.armsColour[armsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Arms</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setArmsColour(product.armsColour[0]); setArmsColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setArmsColour(product.armsColour[1]); setArmsColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setArmsColour(product.armsColour[2]); setArmsColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setArmsColour(product.armsColour[3]); setArmsColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setArmsColour(product.armsColour[4]); setArmsColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setArmsColour(product.armsColour[0]); setArmsColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setArmsColour(product.armsColour[1]); setArmsColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setArmsColour(product.armsColour[2]); setArmsColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setArmsColour(product.armsColour[3]); setArmsColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setArmsColour(product.armsColour[4]); setArmsColourIndex(4)}}>gray</GrayButton>
                                     </ColourWrapper>
                                     : null }
                                 {/*hands*/}
                                 {((armsShapeIndex === 3 || armsShapeIndex === 4) && armsClicked) ?
                                     <AdditionalColourWrapper id="handsColour" className={product.handsColour[handsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Hands</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setHandsColour(product.handsColour[0]); setHandsColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setHandsColour(product.handsColour[1]); setHandsColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setHandsColour(product.handsColour[2]); setHandsColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setHandsColour(product.handsColour[3]); setHandsColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setHandsColour(product.handsColour[4]); setHandsColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setHandsColour(product.handsColour[0]); setHandsColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setHandsColour(product.handsColour[1]); setHandsColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setHandsColour(product.handsColour[2]); setHandsColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setHandsColour(product.handsColour[3]); setHandsColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setHandsColour(product.handsColour[4]); setHandsColourIndex(4)}}>gray</GrayButton>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
                         ))}
                         {/*legs*/}
                         {product.legsColour?.slice(0, 1).map(() => (
-                            <ColoursWrapper key={product.legsColour[legsColourIndex]}>
+                            <ColoursWrapper key={product.legsColour+product.feetColour}>
                                 { legsClicked ?
                                     <ColourWrapper id="legsColour" className={product.legsColour[legsColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Legs</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setLegsColour(product.legsColour[0]); setLegsColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setLegsColour(product.legsColour[1]); setLegsColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setLegsColour(product.legsColour[2]); setLegsColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setLegsColour(product.legsColour[3]); setLegsColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setLegsColour(product.legsColour[4]); setLegsColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setLegsColour(product.legsColour[0]); setLegsColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setLegsColour(product.legsColour[1]); setLegsColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setLegsColour(product.legsColour[2]); setLegsColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setLegsColour(product.legsColour[3]); setLegsColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setLegsColour(product.legsColour[4]); setLegsColourIndex(4)}}>gray</GrayButton>
                                     </ColourWrapper>
                                     : null }
 
@@ -542,11 +551,11 @@ const Product = ({item}) => {
                                 {((legsShapeIndex === 3 || legsShapeIndex === 4) && legsClicked) ?
                                     <AdditionalColourWrapper id="feetColour" className={product.feetColour[feetColourIndex]}>
                                         <SpanBodyPart style={{textAlign: "center"}}>Feet</SpanBodyPart>
-                                        <BrownButton className="brownBtn" onClick={() => {setFeetColour(product.feetColour[0]); setFeetColourIndex(0)}}>brown</BrownButton>
-                                        <PinkButton className="pinkBtn" onClick={() => {setFeetColour(product.feetColour[1]); setFeetColourIndex(1)}}>pink</PinkButton>
-                                        <BeigeButton className="beigeBtn" onClick={() => {setFeetColour(product.feetColour[2]); setFeetColourIndex(2)}}>beige</BeigeButton>
-                                        <CreamButton className="creamBtn" onClick={() => {setFeetColour(product.feetColour[3]); setFeetColourIndex(3)}}>cream</CreamButton>
-                                        <GrayButton className="grayBtn" onClick={() => {setFeetColour(product.feetColour[4]); setFeetColourIndex(4)}}>gray</GrayButton>
+                                        <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setFeetColour(product.feetColour[0]); setFeetColourIndex(0)}}>brown</BrownButton>
+                                        <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setFeetColour(product.feetColour[1]); setFeetColourIndex(1)}}>pink</PinkButton>
+                                        <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setFeetColour(product.feetColour[2]); setFeetColourIndex(2)}}>beige</BeigeButton>
+                                        <CreamButton className={animate ? "creamBtn" : "creamBtn animate"} onClick={() => {setFeetColour(product.feetColour[3]); setFeetColourIndex(3)}}>cream</CreamButton>
+                                        <GrayButton className={animate ? "grayBtn" : "grayBtn animate"} onClick={() => {setFeetColour(product.feetColour[4]); setFeetColourIndex(4)}}>gray</GrayButton>
                                     </AdditionalColourWrapper>
                                 : null }
                             </ColoursWrapper>
@@ -555,7 +564,7 @@ const Product = ({item}) => {
 
                     {/*confirm button*/}
                     <NavbarLink to={"/cart"}>
-                        <ConfirmButton onClick={handleConfirm}>Confirm</ConfirmButton>
+                        <ConfirmButton onClick={handleConfirm} className={animate ? "" : "animate"}>Confirm</ConfirmButton>
                     </NavbarLink>
                 </ColoursContainer>
             </CustomisationWrapper>
@@ -753,6 +762,11 @@ const RButton = withTheme(styled.p`
   &:last-of-type {
     animation: ${toRight} ease 1.5s;
   }
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    transform: scale(1.02);
+  }
   @media ${device.laptop} {
     font-size: 1rem;
   }
@@ -832,7 +846,9 @@ const Image = styled.img`
   right: 0;
   margin: auto;
   padding: 1rem 0;
-  //animation: ${showOpacity} ease 3s;
+  user-select: none;
+  //opacity: 0;
+  //animation: ${showOpacity} ease 0.5s forwards;
 `
 //arrows
 const sharedStyleForArrows = css`
@@ -852,6 +868,11 @@ const sharedStyleForArrows = css`
   z-index: 20;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   opacity: 0;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    transform: scale(1.02);
+  }
   @media ${device.laptop} {
     left: ${(props) => props.direction === "left" && "2%"};
     right: ${(props) => props.direction === "right" && "2%"};
@@ -878,22 +899,30 @@ const sharedStyleForArrows = css`
 const EarsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: -60%;
-  animation: ${showOpacity} ease 1s 0.3s forwards;
+  &:not(.animate) {
+    animation: ${showOpacity} ease 1s 0.3s forwards;
+  }
 `);
 const HeadArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: -20%;
-   animation: ${showOpacity} ease 1s 0.4s forwards;
+  &:not(.animate) {
+    animation: ${showOpacity} ease 1s 0.4s forwards;
+  }
 `);
 const ArmsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: 20%;
-   animation: ${showOpacity} ease 1s 0.5s forwards;
+  &:not(.animate) {
+    animation: ${showOpacity} ease 1s 0.5s forwards;
+  }
 `);
 const LegsArrow = withTheme(styled.div`
   ${sharedStyleForArrows};
   top: 60%;
-  animation: ${showOpacity} ease 1s 0.6s forwards;
+  &:not(.animate) {
+    animation: ${showOpacity} ease 1s 0.6s forwards;
+  }
 `);
 
 
@@ -923,13 +952,19 @@ const BodyPartButton = withTheme(styled.button`
   font-size: 1.1rem;
   padding: 1rem 1.2rem;
   border-radius: 20px;
-  background-color: #98878f;
+  background-color: ${props => props.theme.palette.default.main};
   border: none;
   margin: 0.3rem;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   opacity: 0;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    transform: scale(1.02);
+  }
   &.activeBodyPartButton {
-    transform: scale(1.1);
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    transform: scale(1.08);
     background-color: ${props => props.theme.palette.secondary.main};
     border: 2px solid #000;
   }
@@ -986,7 +1021,7 @@ const ColoursWrapper = withTheme(styled.div`
     background-color: ${props => props.theme.palette.fourth.main};
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    padding: 2rem;
+    padding: 1.5rem 2rem;
     width: 50%;
     margin: 1rem auto;
     box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
@@ -1016,15 +1051,15 @@ const ColoursWrapper = withTheme(styled.div`
   }
 `)
 const colourPicker = css`
-  &.Brown .brownBtn, &.Pink .pinkBtn, &.Beige .beigeBtn, &.Cream .creamBtn, &.Gray .grayBtn {
-    transform: scale(1.2);
-    border: 2px solid #000;
-  }
   height: fit-content;
   display: flex;
   flex-direction: column;
-  transition: all 1.5s ease;
   padding: 0 1rem;
+  &.Brown .brownBtn, &.Pink .pinkBtn, &.Beige .beigeBtn, &.Cream .creamBtn, &.Gray .grayBtn {
+    transform: scale(1.2) !important;
+    border: 2px solid #000;
+    box-shadow: 0 7px 10px #4C4F6B;
+  }
   @media ${device.tabletM} {
     flex-direction: row;
     justify-content: center;
@@ -1054,6 +1089,11 @@ const colourButton = css`
    box-shadow: 0 7px 10px ${props => props.theme.palette.default.main};
    font-size: 1rem;
    opacity: 0;
+   transition: 0.3s;
+   &:hover {
+     box-shadow: 0 7px 10px ${props => props.theme.palette.primary.main};
+     transform: scale(1.02);
+   }
   @media ${device.laptop} {
     height: 3.5rem;
     width: 3.5rem;
@@ -1083,31 +1123,41 @@ const BrownButton = withTheme(styled.button`
    ${colourButton};
    background-color: #835632;
    z-index: 5;
-   animation: ${showOpacity} ease 1s 1.5s forwards;
+   &:not(.animate) {
+     animation: ${showOpacity} ease 1s 1.5s forwards;
+   }
 `)
 const PinkButton = withTheme(styled.button`
    ${colourButton};
    background-color: #c99d96;
    z-index: 6;
-   animation: ${showOpacity} ease 1s 1.6s forwards;
+   &:not(.animate) {
+     animation: ${showOpacity} ease 1s 1.6s forwards;
+   }
 `)
 const BeigeButton = withTheme(styled.button`
    ${colourButton};
    background-color: #bd9e86;
    z-index: 7;
-   animation: ${showOpacity} ease 1s 1.7s forwards;
+   &:not(.animate) {
+     animation: ${showOpacity} ease 1s 1.7s forwards;
+   }
 `)
 const CreamButton = withTheme(styled.button`
    ${colourButton};
    background-color: #F5EBD3;
    z-index: 8;
-   animation: ${showOpacity} ease 1s 1.8s forwards;
+   &:not(.animate) {
+     animation: ${showOpacity} ease 1s 1.8s forwards;
+   }
 `)
 const GrayButton = withTheme(styled.button`
    ${colourButton};
    background-color: #BCBCBC;
    z-index: 9;
-   animation: ${showOpacity} ease 1s 1.9s forwards;
+   &:not(.animate) {
+     animation: ${showOpacity} ease 1s 1.9s forwards;
+   }
 `)
 //cart
 const NavbarLink = withTheme(styled(Link)`
@@ -1127,8 +1177,15 @@ const ConfirmButton = withTheme(styled.button`
   background-color: ${props => props.theme.palette.primary.main};
   color: #fff;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
-  transform: translateX(100%);
-  animation: ${toLeft} ease 1s 2s forwards;
+  transition: 0.3s;
+  &:not(.animate) {
+    transform: translateX(100%) translateY(0) scale(1);
+    animation: ${toLeft} ease 1s 2s forwards;
+  }
+  &:hover {
+    box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+    transform: translateX(0) translateY(0) scale(1.02);
+  }
   @media ${device.laptop} {
     margin-right: 0;
   }
@@ -1139,8 +1196,18 @@ const ConfirmButton = withTheme(styled.button`
   @media ${device.mobileL} {
     padding: 1.25rem 2.5rem;
     font-size: 1.15rem;
-    transform: translateX(0) translateY(100%);
-    animation: ${toTop} ease 1s 2s forwards;
+    &:not(.animate) {
+      transform: translateX(100%) translateY(0) scale(1);
+      animation: ${toTop} ease 1s 2s forwards;
+    }
+    &.animate {
+      transform: translateX(0) translateY(0) scale(1);
+      animation: none;
+    }
+    &:hover {
+      box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
+      transform: translateX(0) translateY(0) scale(1.02) !important;
+    }
   }
   @media ${device.mobileM} {
     padding: 1rem 2rem;
