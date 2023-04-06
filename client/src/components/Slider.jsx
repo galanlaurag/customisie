@@ -114,9 +114,6 @@ const SliderContainer = styled.div`
     top: -2rem;
     width: 100%;
   }
-  @media ${device.tabletL} {
-    top: -1.5rem;
-  }
 `
 const SwiperWrapper = withTheme(styled(Swiper)`
   --swiper-pagination-color: ${props => props.theme.palette.primary.main};

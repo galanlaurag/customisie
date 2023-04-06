@@ -59,9 +59,6 @@ const ButtonsWrapper = styled.div`
   @media ${device.tabletM} {
     flex-direction: column;
   }
-  @media ${device.mobileL} {
-    top: -2.5rem;
-  }
 `
 const GeneralButton1 = styled(GeneralButton)`
   margin: 0 1rem 0 auto;

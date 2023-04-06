@@ -130,12 +130,6 @@ const Product = ({item}) => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                //works for individual product
-                // const res = await publicRequest.get("products/" + id);
-                //works for all products
-                // const res = await publicRequest.get(`products/${item._id}`);
-
-                // works for both!!
                 const res = await publicRequest.get(
                     item
                         ? `products/${item._id}`
@@ -568,22 +562,6 @@ const Product = ({item}) => {
                     </NavbarLink>
                 </ColoursContainer>
             </CustomisationWrapper>
-
-            {/*optional - maybe to be added in the future - size selection*/}
-            {/*<SelectionContainer>*/}
-            {/*    <FilterSize onChange={(e) => setSize(e.target.value)}>*/}
-            {/*        {product.size?.map((s) => (*/}
-            {/*            <FilterSizeOption key={s}>{s}</FilterSizeOption>*/}
-            {/*        ))}*/}
-            {/*    </FilterSize>*/}
-            {/*</SelectionContainer>*/}
-
-            {/*info about product from database*/}
-            {/*<Image src={item.img} key={item._id}/>*/}
-            {/*<Info>{item.title}*/}
-            {/*</Info>*/}
-            {/*<Info>{item.desc}*/}
-            {/*</Info>*/}
         </Container>
     );
 };
@@ -850,8 +828,6 @@ const Image = styled.img`
   margin: auto;
   padding: 1rem 0;
   user-select: none;
-  //opacity: 0;
-  //animation: ${showOpacity} ease 0.5s forwards;
 `
 //arrows
 const sharedStyleForArrows = css`
