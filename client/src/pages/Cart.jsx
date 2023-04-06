@@ -46,7 +46,6 @@ const Cart = () => {
     useEffect(() => {
         const makeRequest = async() => {
             try {
-                //TODO change to userRequest later when authentication implemented
                 const res = await userRequest.post("/checkout/payment", {
                   tokenId: stripeToken.id,
                   amount: cart.total*100,

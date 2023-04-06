@@ -23,7 +23,6 @@ export const device = {
 export const GlobalStyle = createGlobalStyle`
   * {
     font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-    //font-family: Arial, Helvetica, sans-serif;
   }
   .animate {
     animation: none;

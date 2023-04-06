@@ -38,7 +38,6 @@ export default Error;
 const ErrorWrapper = styled.div`
   text-align: center;
   position: relative;
-  min-height: calc(100vh - 80px);
   margin-top: 80px;
   top: -9.5rem;
   @media ${device.laptop} {

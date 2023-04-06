@@ -15,7 +15,6 @@ const buildPath = path.join(__dirname, '..', 'build');
 const transporter = require('./routes/formConfig');
 const axios = require('axios');
 
-
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URL)
 .then(() =>
@@ -87,9 +86,6 @@ app.post('/api/send', async (req, res) => {
     }
 });
 
-//port 5000 is private, 80 public
-// app.listen(process.env.PORT || 5000, () => {
-//8080 for deploy, 80 for local tests
-app.listen(80, () => {
+app.listen(5000, () => {
     console.log("Backend server is running!");
 })

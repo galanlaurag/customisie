@@ -4,11 +4,6 @@ const ProductSchema = new mongoose.Schema(
     {
         title: {type: String},
         desc: {type: String},
-        // img: {type: String},
-        // size: {type: Array},
-        // categories: {type: Array},
-        //colour & inStock added later - not sure if will be working
-         // add required & default
         headShape: {type: Array},
         earsShape: {type: Array},
         armsShape: {type: Array},

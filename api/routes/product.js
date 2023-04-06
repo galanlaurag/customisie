@@ -56,30 +56,6 @@ router.get("/", async (req,res) => {
     } catch(err) {
         return res.status(500).json(err);
     }
-
-    //TODO access products based on categories
-    // (e.g. axios.get("http://localhost:5000/api/products?category=test") in Customisation.jsx - frontend)
-    // - this is how i can access specific properties from database
-
-    // const query = req.query.new;
-    // const queryCategory = req.query.category;
-    // try {
-    //     let products;
-    //     if (query) {
-    //         products = await Product.find().sort({_id: -1}).limit(5);
-    //     } else if (queryCategory) {
-    //         products = await Product.find( {
-    //             categories: {
-    //                 $in: [queryCategory]
-    //             }
-    //         })
-    //     } else {
-    //         products = await Product.find();
-    //     }
-    //     return res.status(200).json(products);
-    // } catch(err) {
-    //     return res.status(500).json(err);
-    // }
 })
 
 module.exports = router;

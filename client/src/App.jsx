@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Home from './pages/Home';
 import Contact from "./pages/Contact";
 import Customisation from "./pages/Customisation";
-// import Product from "./pages/Product";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from "./pages/Cart";
@@ -48,7 +47,6 @@ const App = () => {
                     <Routes>
                         <Route exact path="/" element={<Main><Home/></Main>}/>
                         <Route path="/contact" element={<Main><Contact/></Main>}/>
-                        {/*<Route path="/product/:id" element={<Main><Product/></Main>}/>*/}
                         <Route path="/customise" element={<Main><Customisation/></Main>}/>
                         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Main><Login/></Main>}/>
                         <Route path="/register" element={user ? <Navigate to={"/"}/> : <Main><Register/></Main>}/>

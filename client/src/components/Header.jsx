@@ -45,7 +45,6 @@ const Header = () => {
             <HeaderContainer>
                     {/*logo & name*/}
                     <Left>
-                        {/*<Language>EN</Language>*/}
                         <HomeLink to={"/"}>
                             <Logo>
                                 <LogoIcon>
@@ -189,9 +188,3 @@ const MenuItem = styled.div`
   cursor: pointer;
   height: 2rem;
 `;
-
-// const Language = styled.span`
-//   font-size: 1.5rem;
-//   cursor: pointer;
-//   margin: 0 0.5em;
-// `
