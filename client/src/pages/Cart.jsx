@@ -266,7 +266,7 @@ const ProductDetail = withTheme(styled.div`
     padding: 1rem;
   }
   @media ${device.tabletM} {
-    padding: 1rem 4rem;
+    padding: 1rem 3rem;
     margin-bottom: 1.5rem;
   }
   @media ${device.tabletS} {
@@ -276,7 +276,7 @@ const ProductDetail = withTheme(styled.div`
     padding: 1rem;
   }
   @media ${device.mobileM} {
-    padding: 1rem 0.5rem;
+    //padding: 1rem 0.5rem;
   }
 `);
 const ImageContainer = styled.div`
@@ -329,10 +329,19 @@ const CloseBtn = withTheme(styled(Close)`
   position: absolute;
   top: 0;
   right: 0;
-  margin: 1rem;
+  margin: 2.5rem;
   width: 2rem !important;
   height: 2rem !important;
   z-index: 10;
+  @media ${device.laptop} {
+    margin: 1rem 0.5rem;
+  }
+  @media ${device.tabletM} {
+    margin: 1.5rem 2.5rem;
+  }
+  @media ${device.tabletS} {
+    margin: 1.5rem;
+  }
   @media ${device.mobileL} {
     margin: 0.5rem;
   }
@@ -387,16 +396,13 @@ const Summary = styled.div`
     padding: 1rem;
   }
   @media ${device.tabletM} {
-    padding: 1rem 4rem;
+    padding: 1rem 3rem;
   }
   @media ${device.tabletS} {
     padding: 1rem 2rem;
   }
   @media ${device.mobileL} {
     padding: 1rem;
-  }
-  @media ${device.mobileM} {
-    padding: 1rem 0.5rem;
   }
 ;
 `

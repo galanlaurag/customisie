@@ -564,7 +564,7 @@ const Product = ({item}) => {
 
                     {/*confirm button*/}
                     <NavbarLink to={"/cart"}>
-                        <ConfirmButton onClick={handleConfirm} className={animate ? "" : "animate"}>Confirm</ConfirmButton>
+                        <ConfirmButton onClick={handleConfirm} className={animate ? "" : "animate"}>Add to cart</ConfirmButton>
                     </NavbarLink>
                 </ColoursContainer>
             </CustomisationWrapper>
@@ -1000,7 +1000,22 @@ const BodyPartButton = withTheme(styled.button`
     width: 45%;
   }
 `)
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  //width: 50%;
+  margin: 1rem auto;
+  @media ${device.tabletL} {
+    //width: 60%;
+  }
+  @media ${device.tabletM} {
+    width: 80%;
+  }
+  @media ${device.mobileL} {
+    width: 90%;
+  }
+  @media ${device.mobileM} {
+    width: 95%;
+  }
+`;
 const SpanBodyPart = styled.span`
   font-size: 1.3rem;
   margin: 0 10px 10px 10px;
@@ -1026,35 +1041,29 @@ const ColoursWrapper = withTheme(styled.div`
     border-radius: 20px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 3rem;
+    width: fit-content;
     gap: 2rem;
-    width: 50%;
-    margin: 1rem auto;
     box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
+  }
+  @media ${device.laptop} {
+    &:not(:empty) {
+      padding: 1.5rem 2rem;
+    }
   }
   @media ${device.tabletL} {
     &:not(:empty) {
-      width: 60%;
       gap: 1rem;
+      padding: 1.5rem 1.3rem;
     }
   }
   @media ${device.tabletM} {
     flex-direction: column;
     align-items: center;
     &:not(:empty) {
+      width: auto;
       gap: 0.5rem;
       padding: 1rem;
-      width: 80%;
-    }
-  }
-  @media ${device.mobileL} {
-    &:not(:empty) {
-      width: 90%;
-    }
-  }
-  @media ${device.mobileM} {
-    &:not(:empty) {
-      width: 95%;
     }
   }
 `)
@@ -1173,7 +1182,7 @@ const NavbarLink = withTheme(styled(Link)`
 const ConfirmButton = withTheme(styled.button`
   font-size: 1.3rem;
   cursor: pointer;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 2.5rem;
   margin-right: -25px;
   border-radius: 20px 0 0 20px;
   border: none;
