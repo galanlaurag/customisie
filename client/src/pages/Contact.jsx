@@ -50,7 +50,7 @@ const Contact = () => {
     };
 
     return (
-        <Container>
+        <Container style={{padding: "1rem 0"}}>
             <GlobalStyle/>
             <style>{`
             @keyframes toLeft {
@@ -121,6 +121,9 @@ const ContactForm = withTheme(styled.form`
   overflow: hidden;
   margin: auto;
   width: 75%;
+  //height: 75%;
+  display: flex;
+  flex-direction: column;
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
@@ -128,6 +131,7 @@ const ContactForm = withTheme(styled.form`
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   @media ${device.laptop} {
     width: 85%;
+    //height: 85%;
   }
   @media ${device.tabletL} {
     width: 90%;
@@ -138,7 +142,7 @@ const ContactForm = withTheme(styled.form`
 `)
 const ContactFormWrapper = styled.div`
   padding: 1rem 3rem 3rem 3rem;
-  height: -webkit-fill-available;
+  height: 100%;
   width: -webkit-fill-available;
   display: flex;
   flex-direction: column;
@@ -159,6 +163,7 @@ const Title = styled.h2`
   text-align: center;
   @media ${device.mobileL} {
     font-size: 1.3rem;
+    margin-bottom: 0.5rem;
   }
 `
 const InputWrapper = styled.div`
@@ -184,6 +189,9 @@ const FormInput = withTheme(styled.input`
   @media ${device.tabletM} {
     width: -webkit-fill-available;
   }
+  @media ${device.mobileL} {
+    margin: 0.5rem 0;
+  }
 `);
 const FormTextarea = withTheme(styled.textarea`
   margin: 1rem 0;
@@ -196,10 +204,16 @@ const FormTextarea = withTheme(styled.textarea`
     box-shadow: 0 0 10px ${props => props.theme.palette.primary.main};
     border: 1px solid ${props => props.theme.palette.default.main};
   }
+  @media ${device.mobileL} {
+    margin: 0.5rem 0;
+  }
 `);
 const SendButton = styled(GeneralButton)`
   opacity: 0;
   animation: ${showOpacity} ease 1s 0.5s forwards;
+  @media ${device.mobileL} {
+    margin: 0.5rem auto;
+  }
 `;
 const SuccessMessage = styled.p`
   text-align: center;
