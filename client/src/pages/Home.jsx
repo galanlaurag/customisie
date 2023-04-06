@@ -3,6 +3,7 @@ import Slider from '../components/Slider.jsx';
 import {withTheme} from "@material-ui/core/styles";
 import styled from "styled-components/macro";
 import {device, Container, BackgroundImage, BackgroundImageTop, GlobalStyle, GeneralButton, showOpacity} from '../responsive&generalStyling';
+import {Link} from "react-router-dom";
 
 const Home = () => {
     return (
@@ -13,8 +14,12 @@ const Home = () => {
             <Load>
                 <Slider />
                 <ButtonsWrapper>
-                    <GeneralButton1>Customise your teddy bear</GeneralButton1>
-                    <GeneralButton2>Find out more</GeneralButton2>
+                    <Link to={"/customise"}>
+                        <GeneralButton1>Customise your teddy bear</GeneralButton1>
+                    </Link>
+                    <Link to={"/about"}>
+                        <GeneralButton2>Find out more</GeneralButton2>
+                    </Link>
                 </ButtonsWrapper>
             </Load>
 
@@ -47,6 +52,7 @@ const Load = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
+  text-align: center;
   z-index: 20;
   position: relative;
   top: -3rem;
@@ -98,6 +104,7 @@ const Review = withTheme(styled.div`
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   padding: 2rem;
   margin: 1rem 1rem 3rem 1rem;

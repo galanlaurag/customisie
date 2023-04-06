@@ -254,6 +254,7 @@ const ProductDetail = withTheme(styled.div`
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   display: flex;
   flex-wrap: wrap;
@@ -365,6 +366,7 @@ const SummaryWrapper = withTheme(styled('div')`
   border: none;
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   width: 40%;
   height: fit-content;
@@ -372,7 +374,8 @@ const SummaryWrapper = withTheme(styled('div')`
   animation: ${showOpacity} ease 1s 0.5s forwards;
   @media ${device.tabletM} {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
   }
 `)
 const Summary = styled.div`
@@ -449,6 +452,7 @@ const Empty = withTheme(styled.div`
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   padding: 7rem 3rem 5rem 3rem;
   margin: auto;

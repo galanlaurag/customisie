@@ -53,6 +53,7 @@ export const Wrapper = withTheme(styled.div`
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   padding: 3rem;
   margin: auto;

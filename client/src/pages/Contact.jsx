@@ -117,35 +117,27 @@ const Contact = () => {
 
 export default Contact;
 
-const ContactForm = styled.form`
-  position: absolute;
+const ContactForm = withTheme(styled.form`
+  overflow: hidden;
   margin: auto;
-  height: 75%;
   width: 75%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: -2rem;
-  @media ${device.laptop} {
-    width: 85%;
-    height: 85%;
-  }
-  @media ${device.tabletL} {
-    width: 90%;
-    height: 90%;
-  }
-  @media ${device.mobileL} {
-    width: 95%;
-    height: 95%;
-  }
-`
-const ContactFormWrapper = withTheme(styled.div`
-  position: absolute;
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
-  padding: 3rem;
+  @media ${device.laptop} {
+    width: 85%;
+  }
+  @media ${device.tabletL} {
+    width: 90%;
+  }
+  @media ${device.mobileL} {
+    width: 95%;
+  }
+`)
+const ContactFormWrapper = styled.div`
+  padding: 1rem 3rem 3rem 3rem;
   height: -webkit-fill-available;
   width: -webkit-fill-available;
   display: flex;
@@ -153,7 +145,7 @@ const ContactFormWrapper = withTheme(styled.div`
   justify-content: space-evenly;
   animation: ${showOpacity} ease 1s;
   @media ${device.tabletL} {
-    padding: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
   }
   @media ${device.tabletM} {
     padding: 1rem;
@@ -161,7 +153,7 @@ const ContactFormWrapper = withTheme(styled.div`
   @media ${device.mobileM} {
     padding: 0.5rem;
   }
-`)
+`
 const Title = styled.h2`
   margin: 1rem;
   text-align: center;
@@ -182,6 +174,7 @@ const FormInput = withTheme(styled.input`
   padding: 1rem;
   border: none;
   border-radius: 20px;
+  transition: 0.3s;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   &:focus {
     outline: none;

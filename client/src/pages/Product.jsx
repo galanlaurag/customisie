@@ -806,6 +806,7 @@ const ImagesContainer = withTheme(styled.div`
   background-color: ${props => props.theme.palette.fourth.main};
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
   height: auto;
   margin: 0;
@@ -817,7 +818,7 @@ const ImagesContainer = withTheme(styled.div`
     width: 60%;
   }
   @media ${device.tabletM} {
-    min-height: 60vh;
+    height: 60vh;
     width: 80%;
     left: 0;
     right: 0;
@@ -953,6 +954,7 @@ const BodyPartButton = withTheme(styled.button`
   padding: 1rem 1.2rem;
   border-radius: 20px;
   background-color: ${props => props.theme.palette.default.main};
+  color: #000;
   border: none;
   margin: 0.3rem;
   box-shadow: 0 0 10px ${props => props.theme.palette.default.main};
@@ -1021,6 +1023,7 @@ const ColoursWrapper = withTheme(styled.div`
     background-color: ${props => props.theme.palette.fourth.main};
     border-radius: 20px;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 1.5rem 2rem;
     width: 50%;
     margin: 1rem auto;
@@ -1086,6 +1089,7 @@ const colourButton = css`
    cursor: pointer;
    margin: 0.3rem;
    padding: 0; 
+   color: #000;
    box-shadow: 0 7px 10px ${props => props.theme.palette.default.main};
    font-size: 1rem;
    opacity: 0;

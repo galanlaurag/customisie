@@ -107,6 +107,7 @@ const About = () => {
                   background-color: #ffffff66;
                   border-radius: 20px;
                   backdrop-filter: blur(10px);
+                  -webkit-backdrop-filter: blur(10px);
                   box-shadow: 0 0 10px #98878F;
                   animation: showOpacity 2s ease;
                 }
