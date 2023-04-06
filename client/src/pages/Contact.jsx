@@ -50,7 +50,7 @@ const Contact = () => {
     };
 
     return (
-        <Container style={{padding: "1rem 0"}}>
+        <Container>
             <GlobalStyle/>
             <style>{`
             @keyframes toLeft {
