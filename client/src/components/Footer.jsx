@@ -56,6 +56,7 @@ const Footer = () => {
                         customisie@gmail.com
                     </ContactItem>
                 </Right>
+                <Copyright>Copyright © 2023 by <NavbarLink to={"https://galanlaura.com"} target="_blank"><LG src="/assets/lg.png"/></NavbarLink></Copyright>
             </FooterContainer>
         </footer>
     )
@@ -186,3 +187,14 @@ const Right = styled.div`
 const ContactItem = styled.div`
   margin: 0 0 0.5rem 0;
 `;
+
+const Copyright = styled.p`
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 0;
+`
+const LG = styled.img`
+  width: 1rem;
+  margin-bottom: -4px;
+`
