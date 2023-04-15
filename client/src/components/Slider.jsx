@@ -84,7 +84,7 @@ const Slider = () => {
                         <Image2 src={`/assets/teddyBears2.png`}/>
                         <Cont>
                             <h1>UNIQUENESS</h1>
-                            <Desc>390625 possible combinations of unique teddy bears!</Desc>
+                            <Desc>Countless possible combinations of unique teddy bears!</Desc>
                         </Cont>
                     </SlideContainer>
                 </SwiperSlide>

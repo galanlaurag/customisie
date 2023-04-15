@@ -168,7 +168,7 @@ const Cart = () => {
                                 <SummaryTitle>Order summary</SummaryTitle>
                                 <SummaryItem>
                                     <SummaryItemText>Subtotal</SummaryItemText>
-                                    <SummaryItemPrice>£{cart.total}</SummaryItemPrice>
+                                    <SummaryItemPrice>£{cart.total-20}</SummaryItemPrice>
                                 </SummaryItem>
                                 <SummaryItem>
                                     <SummaryItemText>Shipping</SummaryItemText>
@@ -176,7 +176,7 @@ const Cart = () => {
                                 </SummaryItem>
                                 <SummaryItem type="total">
                                     <SummaryItemText>Total</SummaryItemText>
-                                    <SummaryItemPrice>£{cart.total+20}</SummaryItemPrice>
+                                    <SummaryItemPrice>£{cart.total}</SummaryItemPrice>
                                 </SummaryItem>
                                 {stripeToken ? (<span>Processing. Please wait...</span>) : (
                                     <StripeCheckout

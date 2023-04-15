@@ -491,7 +491,7 @@ const Product = ({item}) => {
                                 {/*inner ears*/}
                                 {earsShapeIndex === 2 && earsClicked ?
                                     <AdditionalColourWrapper id="innerEarsColour" className={product.innerEarsColour[innerEarsColourIndex]}>
-                                        <SpanBodyPart style={{textAlign: "center"}}>Inner ears</SpanBodyPart>
+                                        <SpanBodyPart style={{textAlign: "center"}}>Inner<br/>ears</SpanBodyPart>
                                         <BrownButton className={animate ? "brownBtn" : "brownBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[0]); setInnerEarsColourIndex(0)}}>brown</BrownButton>
                                         <PinkButton className={animate ? "pinkBtn" : "pinkBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[1]); setInnerEarsColourIndex(1)}}>pink</PinkButton>
                                         <BeigeButton className={animate ? "beigeBtn" : "beigeBtn animate"} onClick={() => {setInnerEarsColour(product.innerEarsColour[2]); setInnerEarsColourIndex(2)}}>beige</BeigeButton>

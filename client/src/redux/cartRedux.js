@@ -26,7 +26,7 @@ const cartSlice = createSlice({
                 //unique product
                 state.quantity += 1;
                 state.products.push(action.payload);
-                if (state.quantity > 1) {
+                if (state.total > 1) {
                     state.total += action.payload.price*action.payload.productQuantity;
                 } else {
                     state.total += action.payload.price*action.payload.productQuantity+20;
@@ -61,7 +61,7 @@ const cartSlice = createSlice({
                 item.innerEarsColour === action.payload.innerEarsColour && item.armsColour === action.payload.armsColour && item.handsColour === action.payload.handsColour &&
                 item.legsColour === action.payload.legsColour && item.feetColour === action.payload.feetColour && item.noseColour === action.payload.noseColour);
             state.quantity -= thisItem.productQuantity;
-            if (state.quantity > 1) {
+            if (state.total > 1) {
                 state.total -= thisItem.price*thisItem.productQuantity;
             } else {
                 state.total -= thisItem.price*thisItem.productQuantity+20;
